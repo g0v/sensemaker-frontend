@@ -1,0 +1,3 @@
+# 排除平台特定的 Rollup 依賴
+@rollup/rollup-*-*
+rollup-*-*

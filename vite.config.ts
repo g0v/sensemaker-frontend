@@ -22,10 +22,20 @@ export default defineConfig({
       output: {
         manualChunks: undefined,
       },
+      // 強制使用純 JavaScript 版本
+      external: ['@rollup/rollup-linux-x64-gnu'],
     },
   },
   // 確保在 CI 環境中正確處理依賴
   optimizeDeps: {
-    exclude: ['@rollup/rollup-linux-x64-gnu']
+    exclude: ['@rollup/rollup-linux-x64-gnu', '@rollup/rollup-*-*'],
+    // 強制使用純 JavaScript 版本
+    esbuildOptions: {
+      platform: 'node',
+    }
+  },
+  // 環境變數
+  define: {
+    'process.env.ROLLUP_NATIVE': 'false'
   }
 })
