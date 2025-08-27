@@ -12,11 +12,11 @@
           @change="handleFileSelect"
           style="display: none"
         />
-        <button @click="$refs.fileInput.click()" class="select-btn">
+        <button @click="fileInput?.click()" class="select-btn">
           選擇檔案
         </button>
       </div>
-      
+
       <div v-else class="file-info">
         <div class="file-details">
           <span class="file-name">{{ file.name }}</span>
@@ -90,7 +90,7 @@ const removeFile = () => {
 
 const analyzeFile = async () => {
   if (!file.value) return
-  
+
   try {
     isAnalyzing.value = true
     error.value = ''
