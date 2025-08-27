@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Cloudflare Pages 建置腳本
-# 強制使用純 JavaScript 版本，避免平台特定依賴問題
+# 使用 yarn 管理依賴，避免平台特定依賴問題
 
 echo "開始 Cloudflare Pages 建置..."
 
@@ -12,18 +12,14 @@ export NODE_OPTIONS="--max-old-space-size=4096"
 
 # 清理依賴
 echo "清理依賴..."
-rm -rf node_modules package-lock.json
+rm -rf node_modules yarn.lock
 
-# 安裝依賴，排除可選依賴
+# 安裝依賴
 echo "安裝依賴..."
-npm install --omit=optional --ignore-scripts
-
-# 強制移除平台特定的 Rollup 依賴
-echo "移除平台特定依賴..."
-find node_modules -name "@rollup/rollup-*" -type d -exec rm -rf {} + 2>/dev/null || true
+yarn install
 
 # 建置專案
 echo "開始建置..."
-npm run build
+yarn build
 
 echo "建置完成！"
