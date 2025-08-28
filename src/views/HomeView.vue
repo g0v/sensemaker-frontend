@@ -348,384 +348,143 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <h1>🚀 Sensemaker API 測試</h1>
+  <div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">🚀 應用Sensemaker做分析</h1>
 
+        <form @submit.prevent="handleSubmit" class="space-y-6">
+          <div class="space-y-2">
+            <label for="apiKey" class="block text-sm font-medium text-gray-700">
+              🔑 OpenRouter API Key <span class="text-red-500 font-bold">*</span>
+            </label>
+            <input
+              type="text"
+              id="apiKey"
+              v-model="apiKey"
+              placeholder="請輸入您的 OpenRouter API Key"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+            <small class="text-xs text-gray-500 italic">此欄位為必填，用於連接到 AI 模型服務</small>
+          </div>
 
+          <div class="space-y-2">
+            <label for="model" class="block text-sm font-medium text-gray-700">
+              🤖 模型名稱:
+            </label>
+            <input
+              type="text"
+              id="model"
+              v-model="model"
+              placeholder="openai/gpt-oss-120b"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+          </div>
 
-    <form @submit.prevent="handleSubmit">
-      <div class="form-group">
-        <label for="apiKey">🔑 OpenRouter API Key <span class="required">*</span></label>
-        <input
-          type="text"
-          id="apiKey"
-          v-model="apiKey"
-          placeholder="請輸入您的 OpenRouter API Key"
-          required
+          <div class="space-y-2">
+            <label for="additionalContext" class="block text-sm font-medium text-gray-700">
+              📝 額外上下文 (可選):
+            </label>
+            <input
+              type="text"
+              id="additionalContext"
+              v-model="additionalContext"
+              placeholder="描述對話的背景和環境"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+          </div>
+
+          <div class="space-y-2">
+            <label for="outputLang" class="block text-sm font-medium text-gray-700">
+              🌐 輸出語言:
+            </label>
+            <select
+              id="outputLang"
+              v-model="outputLang"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+              <option value="en">English</option>
+              <option value="zh-TW">繁體中文</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="file" class="block text-sm font-medium text-gray-700">
+              📁 上傳文件 (
+                <a href="https://polis.tw/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">polis.tw</a> 導出的 JSON 或
+                <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">pol.is</a>
+                導出的 CSV):
+            </label>
+            <input
+              type="file"
+              id="file"
+              @change="handleFileSelect"
+              accept=".json,.csv,application/json,text/csv"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+          </div>
+
+          <button
+            type="submit"
+            :disabled="isProcessing || !apiKey.trim()"
+            class="w-full bg-democratic-red hover:bg-red-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 disabled:cursor-not-allowed"
+          >
+            {{ isProcessing ? '⏳ 處理中...' : '🚀 開始分析' }}
+          </button>
+        </form>
+      </div>
+
+      <!-- 任務狀態顯示區域 -->
+      <div v-if="showTaskStatus" class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-900 mb-4">📊 任務狀態</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div class="bg-blue-100 p-3 rounded-md">
+            <span class="font-medium text-blue-800">任務 ID:</span> {{ taskData.taskId }}
+          </div>
+          <div class="bg-blue-100 p-3 rounded-md">
+            <span class="font-medium text-blue-800">狀態:</span> {{ taskData.status }}
+          </div>
+          <div class="bg-blue-100 p-3 rounded-md">
+            <span class="font-medium text-blue-800">評論數量:</span> {{ taskData.commentsCount }}
+          </div>
+          <div class="bg-blue-100 p-3 rounded-md">
+            <span class="font-medium text-blue-800">使用模型:</span> {{ taskData.model }}
+          </div>
+        </div>
+        <div class="text-center p-3 bg-blue-100 rounded-md">
+          <div class="inline-block w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2"></div>
+          <span class="text-blue-800">{{ pollingMessage }}</span>
+        </div>
+      </div>
+
+      <div
+        v-if="showResult"
+        :class="[
+          'rounded-lg p-4 max-h-96 overflow-y-auto',
+          resultType === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : '',
+          resultType === 'error' ? 'bg-red-50 border border-red-200 text-red-800' : '',
+          resultType === 'info' ? 'bg-blue-50 border border-blue-200 text-blue-800' : '',
+          resultType === 'warning' ? 'bg-yellow-50 border border-yellow-200 text-yellow-800' : ''
+        ]"
+        v-html="isResultHtml ? resultMessage : ''"
+      ></div>
+
+      <!-- 測試按鈕區域 -->
+      <div class="flex flex-wrap gap-3 mt-6">
+        <button
+          v-if="showDownloadButton"
+          @click="downloadMarkdown"
+          class="bg-jade-green hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
         >
-        <small class="help-text">此欄位為必填，用於連接到 AI 模型服務</small>
+          ⬇️ 下載 Markdown
+        </button>
       </div>
-
-      <div class="form-group">
-        <label for="model">🤖 模型名稱 (可選，若無API Key，則使用後端環境變數配置):</label>
-        <input
-          type="text"
-          id="model"
-          v-model="model"
-          placeholder="openai/gpt-oss-120b"
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="additionalContext">📝 額外上下文 (可選):</label>
-        <input
-          type="text"
-          id="additionalContext"
-          v-model="additionalContext"
-          placeholder="描述對話的背景和環境"
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="outputLang">🌐 輸出語言:</label>
-        <select id="outputLang" v-model="outputLang">
-          <option value="en">English</option>
-          <option value="zh-TW">繁體中文</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="file">📁 上傳文件 (JSON 或 CSV):</label>
-        <input
-          type="file"
-          id="file"
-          @change="handleFileSelect"
-          accept=".json,.csv,application/json,text/csv"
-          required
-        >
-      </div>
-
-      <button type="submit" :disabled="isProcessing || !apiKey.trim()">
-        {{ isProcessing ? '⏳ 處理中...' : '🚀 開始分析' }}
-      </button>
-    </form>
-
-    <!-- 任務狀態顯示區域 -->
-    <div v-if="showTaskStatus" class="task-status">
-      <h3>📊 任務狀態</h3>
-      <div class="task-info">
-        <div><strong>任務 ID:</strong> {{ taskData.taskId }}</div>
-        <div><strong>狀態:</strong> {{ taskData.status }}</div>
-        <div><strong>評論數量:</strong> {{ taskData.commentsCount }}</div>
-        <div><strong>使用模型:</strong> {{ taskData.model }}</div>
-      </div>
-      <div class="polling-status">
-        <div class="spinner"></div>
-        <span>{{ pollingMessage }}</span>
-      </div>
-    </div>
-
-    <div
-      v-if="showResult"
-      :class="['result', resultType]"
-      v-html="isResultHtml ? resultMessage : ''"
-    ></div>
-
-    <!-- 測試按鈕區域 -->
-    <div class="test-buttons">
-      <button
-        v-if="showDownloadButton"
-        @click="downloadMarkdown"
-        class="test-btn"
-      >⬇️ 下載 Markdown</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-  min-height: 100vh;
-}
-
-.container > div {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
-}
-
-h1 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.required {
-  color: #dc3545;
-  font-weight: bold;
-}
-
-.help-text {
-  display: block;
-  margin-top: 5px;
-  font-size: 12px;
-  color: #6c757d;
-  font-style: italic;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-}
-
-input[type="text"], input[type="file"], select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.result {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 5px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 14px;
-  max-height: 600px;
-  overflow-y: auto;
-  line-height: 1.6;
-}
-
-.success {
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
-  color: #155724;
-}
-
-.error {
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
-}
-
-.info {
-  background-color: #d1ecf1;
-  border: 1px solid #bee5eb;
-  color: #0c5460;
-}
-
-.warning {
-  background-color: #fff3cd;
-  border: 1px solid #ffeaa7;
-  color: #856404;
-}
-
-
-
-/* 任務狀態樣式 */
-.task-status {
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  padding: 15px;
-  border-radius: 5px;
-  margin: 20px 0;
-}
-
-.task-status h3 {
-  margin-top: 0;
-  color: #495057;
-}
-
-.task-info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 15px 0;
-}
-
-.task-info div {
-  background-color: #e9ecef;
-  padding: 10px;
-  border-radius: 3px;
-}
-
-.task-info strong {
-  color: #495057;
-}
-
-.polling-status {
-  text-align: center;
-  padding: 10px;
-  background-color: #e3f2fd;
-  border-radius: 3px;
-  margin: 10px 0;
-}
-
-.spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #007bff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 10px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Markdown 樣式優化 */
-.result h1, .result h2, .result h3, .result h4, .result h5, .result h6 {
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.3em;
-}
-
-.result h1 { font-size: 1.8em; }
-.result h2 { font-size: 1.6em; }
-.result h3 { font-size: 1.4em; }
-.result h4 { font-size: 1.2em; }
-
-.result p {
-  margin-bottom: 1em;
-}
-
-.result ul, .result ol {
-  margin-bottom: 1em;
-  padding-left: 2em;
-}
-
-.result li {
-  margin-bottom: 0.5em;
-}
-
-.result strong {
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-.result em {
-  color: #7f8c8d;
-  font-style: italic;
-}
-
-.result code {
-  background-color: #f8f9fa;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.9em;
-}
-
-.result pre {
-  background-color: #f8f9fa;
-  padding: 1em;
-  border-radius: 5px;
-  overflow-x: auto;
-  border: 1px solid #e9ecef;
-}
-
-.result blockquote {
-  border-left: 4px solid #007bff;
-  margin: 1em 0;
-  padding-left: 1em;
-  color: #6c757d;
-}
-
-.test-buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.test-btn {
-  padding: 10px 20px;
-  background-color: #17a2b8;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-  width: auto;
-}
-
-.test-btn:hover {
-  background-color: #138496;
-}
-
-.test-btn:active {
-  background-color: #117a8b;
-}
-
-.test-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.test-btn:disabled:hover {
-  background-color: #ccc;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
-
-  .container > div {
-    padding: 20px;
-  }
-
-  .task-info {
-    grid-template-columns: 1fr;
-  }
-
-  .test-buttons {
-    flex-direction: column;
-  }
-
-  .test-btn {
-    width: 100%;
-  }
-}
+/* 保留一些自定義樣式，如果需要 */
 </style>

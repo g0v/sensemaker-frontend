@@ -1,38 +1,40 @@
 <template>
-  <div class="csv-uploader">
-    <div class="upload-area" @drop="handleDrop" @dragover.prevent @dragenter.prevent>
-      <div v-if="!file" class="upload-prompt">
-        <div class="upload-icon">📁</div>
-        <h3>上傳 CSV 檔案</h3>
-        <p>拖拽檔案到此處，或點擊選擇檔案</p>
+  <div class="max-w-2xl mx-auto">
+    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors duration-200 hover:border-democratic-red mb-4" @drop="handleDrop" @dragover.prevent @dragenter.prevent>
+      <div v-if="!file" class="text-gray-600">
+        <div class="text-5xl mb-4">📁</div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">上傳 CSV 檔案</h3>
+        <p class="mb-4">拖拽檔案到此處，或點擊選擇檔案</p>
         <input
           ref="fileInput"
           type="file"
           accept=".csv"
           @change="handleFileSelect"
-          style="display: none"
+          class="hidden"
         />
-        <button @click="fileInput?.click()" class="select-btn">
+        <button @click="fileInput?.click()" class="bg-jade-green hover:bg-green-700 text-white px-6 py-3 rounded-md transition-colors duration-200 font-medium">
           選擇檔案
         </button>
       </div>
 
-      <div v-else class="file-info">
-        <div class="file-details">
-          <span class="file-name">{{ file.name }}</span>
-          <span class="file-size">{{ formatFileSize(file.size) }}</span>
+      <div v-else class="flex justify-between items-center p-4 bg-gray-50 rounded-md">
+        <div class="flex flex-col items-start">
+          <span class="font-medium text-gray-800">{{ file.name }}</span>
+          <span class="text-sm text-gray-600 mt-1">{{ formatFileSize(file.size) }}</span>
         </div>
-        <button @click="removeFile" class="remove-btn">移除</button>
+        <button @click="removeFile" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors duration-200 text-sm">
+          移除
+        </button>
       </div>
     </div>
 
-    <div v-if="file" class="upload-actions">
-      <button @click="analyzeFile" :disabled="isAnalyzing" class="analyze-btn">
+    <div v-if="file" class="text-center mb-4">
+      <button @click="analyzeFile" :disabled="isAnalyzing" class="bg-democratic-red hover:bg-red-700 disabled:bg-gray-400 text-white px-8 py-4 rounded-md transition-colors duration-200 font-medium text-lg disabled:cursor-not-allowed">
         {{ isAnalyzing ? '分析中...' : '開始分析' }}
       </button>
     </div>
 
-    <div v-if="error" class="error-message">
+    <div v-if="error" class="text-red-600 text-center p-2 bg-red-50 border border-red-200 rounded-md mt-4">
       {{ error }}
     </div>
   </div>
@@ -112,129 +114,5 @@ const formatFileSize = (bytes: number): string => {
 </script>
 
 <style scoped>
-.csv-uploader {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.upload-area {
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  transition: border-color 0.3s ease;
-  margin-bottom: 1rem;
-}
-
-.upload-area:hover {
-  border-color: #42b883;
-}
-
-.upload-prompt {
-  color: #666;
-}
-
-.upload-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.upload-prompt h3 {
-  margin: 0 0 0.5rem 0;
-  color: #333;
-}
-
-.upload-prompt p {
-  margin: 0 0 1rem 0;
-}
-
-.select-btn {
-  background: #42b883;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.select-btn:hover {
-  background: #369870;
-}
-
-.file-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 4px;
-}
-
-.file-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.file-name {
-  font-weight: 500;
-  color: #333;
-}
-
-.file-size {
-  font-size: 0.875rem;
-  color: #666;
-  margin-top: 0.25rem;
-}
-
-.remove-btn {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.875rem;
-}
-
-.remove-btn:hover {
-  background: #c82333;
-}
-
-.upload-actions {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.analyze-btn {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-}
-
-.analyze-btn:hover:not(:disabled) {
-  background: #0056b3;
-}
-
-.analyze-btn:disabled {
-  background: #6c757d;
-  cursor: not-allowed;
-}
-
-.error-message {
-  color: #dc3545;
-  text-align: center;
-  padding: 0.5rem;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-  margin-top: 1rem;
-}
+/* 保留一些自定義樣式，如果需要 */
 </style>

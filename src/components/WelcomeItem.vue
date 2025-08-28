@@ -1,10 +1,10 @@
 <template>
-  <div class="item">
-    <i>
+  <div class="mt-8 flex relative lg:mt-0 lg:py-1 lg:pl-8">
+    <i class="flex place-items-center place-content-center w-8 h-8 text-gray-700 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-13 lg:w-12 lg:h-12 lg:border lg:border-gray-300 lg:bg-white lg:rounded-lg">
       <slot name="icon"></slot>
     </i>
-    <div class="details">
-      <h3>
+    <div class="flex-1 ml-4 lg:ml-0">
+      <h3 class="text-lg font-medium mb-2 text-gray-900">
         <slot name="heading"></slot>
       </h3>
       <slot></slot>
@@ -13,75 +13,5 @@
 </template>
 
 <style scoped>
-.item {
-  margin-top: 2rem;
-  display: flex;
-  position: relative;
-}
-
-.details {
-  flex: 1;
-  margin-left: 1rem;
-}
-
-i {
-  display: flex;
-  place-items: center;
-  place-content: center;
-  width: 32px;
-  height: 32px;
-
-  color: var(--color-text);
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-  color: var(--color-heading);
-}
-
-@media (min-width: 1024px) {
-  .item {
-    margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
-  }
-
-  i {
-    top: calc(50% - 25px);
-    left: -26px;
-    position: absolute;
-    border: 1px solid var(--color-border);
-    background: var(--color-background);
-    border-radius: 8px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .item:before {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    bottom: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:after {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    top: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:first-of-type:before {
-    display: none;
-  }
-
-  .item:last-of-type:after {
-    display: none;
-  }
-}
+/* 保留一些自定義樣式，如果需要 */
 </style>
