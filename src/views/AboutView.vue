@@ -31,23 +31,36 @@
             <p class="text-gray-700 mb-4">本工具支持從以下平台導出的報告數據：</p>
 
             <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-              <h3 class="text-xl font-semibold text-blue-900 mb-3">🌐 <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">Pol.is</a></h3>
-              <p class="text-blue-800">從 Pol.is 報告頁面導出 comments 相關的 CSV 文件，然後使用我們的轉換工具進行格式調整。</p>
 
               <h3 class="text-xl font-semibold text-blue-900 mb-3 mt-6">🇹🇼 <a href="https://polis.tw/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">Polis.tw</a></h3>
-              <p class="text-blue-800">從 Polis.tw 的報告頁面獲取數據，需要通過開發者模式提取 API 回應的 JSON 數據，然後轉換為正確的 CSV 格式。</p>
+              <p class="text-blue-800">從 Polis.tw 的報告頁面獲取數據，需要通過開發者模式提取 API 回應的 JSON 數據。請參考<a href="https://g0v.hackmd.io/6mzxQkY3Sr6ILYSfSMsqVg" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">這篇教學</a>中的相關說明。</p>
+
+              <h3 class="text-xl font-semibold text-blue-900 mb-3">🌐 <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">Pol.is</a></h3>
+              <p class="text-blue-800">從 Pol.is 報告頁面導出 comments 相關的 CSV 文件，然後使用我們的轉換工具進行格式調整。請參考<a href="https://g0v.hackmd.io/6mzxQkY3Sr6ILYSfSMsqVg" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">這篇教學</a>中的相關說明。</p>
+
             </div>
           </div>
 
           <div class="bg-white border border-gray-200 rounded-lg p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">📋 數據格式要求</h2>
 
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">🇹🇼Polis.tw 數據格式</h3>
             <p class="text-gray-700 mb-4">
-              必要欄位：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">comment-id, comment_text, agrees, disagrees, passes, votes</code>
+              請注意，polis.tw 的數據格式與 Pol.is 不同，目前polis.tw導出的json格式，已經可以被sensemaker直接使用。不需再進行轉換。
+            </p>
+
+
+
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">🌐 Pol.is 數據格式</h3>
+
+
+            <p class="text-gray-700 mb-4">
+              CSV格式的必要欄位：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">comment-id, comment_text, agrees, disagrees, passes, votes</code>
             </p>
 
             <p class="text-gray-700 mb-4">
-              為了確保分析效果，您的數據需要符合以下格式：
+              pol.is的數據格式，為了確保分析效果，您的數據需要轉換，以符合以下格式：
             </p>
 
             <h3 class="text-xl font-semibold text-gray-800 mb-3">CSV 格式</h3>
@@ -59,28 +72,8 @@ comment-2,界面設計很美觀功能也很實用,12,1,0,13</code></pre>
           <div class="bg-white border border-gray-200 rounded-lg p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">🔄 數據轉換指南</h2>
 
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Polis.tw 數據轉換</h3>
-            <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-6">
-              <li>進入 Polis.tw 的報告頁面，開啟開發者模式</li>
-              <li>在「網路」標籤中找到 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">GET /api/v3/comments</code> 的 API 回應</li>
-              <li>將 JSON 數據保存為 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">polis_report.json</code></li>
-              <li>使用 <a href="https://github.com/mrodrig/json-2-csv-cli" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline"><code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">json2csv-cli</code></a> 套件將 JSON 轉換為 CSV：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">json2csv polis_report.json -o comments_raw.csv</code></li>
-              <li>使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv_converter.py</code> 工具修正 CSV 格式：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">python3 ./polis_csv_fixer/csv_converter.py ./files/comments_raw.csv ./files/comments.csv</code></li>
-            </ol>
-
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Pol.is 數據轉換</h3>
-            <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-6">
-              <li>從 Pol.is 報告頁面導出 comments CSV 文件</li>
-              <li>重命名為 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">comments_raw.csv</code></li>
-              <li>使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv_converter_new.py</code> 工具進行格式轉換：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">python3 ./polis_csv_fixer/csv_converter_new.py ./files/comments_raw.csv</code></li>
-              <li>將轉換後的文件重命名為 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">comments.csv</code></li>
-            </ol>
-
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">轉換工具使用</h3>
             <p class="text-gray-700 mb-4">我們提供了自動化的轉換工具來處理不同格式的數據：</p>
             <ul class="list-disc list-inside space-y-2 text-gray-700">
-              <li><strong>CSV 轉 JSON：</strong> 使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv2json</code> 套件進行格式轉換</li>
-              <li><strong>Polis.tw 數據處理：</strong> 使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv_converter.py</code> 處理已轉換的 CSV 格式</li>
               <li><strong>Pol.is 數據處理：</strong> 使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv_converter_new.py</code> 處理導出的 CSV 文件</li>
               <li><strong>自動化處理：</strong> 支持批量轉換和格式驗證</li>
             </ul>
