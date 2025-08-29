@@ -421,7 +421,7 @@ onUnmounted(() => {
               📁 上傳文件 (
                 <a href="https://polis.tw/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">polis.tw</a> 導出的 JSON 或
                 <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">pol.is</a>
-                導出的 CSV):
+                導出的 CSV ，後者需經過格式轉換，請參考<router-link to="/about" class="text-democratic-red hover:underline font-medium">關於</router-link>):
             </label>
             <input
               type="file"

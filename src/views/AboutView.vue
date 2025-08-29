@@ -9,20 +9,20 @@
 
         <div class="space-y-8">
           <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">📖 什麼是 Sensemaker？</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">📖 什麼是 Sensemaker 意見綜整器？</h2>
             <p class="text-gray-700 leading-relaxed mb-4">
               <strong>Sensemaker 意見綜整器</strong> 是一個強大的 AI 驅動工具，專門用於分析大量意見數據並產生有意義的洞察。
               它能夠識別主要共同點和意見分歧，幫助您從海量數據中提取有價值的資訊。
             </p>
             <p class="text-gray-700 leading-relaxed mb-4">
               這個工具特別適用於審議民主場景，當您使用 <strong>Polis 城邦</strong> 等非同步意見徵集工具時，
-              可以幫助處理大量相似或重複的意見，自動生成結構化的分析報告。
+              可以幫助處理大量相似或重複的意見，自動生成結構化的分析報告。本站為它部份功能的一個前端實現。
             </p>
             <p class="text-gray-600 text-xs italic">
               <em><strong>Sensemaker Opinion Integration Tool</strong> is a powerful AI-driven tool specifically designed for analyzing large volumes of opinion data and generating meaningful insights. It can identify major commonalities and opinion divergences, helping you extract valuable information from massive datasets.</em>
             </p>
             <p class="text-gray-600 text-xs italic">
-              <em>This tool is particularly suitable for deliberative democracy scenarios. When you use asynchronous opinion collection tools like <strong>Polis</strong>, it can help process large amounts of similar or repetitive opinions and automatically generate structured analysis reports.</em>
+              <em>This tool is particularly suitable for deliberative democracy scenarios. When you use asynchronous opinion collection tools like <strong>Polis</strong>, it can help process large amounts of similar or repetitive opinions and automatically generate structured analysis reports. This is a front-end implementation of some of its features.</em>
             </p>
           </div>
 
