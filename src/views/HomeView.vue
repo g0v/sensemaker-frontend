@@ -369,7 +369,7 @@ onUnmounted(() => {
             <div class="text-xs text-gray-600 space-y-1">
               <p class="italic">此欄位為必填，用於連接到 AI 模型服務</p>
               <p class="text-blue-600">
-                <span class="font-medium">🔒 隱私保護：</span>根據 <router-link to="/privacy"  class="text-democratic-red hover:underline font-medium">隱私權政策</router-link> ，本站不收集使用者資料，專案開放源碼。如有疑慮，歡迎
+                <span class="font-medium">🔒 隱私保護：</span>根據 <router-link to="/privacy"  class="text-democratic-red hover:underline font-medium">隱私權政策</router-link> ，本站不會將您的API KEY儲存在任何地方。如有疑慮，歡迎
                 <router-link to="/self-host" class="text-democratic-red hover:underline font-medium">自行架站</router-link>
                 後端與前端服務。
               </p>

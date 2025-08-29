@@ -8,7 +8,7 @@
         <div class="border-b border-gray-200 pb-6">
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">隱私權政策</h2>
           <p class="text-gray-700 text-lg leading-relaxed">
-            這款應用程式不會蒐集任何個人資料。您的資料不會以任何方式被使用或儲存，因為我們不會蒐集任何個人資料。生成的報告會暫時存儲於 R2 儲存服務中供您下載，並以唯一的 taskID 識別，其他使用者無法取得或存取您的資料。
+            這款應用程式不會蒐集任何個人資料。生成的報告會暫時存儲於 R2 儲存服務中供您下載，並以唯一的 taskID 識別，其他使用者無法取得或存取您的資料。
           </p>
         </div>
 
@@ -16,7 +16,7 @@
         <div>
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">Privacy Policy</h2>
           <p class="text-gray-700 text-lg leading-relaxed">
-            This application does not collect any private data whatsoever. Your data will not be used or stored in any way because we do not collect any personal information. Generated reports are temporarily stored in R2 storage service for your download and cannot be accessed by other users.
+            This application does not collect any private data whatsoever. Generated reports are temporarily stored in R2 storage service for your download and cannot be accessed by other users.
           </p>
         </div>
 
@@ -34,10 +34,10 @@
             </div>
             <div class="border-l-4 border-democratic-red pl-4">
               <p class="text-gray-700">
-                <strong>無追蹤：</strong>我們不使用任何追蹤技術或 cookies 來收集使用者資訊。
+                <strong>無cookies：</strong>我們不使用任何 cookies。
               </p>
               <p class="text-gray-600 text-xs mt-1 italic">
-                <em>No Tracking: We do not use any tracking technologies or cookies to collect user information.</em>
+                <em>No Cookies: We do not use any cookies.</em>
               </p>
             </div>
             <div class="border-l-4 border-democratic-red pl-4">
