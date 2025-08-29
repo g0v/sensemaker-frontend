@@ -45,7 +45,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M0 3v18h24V3H0zm21.518 2L12 12.713 2.482 5h19.036zM2 19V7.183l10 8.104 10-8.104V19H2z"/>
             </svg>
-            <a href="mailto:info@sensemaker.tw" class="hover:text-democratic-red transition">info@sensemaker.tw</a>
+            <a href="mailto:info@vtaiwan.tw" class="hover:text-democratic-red transition">info@vtaiwan.tw</a>
           </p>
         </div>
       </div>
@@ -55,6 +55,7 @@
         <p class="mt-2">
           <a href="https://github.com/bestian/sensemaker-frontend" class="hover:text-white transition">原始碼</a> |
           <a href="/privacy" class="hover:text-white transition">隱私政策</a> |
+          <a href="/self-host" class="hover:text-white transition">自行架站</a> |
           <a href="/terms" class="hover:text-white transition">使用條款</a>
         </p>
       </div>
