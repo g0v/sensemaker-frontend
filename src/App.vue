@@ -1,13 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { ref, watch } from 'vue'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 import Footer from './components/Footer.vue'
 
 const mobileMenuOpen = ref(false)
+const route = useRoute()
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
+
+// 監聽路由變化，自動捲到頁面最上方
+watch(() => route.path, () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+
+  // 關閉手機版選單
+  mobileMenuOpen.value = false
+})
 </script>
 
 <template>
