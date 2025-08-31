@@ -43,6 +43,17 @@ const taskData = ref<TaskData>({
 const pollingMessage = ref('正在輪詢結果...')
 const latestSummaryMarkdown = ref('')
 
+// 新增錯誤狀態變數
+const errorData = ref<{
+  taskId: string
+  status: string
+  failedAt: string
+  message: string
+  error: string
+} | null>(null)
+
+const showTaskError = ref(false)
+
 // 下載按鈕狀態
 const showDownloadButton = ref(false)
 
@@ -166,8 +177,37 @@ const checkTaskResult = async (taskId: string) => {
     } else if (response.status === 404) {
       // 任務還在處理中
       updatePollingStatus(`任務仍在處理中... (${new Date().toLocaleTimeString()})`)
+    } else if (response.status === 500) {
+      // 500 錯誤 - 任務處理失敗
+      console.error('❌ 任務處理失敗 (500):', result)
+
+      if (pollingInterval.value) {
+        clearInterval(pollingInterval.value)
+        pollingInterval.value = null
+      }
+
+      // 隱藏任務狀態
+      showTaskStatus.value = false
+
+      // 顯示錯誤訊息
+      const errorHtml = `
+        <h2>❌ 任務處理失敗</h2>
+        <div style="margin-bottom: 1em;">
+          <p><strong>任務 ID:</strong> ${result.taskId || taskId}</p>
+          <p><strong>狀態:</strong> ${result.status || 'failed'}</p>
+          <p><strong>失敗時間:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
+        </div>
+        <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
+        <h3>錯誤詳情:</h3>
+        <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
+          <p><strong>錯誤訊息:</strong> ${result.message || '未知錯誤'}</p>
+          <p><strong>詳細錯誤:</strong> ${result.error || '無詳細錯誤資訊'}</p>
+        </div>
+      `
+
+      showResultMessage(errorHtml, 'error', true)
     } else {
-      // 任務失敗
+      // 其他錯誤
       if (pollingInterval.value) {
         clearInterval(pollingInterval.value)
         pollingInterval.value = null
@@ -179,6 +219,7 @@ const checkTaskResult = async (taskId: string) => {
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('❌ 輪詢請求錯誤:', errorMessage)
     updatePollingStatus(`輪詢錯誤: ${errorMessage} (${new Date().toLocaleTimeString()})`)
   }
 }
