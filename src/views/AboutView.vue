@@ -74,7 +74,7 @@ const { t } = useI18n()
             <ul class="list-disc list-inside space-y-2 text-gray-700">
               <li>{{ t('about.ensureDataQuality') }}</li>
               <li>{{ t('about.provideContext') }}</li>
-              <li>{{ t('about.chooseFormat') }}</li>
+              <!-- <li>{{ t('about.chooseFormat') }}</li> -->
               <li>{{ t('about.regularCheck') }}</li>
             </ul>
           </div>
