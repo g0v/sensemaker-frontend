@@ -57,9 +57,9 @@
               </p>
 
               <h3 class="text-xl font-semibold text-blue-900 mb-3">🌐 <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">Pol.is</a></h3>
-              <p class="text-blue-800">從 Pol.is 報告頁面導出 comments 相關的 CSV 文件，然後使用我們的轉換工具進行格式調整。請參考<a href="https://g0v.hackmd.io/6mzxQkY3Sr6ILYSfSMsqVg" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">這篇教學</a>中的相關說明。</p>
+              <p class="text-blue-800">從 Pol.is 報告頁面導出 comments 相關的 CSV 文件，可直接上傳使用。</p>
               <p class="text-blue-700 text-xs italic mt-2">
-                <em>Export comments-related CSV files from Pol.is report pages, then use our conversion tool for format adjustment. Please refer to the relevant instructions in <a href="https://g0v.hackmd.io/6mzxQkY3Sr6ILYSfSMsqVg" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">this tutorial</a>.</em>
+                <em>Export comments-related CSV files from Pol.is report pages, can be uploaded directly.</em>
               </p>
 
             </div>
@@ -73,57 +73,25 @@
 
             <h3 class="text-xl font-semibold text-gray-800 mb-3">🇹🇼 Polis.tw 數據格式</h3>
             <p class="text-gray-700 mb-4">
-              請注意，polis.tw 的數據格式與 Pol.is 不同，目前polis.tw導出的json格式，已經可以被sensemaker直接使用。不需再進行轉換。
+              請注意，polis.tw 的數據格式與 Pol.is 不同，polis.tw導出的json格式可以直接使用。
             </p>
             <p class="text-gray-600 text-xs italic mb-4">
-              <em>Note: Polis.tw data format is different from Pol.is. Currently, the JSON format exported by polis.tw can be used directly by sensemaker without further conversion.</em>
+              <em>Note: Polis.tw data format is different from Pol.is. Currently, the JSON format exported by polis.tw can be used directly.</em>
             </p>
 
 
 
             <h3 class="text-xl font-semibold text-gray-800 mb-3">🌐 Pol.is 數據格式</h3>
             <p class="text-gray-700 mb-4">
-              CSV格式的必要欄位：<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">comment-id, comment_text, agrees, disagrees, passes, votes</code>
+              pol.is的數據格式，亦可直接上傳使用。
             </p>
             <p class="text-gray-600 text-xs italic mb-4">
-              <em>Required CSV fields: comment-id, comment_text, agrees, disagrees, passes, votes</em>
+              <em>For pol.is data format, can be uploaded directly.</em>
             </p>
 
-            <p class="text-gray-700 mb-4">
-              pol.is的數據格式，為了確保分析效果，您的數據需要轉換，以符合以下格式：
-            </p>
-            <p class="text-gray-600 text-xs italic mb-4">
-              <em>For pol.is data format, to ensure analysis effectiveness, your data needs to be converted to match the following format:</em>
-            </p>
-
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">CSV 格式</h3>
-            <p class="text-gray-600 text-xs italic mb-2">
-              <em>CSV Format</em>
-            </p>
-            <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>comment-id,comment_text,agrees,disagrees,passes,votes
-comment-1,這個產品真的很棒使用起來非常方便,15,2,1,18
-comment-2,界面設計很美觀功能也很實用,12,1,0,13</code></pre>
           </div>
 
-          <div class="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">🔄 數據轉換指南</h2>
-            <p class="text-gray-600 text-xs italic mb-4">
-              <em>Data Conversion Guide</em>
-            </p>
 
-            <p class="text-gray-700 mb-4">我們提供了自動化的轉換工具來處理不同格式的數據：</p>
-            <p class="text-gray-600 text-xs italic mb-4">
-              <em>We provide automated conversion tools to handle different data formats:</em>
-            </p>
-            <ul class="list-disc list-inside space-y-2 text-gray-700">
-              <li><strong>Pol.is 數據處理：</strong> 使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">csv_converter_new.py</code> 處理導出的 CSV 文件</li>
-              <li><strong>自動化處理：</strong> 支持批量轉換和格式驗證</li>
-            </ul>
-            <ul class="list-disc list-inside space-y-2 text-gray-600 text-xs italic ml-4">
-              <li><em><strong>Pol.is Data Processing:</strong> Use <code class="bg-gray-200 px-1 py-0.5 rounded">csv_converter_new.py</code> to process exported CSV files</em></li>
-              <li><em><strong>Automated Processing:</strong> Supports batch conversion and format validation</em></li>
-            </ul>
-          </div>
 
           <div class="bg-white border border-gray-200 rounded-lg p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-democratic-red pb-2">🎯 使用場景</h2>
