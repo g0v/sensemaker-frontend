@@ -476,6 +476,17 @@ onUnmounted(() => {
             >
           </div>
 
+          <!-- 風險提醒 -->
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <div class="flex items-start gap-2">
+              <div>
+                <p class="text-yellow-800 text-sm leading-relaxed">
+                  {{ t('home.riskWarning') }}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <button
             type="submit"
             :disabled="isProcessing || !apiKey.trim()"

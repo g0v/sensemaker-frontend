@@ -40,6 +40,7 @@ export default {
     outputLangLabel: '🌐 出力言語:',
     fileLabel: '📁 ファイルをアップロード (polis.twからエクスポートされたJSONまたはpol.isからエクスポートされたCSV)',
     startAnalysis: '🚀 分析を開始',
+    riskWarning: '⚠️ 警告：意見統合ツールは現在まだ開発・テスト段階にあるため、レポート生成プロセスは大量のフォーマット化されたLLM接続を使用します。LLMの応答には固有の不安定性があり、全体的なレポートが生成に失敗する確率は約1/6です。分析を実行するかどうかを確認する前に、このリスクを理解してください。',
     processing: '⏳ 処理中...',
     selectFileFirst: 'アップロードするファイルを選択してください',
     sendingRequest: '📡 APIにリクエストを送信中...',

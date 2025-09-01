@@ -41,6 +41,7 @@ export default {
     outputLangLabel: '🌐 輸出語言:',
     fileLabel: '📁 上傳文件 (polis.tw 導出的 JSON 或 pol.is 導出的 CSV)',
     startAnalysis: '🚀 開始分析',
+    riskWarning: '⚠️ 警告：由於意見綜整器目前還在開發測試中，報告生成過程使用大量有格式的LLM串接，LLM的回應有其不穩定性，整體報告約有1/6的機率會生成失敗，請瞭解此風險後，再確認是否要執行分析。',
     processing: '⏳ 處理中...',
     selectFileFirst: '請選擇要上傳的文件',
     sendingRequest: '📡 正在發送請求到 API...',

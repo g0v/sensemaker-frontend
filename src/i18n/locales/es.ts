@@ -40,6 +40,7 @@ export default {
     outputLangLabel: '🌐 Idioma de salida:',
     fileLabel: '📁 Subir archivo (JSON exportado desde polis.tw o CSV exportado desde pol.is)',
     startAnalysis: '🚀 Iniciar análisis',
+    riskWarning: '⚠️ Advertencia: Dado que la herramienta de integración de opiniones está actualmente aún en desarrollo y pruebas, el proceso de generación de informes utiliza conexiones LLM formateadas extensivas. Las respuestas LLM tienen una inestabilidad inherente, y hay aproximadamente una probabilidad de 1/6 de que el informe general falle en generarse. Por favor, comprenda este riesgo antes de confirmar si desea proceder con el análisis.',
     processing: '⏳ Procesando...',
     selectFileFirst: 'Por favor seleccione un archivo para subir',
     sendingRequest: '📡 Enviando solicitud a la API...',

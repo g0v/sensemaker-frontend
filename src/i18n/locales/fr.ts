@@ -40,6 +40,7 @@ export default {
     outputLangLabel: '🌐 Langue de sortie :',
     fileLabel: '📁 Téléverser un fichier (JSON exporté depuis polis.tw ou CSV exporté depuis pol.is)',
     startAnalysis: '🚀 Commencer l\'analyse',
+    riskWarning: '⚠️ Avertissement : Étant donné que l\'outil d\'intégration d\'opinions est actuellement encore en développement et en test, le processus de génération de rapports utilise des connexions LLM formatées étendues. Les réponses LLM ont une instabilité inhérente, et il y a approximativement une chance sur 6 que le rapport global échoue à se générer. Veuillez comprendre ce risque avant de confirmer si vous souhaitez procéder à l\'analyse.',
     processing: '⏳ Traitement...',
     selectFileFirst: 'Veuillez sélectionner un fichier à téléverser',
     sendingRequest: '📡 Envoi de la requête à l\'API...',

@@ -40,6 +40,7 @@ export default {
     outputLangLabel: '🌐 输出语言:',
     fileLabel: '📁 上传文件 (polis.tw 导出的 JSON 或 pol.is 导出的 CSV)',
     startAnalysis: '🚀 开始分析',
+    riskWarning: '⚠️ 警告：由于意见综整器目前还在开发测试中，报告生成过程使用大量有格式的LLM串接，LLM的回应有其不稳定性，整体报告约有1/6的机率会生成失败，请了解此风险后，再确认是否要执行分析。',
     processing: '⏳ 处理中...',
     selectFileFirst: '请选择要上传的文件',
     sendingRequest: '📡 正在发送请求到 API...',
