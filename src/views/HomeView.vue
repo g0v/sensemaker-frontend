@@ -429,6 +429,14 @@ onUnmounted(() => {
               :placeholder="t('home.modelPlaceholder')"
               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
+            <div class="text-xs text-gray-600 space-y-1">
+              <p class="italic">{{ t('home.modelNote') }}</p>
+              <p class="text-blue-600">
+                <a href="https://openrouter.ai/models" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                  {{ t('home.modelLinkText') }}
+                </a>
+              </p>
+            </div>
           </div>
 
           <div class="space-y-2">

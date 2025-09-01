@@ -35,6 +35,8 @@ export default {
     privacyNote: '🔒 Protección de privacidad: Según nuestra política de privacidad, este sitio no almacenará su clave API en ningún lugar. Si tiene inquietudes, le invitamos a auto-alojar los servicios backend y frontend.',
     modelLabel: '🤖 Nombre del modelo:',
     modelPlaceholder: 'openai/gpt-oss-120b',
+    modelNote: 'Se recomienda usar el modelo gpt-oss-120b. Si desea usar otros modelos de inferencia, como el gratuito gpt-oss-20b:free, consulte esta página para obtener información para comparar el rendimiento y los estándares de precios de varios modelos',
+    modelLinkText: '📋 Ver modelos de OpenRouter',
     additionalContextLabel: '📝 Contexto adicional (opcional):',
     additionalContextPlaceholder: 'Describa el contexto y entorno de la conversación',
     outputLangLabel: '🌐 Idioma de salida:',

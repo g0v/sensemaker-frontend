@@ -81,6 +81,8 @@ export default {
     detailedError: 'Erreur détaillée',
     unknownError: 'Erreur inconnue',
     noDetailedError: 'Aucune information d\'erreur détaillée',
+    modelNote: 'Nous recommandons d\'utiliser le modèle gpt-oss-120b. Si vous souhaitez utiliser d\'autres modèles d\'inférence, comme le gratuit gpt-oss-20b:free, veuillez consulter cette page pour obtenir des informations afin de comparer les performances et les standards de tarification de divers modèles',
+    modelLinkText: '📋 Voir les modèles OpenRouter',
     // Options de langue de sortie
     outputLangOptions: {
       en: 'English',

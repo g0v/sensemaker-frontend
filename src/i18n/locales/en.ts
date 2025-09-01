@@ -90,7 +90,9 @@ export default {
       ja: '日本語',
       fr: 'Français',
       es: 'Español'
-    }
+    },
+    modelNote: 'We recommend using the gpt-oss-120b model. If you want to use other inference models, such as the free gpt-oss-20b:free, please refer to this page for information to compare the performance and pricing standards of various models',
+    modelLinkText: '📋 View OpenRouter Models'
   },
 
   // About page
@@ -196,3 +198,4 @@ export default {
     joinCommunity: 'Join our community discussions'
   }
 }
+

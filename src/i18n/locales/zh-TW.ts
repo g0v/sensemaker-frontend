@@ -82,6 +82,8 @@ export default {
     detailedError: '詳細錯誤',
     unknownError: '未知錯誤',
     noDetailedError: '無詳細錯誤資訊',
+    modelNote: '建議使用gpt-oss-120b模型，若要選用其他推理模型，如免費的gpt-oss-20b:free，請參考此頁的說明，以比較各模型的性能與計費標準',
+    modelLinkText: '📋 查看 OpenRouter 模型列表',
     // 輸出語言選項
     outputLangOptions: {
       en: 'English',
@@ -201,3 +203,4 @@ export default {
     joinCommunity: '加入我們的社群討論'
   }
 }
+
