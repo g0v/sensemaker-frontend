@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
 
 interface TaskData {
@@ -17,6 +18,8 @@ interface AnalysisResult {
   completedAt: string
   summary: string
 }
+
+const { t } = useI18n()
 
 const apiKey = ref('')
 const model = ref('openai/gpt-oss-120b')
@@ -40,7 +43,7 @@ const taskData = ref<TaskData>({
   commentsCount: 0,
   model: ''
 })
-const pollingMessage = ref('正在輪詢結果...')
+const pollingMessage = ref('')
 const latestSummaryMarkdown = ref('')
 
 // 新增錯誤狀態變數
@@ -66,7 +69,7 @@ const handleFileSelect = (event: Event) => {
 
 const handleSubmit = async () => {
   if (!selectedFile.value) {
-    showResultMessage('請選擇要上傳的文件', 'error')
+    showResultMessage(t('home.selectFileFirst'), 'error')
     return
   }
 
@@ -94,7 +97,7 @@ const handleSubmit = async () => {
       apiUrl += `&output_lang=${encodeURIComponent(outputLang.value)}`
     }
 
-    showResultMessage('📡 正在發送請求到 API...', 'info')
+    showResultMessage(t('home.sendingRequest'), 'info')
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -116,14 +119,14 @@ const handleSubmit = async () => {
       showTaskStatus.value = true
       startPolling(result.taskId)
 
-      showResultMessage(`✅ 任務已開始！\n\n任務 ID: ${result.taskId}\n狀態: ${result.status}\n預計完成時間: ${result.estimatedTime}`, 'success')
+      showResultMessage(`${t('home.taskStarted')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
     } else {
-      showResultMessage(`❌ 請求失敗 (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
+      showResultMessage(`${t('home.requestFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
     }
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`❌ 請求錯誤:\n${errorMessage}`, 'error')
+    showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
   } finally {
     isProcessing.value = false
   }
@@ -148,7 +151,7 @@ const startPolling = (taskId: string) => {
   }, 180000) // 180秒 = 3分鐘
 
   // 顯示延遲提示
-  updatePollingStatus(`任務已加入隊列，將在3分鐘後開始檢查結果...`)
+  updatePollingStatus(t('home.taskInQueue'))
 }
 
 const checkTaskResult = async (taskId: string) => {
@@ -172,11 +175,11 @@ const checkTaskResult = async (taskId: string) => {
         showFinalResult(result)
       } else {
         // 更新輪詢狀態
-        updatePollingStatus(`任務仍在處理中... (${new Date().toLocaleTimeString()})`)
+        updatePollingStatus(`${t('home.taskProcessing')} (${new Date().toLocaleTimeString()})`)
       }
     } else if (response.status === 404) {
       // 任務還在處理中
-      updatePollingStatus(`任務仍在處理中... (${new Date().toLocaleTimeString()})`)
+      updatePollingStatus(`${t('home.taskProcessing')} (${new Date().toLocaleTimeString()})`)
     } else if (response.status === 500) {
       // 500 錯誤 - 任務處理失敗
       console.error('❌ 任務處理失敗 (500):', result)
@@ -191,17 +194,17 @@ const checkTaskResult = async (taskId: string) => {
 
       // 顯示錯誤訊息
       const errorHtml = `
-        <h2>❌ 任務處理失敗</h2>
+        <h2>${t('home.taskFailed')}</h2>
         <div style="margin-bottom: 1em;">
-          <p><strong>任務 ID:</strong> ${result.taskId || taskId}</p>
-          <p><strong>狀態:</strong> ${result.status || 'failed'}</p>
-          <p><strong>失敗時間:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
+          <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
+          <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
+          <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
         </div>
         <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-        <h3>錯誤詳情:</h3>
+        <h3>${t('home.errorDetails')}:</h3>
         <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
-          <p><strong>錯誤訊息:</strong> ${result.message || '未知錯誤'}</p>
-          <p><strong>詳細錯誤:</strong> ${result.error || '無詳細錯誤資訊'}</p>
+          <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
+          <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
         </div>
       `
 
@@ -213,14 +216,14 @@ const checkTaskResult = async (taskId: string) => {
         pollingInterval.value = null
       }
 
-      showResultMessage(`❌ 任務失敗:\n${JSON.stringify(result, null, 2)}`, 'error')
+      showResultMessage(`${t('home.requestFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
       showTaskStatus.value = false
     }
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
     console.error('❌ 輪詢請求錯誤:', errorMessage)
-    updatePollingStatus(`輪詢錯誤: ${errorMessage} (${new Date().toLocaleTimeString()})`)
+    updatePollingStatus(`${t('home.requestError')}: ${errorMessage} (${new Date().toLocaleTimeString()})`)
   }
 }
 
@@ -237,14 +240,14 @@ const showFinalResult = (result: AnalysisResult) => {
   const renderedSummary = marked.parse(result.summary || '')
 
   const resultHtml = `
-    <h2>✅ 分析完成！</h2>
+    <h2>${t('home.taskCompleted')}</h2>
     <div style="margin-bottom: 1em;">
-      <p><strong>📊 處理了 ${result.commentsProcessed || 'N/A'} 條評論</strong></p>
-      <p><strong>🤖 使用模型:</strong> ${result.model || 'N/A'}</p>
-      <p><strong>⏰ 完成時間:</strong> ${new Date(result.completedAt).toLocaleString('zh-TW')}</p>
+      <p><strong>📊 ${t('home.commentsProcessed', { count: result.commentsProcessed || 'N/A' })}</strong></p>
+      <p><strong>🤖 ${t('home.model')}:</strong> ${result.model || 'N/A'}</p>
+      <p><strong>⏰ ${t('home.completedAt')}:</strong> ${new Date(result.completedAt).toLocaleString('zh-TW')}</p>
     </div>
     <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-    <h3>📝 摘要:</h3>
+    <h3>📝 ${t('home.summary')}:</h3>
     <div class="markdown-content">
       ${renderedSummary}
     </div>
@@ -267,7 +270,7 @@ const setDownloadButtonVisible = (visible: boolean) => {
 const downloadMarkdown = () => {
   try {
     if (!latestSummaryMarkdown.value || latestSummaryMarkdown.value.trim().length === 0) {
-      showResultMessage('❌ 沒有可下載的 Markdown 內容', 'error')
+      showResultMessage(t('home.noMarkdownContent'), 'error')
       return
     }
     const taskId = currentTaskId.value || 'result'
@@ -284,14 +287,14 @@ const downloadMarkdown = () => {
     URL.revokeObjectURL(url)
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`❌ 下載失敗: ${errorMessage}`, 'error')
+    showResultMessage(`${t('home.downloadFailed')}: ${errorMessage}`, 'error')
   }
 }
 
 // 測試功能
 const testLLM = async () => {
   try {
-    showResultMessage('🔄 正在測試 LLM 連接...', 'info')
+    showResultMessage(t('home.testLLM'), 'info')
 
     const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-llm', {
       method: 'POST'
@@ -299,19 +302,19 @@ const testLLM = async () => {
 
     const result = await response.json()
     if (response.ok && result.success) {
-      showResultMessage(`✅ LLM 測試成功！\n\n簡單回應: ${result.simpleResponse}\n\n結構化回應: ${JSON.stringify(result.structuredResponse, null, 2)}\n\n測試評論: ${JSON.stringify(result.testComment, null, 2)}`, 'success')
+      showResultMessage(`${t('home.testLLMSuccess')}\n\n簡單回應: ${result.simpleResponse}\n\n結構化回應: ${JSON.stringify(result.structuredResponse, null, 2)}\n\n測試評論: ${JSON.stringify(result.testComment, null, 2)}`, 'success')
     } else {
-      showResultMessage(`❌ LLM 測試失敗:\n${JSON.stringify(result, null, 2)}`, 'error')
+      showResultMessage(`${t('home.testLLMFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`❌ LLM 測試請求錯誤:\n${errorMessage}`, 'error')
+    showResultMessage(`${t('home.testLLMError')}:\n${errorMessage}`, 'error')
   }
 }
 
 const testCSV = async () => {
   if (!selectedFile.value) {
-    showResultMessage('❌ 請先選擇 CSV 文件', 'error')
+    showResultMessage(t('home.testCSV'), 'error')
     return
   }
 
@@ -326,19 +329,19 @@ const testCSV = async () => {
 
     const result = await response.json()
     if (response.ok) {
-      showResultMessage(`✅ CSV 解析成功！\n\n處理了 ${result.commentsCount} 條評論\n\n詳細結果:\n${JSON.stringify(result, null, 2)}`, 'success')
+      showResultMessage(`${t('home.testCSVSuccess')}\n\n處理了 ${result.commentsCount} 條評論\n\n詳細結果:\n${JSON.stringify(result, null, 2)}`, 'success')
     } else {
-      showResultMessage(`❌ CSV 解析失敗:\n${JSON.stringify(result, null, 2)}`, 'error')
+      showResultMessage(`${t('home.testCSVFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`❌ 請求錯誤:\n${errorMessage}`, 'error')
+    showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
   }
 }
 
 const testR2 = async () => {
   try {
-    showResultMessage('🔄 正在測試 R2 讀寫...', 'info')
+    showResultMessage(t('home.testR2'), 'info')
 
     const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-r2', {
       method: 'POST'
@@ -346,13 +349,13 @@ const testR2 = async () => {
 
     const result = await response.json()
     if (response.ok && result.success) {
-      showResultMessage(`✅ R2 測試成功！\n\n讀取的值: ${result.readValue}\n\n自定義元數據: ${JSON.stringify(result.customMetadata, null, 2)}`, 'success')
+      showResultMessage(`${t('home.testR2Success')}\n\n讀取的值: ${result.readValue}\n\n自定義元數據: ${JSON.stringify(result.customMetadata, null, 2)}`, 'success')
     } else {
-      showResultMessage(`❌ R2 測試失敗:\n${JSON.stringify(result, null, 2)}`, 'error')
+      showResultMessage(`${t('home.testR2Failed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`❌ R2 測試請求錯誤:\n${errorMessage}`, 'error')
+    showResultMessage(`${t('home.testR2Error')}:\n${errorMessage}`, 'error')
   }
 }
 
@@ -392,77 +395,76 @@ onUnmounted(() => {
   <div class="min-h-screen bg-gray-50 py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
-        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">🚀 應用Sensemaker做分析</h1>
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">{{ t('home.title') }}</h1>
 
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div class="space-y-2">
             <label for="apiKey" class="block text-sm font-medium text-gray-700">
-              🔑 OpenRouter API Key <span class="text-red-500 font-bold">*</span>
+              {{ t('home.apiKeyLabel') }} <span class="text-red-500 font-bold">*</span>
             </label>
             <input
               type="text"
               id="apiKey"
               v-model="apiKey"
-              placeholder="請輸入您的 OpenRouter API Key"
+              :placeholder="t('home.apiKeyPlaceholder')"
               required
               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
             <div class="text-xs text-gray-600 space-y-1">
-              <p class="italic">此欄位為必填，用於連接到 AI 模型服務</p>
+              <p class="italic">{{ t('home.apiKeyRequired') }}</p>
               <p class="text-blue-600">
-                <span class="font-medium">🔒 隱私保護：</span>根據 <router-link to="/privacy"  class="text-democratic-red hover:underline font-medium">隱私權政策</router-link> ，本站不會將您的API KEY儲存在任何地方。如有疑慮，歡迎
-                <router-link to="/self-host" class="text-democratic-red hover:underline font-medium">自行架站</router-link>
-                後端與前端服務。
+                <span class="font-medium">{{ t('home.privacyNote') }}</span>
               </p>
             </div>
           </div>
 
           <div class="space-y-2">
             <label for="model" class="block text-sm font-medium text-gray-700">
-              🤖 模型名稱:
+              {{ t('home.modelLabel') }}
             </label>
             <input
               type="text"
               id="model"
               v-model="model"
-              placeholder="openai/gpt-oss-120b"
+              :placeholder="t('home.modelPlaceholder')"
               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
           </div>
 
           <div class="space-y-2">
             <label for="additionalContext" class="block text-sm font-medium text-gray-700">
-              📝 額外上下文 (可選):
+              {{ t('home.additionalContextLabel') }}
             </label>
             <input
               type="text"
               id="additionalContext"
               v-model="additionalContext"
-              placeholder="描述對話的背景和環境"
+              :placeholder="t('home.additionalContextPlaceholder')"
               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
           </div>
 
           <div class="space-y-2">
             <label for="outputLang" class="block text-sm font-medium text-gray-700">
-              🌐 輸出語言:
+              {{ t('home.outputLangLabel') }}
             </label>
             <select
               id="outputLang"
               v-model="outputLang"
               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
-              <option value="en">English</option>
-              <option value="zh-TW">繁體中文</option>
+              <option value="en">{{ t('home.outputLangOptions.en') }}</option>
+              <option value="zh-TW">{{ t('home.outputLangOptions.zh-TW') }}</option>
+              <option value="zh-CN">{{ t('home.outputLangOptions.zh-CN') }}</option>
+              <option value="ja">{{ t('home.outputLangOptions.ja') }}</option>
+              <option value="fr">{{ t('home.outputLangOptions.fr') }}</option>
+              <option value="es">{{ t('home.outputLangOptions.es') }}</option>
             </select>
           </div>
 
           <div class="space-y-2">
             <label for="file" class="block text-sm font-medium text-gray-700">
-              📁 上傳文件 (
-                <a href="https://polis.tw/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">polis.tw</a> 導出的 JSON 或
-                <a href="https://pol.is/" target="_blank" rel="noopener noreferrer" class="text-democratic-red hover:underline">pol.is</a>
-                導出的 CSV)
+              {{ t('home.fileLabel') }}
             </label>
             <input
               type="file"
@@ -479,26 +481,26 @@ onUnmounted(() => {
             :disabled="isProcessing || !apiKey.trim()"
             class="w-full bg-democratic-red hover:bg-red-700 disabled:bg-gray-400 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 disabled:cursor-not-allowed"
           >
-            {{ isProcessing ? '⏳ 處理中...' : '🚀 開始分析' }}
+            {{ isProcessing ? t('home.processing') : t('home.startAnalysis') }}
           </button>
         </form>
       </div>
 
       <!-- 任務狀態顯示區域 -->
       <div v-if="showTaskStatus" class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-        <h3 class="text-lg font-semibold text-blue-900 mb-4">📊 任務狀態</h3>
+        <h3 class="text-lg font-semibold text-blue-900 mb-4">{{ t('home.taskStatus') }}</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div class="bg-blue-100 p-3 rounded-md">
-            <span class="font-medium text-blue-800">任務 ID:</span> {{ taskData.taskId }}
+            <span class="font-medium text-blue-800">{{ t('home.taskId') }}:</span> {{ taskData.taskId }}
           </div>
           <div class="bg-blue-100 p-3 rounded-md">
-            <span class="font-medium text-blue-800">狀態:</span> {{ taskData.status }}
+            <span class="font-medium text-blue-800">{{ t('home.status') }}:</span> {{ taskData.status }}
           </div>
           <div class="bg-blue-100 p-3 rounded-md">
-            <span class="font-medium text-blue-800">評論數量:</span> {{ taskData.commentsCount }}
+            <span class="font-medium text-blue-800">{{ t('home.commentsCount') }}:</span> {{ taskData.commentsCount }}
           </div>
           <div class="bg-blue-100 p-3 rounded-md">
-            <span class="font-medium text-blue-800">使用模型:</span> {{ taskData.model }}
+            <span class="font-medium text-blue-800">{{ t('home.model') }}:</span> {{ taskData.model }}
           </div>
         </div>
         <div class="text-center p-3 bg-blue-100 rounded-md">
@@ -526,7 +528,7 @@ onUnmounted(() => {
           @click="downloadMarkdown"
           class="bg-jade-green hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
         >
-          ⬇️ 下載 Markdown
+          {{ t('home.downloadMarkdown') }}
         </button>
       </div>
     </div>
