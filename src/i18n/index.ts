@@ -30,16 +30,29 @@ export const getCurrentLocale = (): SupportedLocale => {
   return 'zh-TW'
 }
 
-export default createI18n({
+// 確保所有語言檔案都被正確載入
+const messages = {
+  'zh-TW': zhTW,
+  'zh-CN': zhCN,
+  'en': en,
+  'ja': ja,
+  'fr': fr,
+  'es': es
+}
+
+// 在生產環境中確保 i18n 實例被正確創建
+const i18n = createI18n({
   legacy: false, // 使用 Composition API 模式
   locale: getCurrentLocale(), // 預設語言
   fallbackLocale: 'en', // 備用語言
-  messages: {
-    'zh-TW': zhTW,
-    'zh-CN': zhCN,
-    'en': en,
-    'ja': ja,
-    'fr': fr,
-    'es': es
-  }
+  messages,
+  // vue-i18n v9 的配置
+  globalInjection: true,
+  allowComposition: true,
+  useScope: 'global',
+  // 確保在生產環境中正確工作
+  missingWarn: false,
+  fallbackWarn: false
 })
+
+export default i18n
