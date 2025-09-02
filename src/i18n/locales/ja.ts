@@ -40,7 +40,7 @@ export default {
     outputLangLabel: '🌐 出力言語:',
     fileLabel: '📁 ファイルをアップロード (polis.twからエクスポートされたJSONまたはpol.isからエクスポートされたCSV)',
     startAnalysis: '🚀 分析を開始',
-    riskWarning: '⚠️ 警告：意見統合ツールは現在まだ開発・テスト段階にあるため、レポート生成プロセスは大量のフォーマット化されたLLM接続を使用します。LLMの応答には固有の不安定性があり、全体的なレポートが生成に失敗する確率は約1/6です。分析を実行するかどうかを確認する前に、このリスクを理解してください。',
+    riskWarning: '⚠️ 警告：意見統合ツールは現在まだ開発・テスト段階にあるため、LLMの応答には固有の不安定性があり、単一レポートが生成に失敗する確率は約1/6です。リトライ機能の設定により成功率を向上させることができます。',
     processing: '⏳ 処理中...',
     selectFileFirst: 'アップロードするファイルを選択してください',
     sendingRequest: '📡 APIにリクエストを送信中...',
@@ -83,6 +83,18 @@ export default {
     noDetailedError: '詳細なエラー情報がありません',
     modelNote: 'gpt-oss-120bモデルの使用を推奨します。無料のgpt-oss-20b:freeなどの他の推論モデルを使用したい場合は、このページを参照して、各種モデルの性能と価格設定基準を比較してください',
     modelLinkText: '📋 OpenRouterモデルを表示',
+    // リトライ機能関連
+    retryModeLabel: '🔄 リトライモード',
+    retryModeStrict: '一度だけ実行 (厳格モード)',
+    retryModeNormal: '自動リトライ3回 (通常モード)',
+    retryModeCustom: 'カスタムリトライ回数',
+    customRetryCountLabel: 'リトライ回数',
+    customRetryCountNote: '1-10の間のリトライ回数を入力してください',
+    retryingRequest: '🔄 リクエストをリトライ中',
+    retrySuccess: '✅ リトライ成功',
+    retryFailed: '❌ リトライ失敗',
+    retryError: '❌ リトライエラー',
+    allRetriesFailed: '❌ すべてのリトライが失敗しました',
     // 出力言語オプション
     outputLangOptions: {
       en: 'English',

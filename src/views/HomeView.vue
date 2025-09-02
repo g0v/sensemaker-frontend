@@ -19,6 +19,15 @@ interface AnalysisResult {
   summary: string
 }
 
+// 重試機制相關介面
+interface RetryData {
+  apiKey: string
+  model: string
+  file: File
+  additionalContext: string
+  outputLang: string
+}
+
 const { t } = useI18n()
 
 const apiKey = ref('')
@@ -31,6 +40,13 @@ const resultMessage = ref('')
 const resultType = ref<'success' | 'error' | 'info' | 'warning'>('info')
 const isResultHtml = ref(false)
 const showResult = ref(false)
+
+// 重試機制相關變數
+const retryMode = ref<'strict' | 'normal' | 'custom'>('normal')
+const customRetryCount = ref(3)
+const currentRetryCount = ref(0)
+const maxRetryCount = ref(3)
+const storedRetryData = ref<RetryData | null>(null)
 
 // 任務狀態相關
 const currentTaskId = ref<string | null>(null)
@@ -60,6 +76,111 @@ const showTaskError = ref(false)
 // 下載按鈕狀態
 const showDownloadButton = ref(false)
 
+// 重試模式變更處理
+const handleRetryModeChange = () => {
+  switch (retryMode.value) {
+    case 'strict':
+      maxRetryCount.value = 1
+      break
+    case 'normal':
+      maxRetryCount.value = 3
+      break
+    case 'custom':
+      maxRetryCount.value = Math.max(1, customRetryCount.value)
+      break
+  }
+}
+
+// 儲存重試數據到 Vue 響應式系統
+const storeRetryData = () => {
+  if (selectedFile.value) {
+    storedRetryData.value = {
+      apiKey: apiKey.value,
+      model: model.value,
+      file: selectedFile.value,
+      additionalContext: additionalContext.value,
+      outputLang: outputLang.value
+    }
+  }
+}
+
+// 重試請求
+const retryRequest = async (): Promise<boolean> => {
+  if (!storedRetryData.value) {
+    console.error('沒有儲存的重試數據')
+    return false
+  }
+
+  currentRetryCount.value++
+  console.log(`🔄 重試第 ${currentRetryCount.value} 次 (最大 ${maxRetryCount.value} 次)`)
+
+  try {
+    const formData = new FormData()
+    formData.append('file', storedRetryData.value.file)
+
+    // 構建 API URL
+    let apiUrl = `https://sensemaker-backend.bestian123.workers.dev/api/sensemake?OPENROUTER_MODEL=${encodeURIComponent(storedRetryData.value.model)}`
+
+    if (storedRetryData.value.apiKey.trim()) {
+      apiUrl += `&OPENROUTER_API_KEY=${encodeURIComponent(storedRetryData.value.apiKey.trim())}`
+    }
+
+    if (storedRetryData.value.additionalContext.trim()) {
+      apiUrl += `&additionalContext=${encodeURIComponent(storedRetryData.value.additionalContext.trim())}`
+    }
+
+    if (storedRetryData.value.outputLang !== 'en') {
+      apiUrl += `&output_lang=${encodeURIComponent(storedRetryData.value.outputLang)}`
+    }
+
+    showResultMessage(`${t('home.retryingRequest')} (${currentRetryCount.value}/${maxRetryCount.value})`, 'info')
+
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      body: formData
+    })
+
+    const result = await response.json()
+
+    if (response.ok && result.success) {
+      currentTaskId.value = result.taskId
+      taskData.value = {
+        taskId: result.taskId,
+        status: result.status,
+        estimatedTime: result.estimatedTime,
+        commentsCount: result.commentsCount || 0,
+        model: result.model || storedRetryData.value.model
+      }
+
+      showTaskStatus.value = true
+      startPolling(result.taskId)
+
+      showResultMessage(`${t('home.retrySuccess')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
+      return true
+         } else if (response.status === 500 && currentRetryCount.value < maxRetryCount.value) {
+       // 500 錯誤且還有重試次數，等待後重試
+       console.log(`❌ 500 錯誤，${maxRetryCount.value - currentRetryCount.value} 次重試機會剩餘`)
+       await new Promise<void>(resolve => setTimeout(resolve, 2000)) // 等待 2 秒
+       return await retryRequest()
+     } else {
+      // 其他錯誤或重試次數用完
+      showResultMessage(`${t('home.retryFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
+      return false
+    }
+
+     } catch (error) {
+     const errorMessage = error instanceof Error ? error.message : String(error)
+     if (currentRetryCount.value < maxRetryCount.value) {
+       console.log(`❌ 請求錯誤，${maxRetryCount.value - currentRetryCount.value} 次重試機會剩餘`)
+       await new Promise<void>(resolve => setTimeout(resolve, 2000)) // 等待 2 秒
+       return await retryRequest()
+     } else {
+       showResultMessage(`${t('home.retryError')}:\n${errorMessage}`, 'error')
+       return false
+     }
+   }
+}
+
 const handleFileSelect = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target.files && target.files[0]) {
@@ -72,6 +193,12 @@ const handleSubmit = async () => {
     showResultMessage(t('home.selectFileFirst'), 'error')
     return
   }
+
+  // 重置重試計數
+  currentRetryCount.value = 0
+
+  // 儲存重試數據
+  storeRetryData()
 
   isProcessing.value = true
   showResult.value = false
@@ -120,13 +247,28 @@ const handleSubmit = async () => {
       startPolling(result.taskId)
 
       showResultMessage(`${t('home.taskStarted')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
+    } else if (response.status === 500 && retryMode.value !== 'strict') {
+      // 500 錯誤且啟用了重試機制
+      console.log('❌ 500 錯誤，開始重試機制')
+      const retrySuccess = await retryRequest()
+      if (!retrySuccess) {
+        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+      }
     } else {
       showResultMessage(`${t('home.requestFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
     }
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
+    if (retryMode.value !== 'strict') {
+      console.log('❌ 請求錯誤，開始重試機制')
+      const retrySuccess = await retryRequest()
+      if (!retrySuccess) {
+        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+      }
+    } else {
+      showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
+    }
   } finally {
     isProcessing.value = false
   }
@@ -192,23 +334,52 @@ const checkTaskResult = async (taskId: string) => {
       // 隱藏任務狀態
       showTaskStatus.value = false
 
-      // 顯示錯誤訊息
-      const errorHtml = `
-        <h2>${t('home.taskFailed')}</h2>
-        <div style="margin-bottom: 1em;">
-          <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
-          <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
-          <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
-        </div>
-        <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-        <h3>${t('home.errorDetails')}:</h3>
-        <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
-          <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
-          <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
-        </div>
-      `
+      // 檢查是否啟用了重試機制
+      if (maxRetryCount.value > 1 && storedRetryData.value) {
+        console.log('❌ 輪詢遇到 500 錯誤，開始重試機制')
+        showResultMessage(`${t('home.taskFailed')} - ${t('home.retryingRequest')}`, 'info')
 
-      showResultMessage(errorHtml, 'error', true)
+        // 重置重試計數並開始重試
+        currentRetryCount.value = 0
+        const retrySuccess = await retryRequest()
+        if (!retrySuccess) {
+          // 顯示最終錯誤訊息
+          const errorHtml = `
+            <h2>${t('home.taskFailed')}</h2>
+            <div style="margin-bottom: 1em;">
+              <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
+              <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
+              <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
+            </div>
+            <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
+            <h3>${t('home.errorDetails')}:</h3>
+            <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
+              <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
+              <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
+            </div>
+            <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
+            <p><strong>${t('home.allRetriesFailed')}</strong></p>
+          `
+          showResultMessage(errorHtml, 'error', true)
+        }
+      } else {
+        // 沒有啟用重試機制，直接顯示錯誤訊息
+        const errorHtml = `
+          <h2>${t('home.taskFailed')}</h2>
+          <div style="margin-bottom: 1em;">
+            <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
+            <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
+            <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
+          </div>
+          <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
+          <h3>${t('home.errorDetails')}:</h3>
+          <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
+            <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
+            <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
+          </div>
+        `
+        showResultMessage(errorHtml, 'error', true)
+      }
     } else {
       // 其他錯誤
       if (pollingInterval.value) {
@@ -223,7 +394,21 @@ const checkTaskResult = async (taskId: string) => {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
     console.error('❌ 輪詢請求錯誤:', errorMessage)
-    updatePollingStatus(`${t('home.requestError')}: ${errorMessage} (${new Date().toLocaleTimeString()})`)
+
+    // 檢查是否啟用了重試機制
+    if (maxRetryCount.value > 1 && storedRetryData.value) {
+      console.log('❌ 輪詢遇到網絡錯誤，開始重試機制')
+      showResultMessage(`${t('home.requestError')} - ${t('home.retryingRequest')}`, 'info')
+
+      // 重置重試計數並開始重試
+      currentRetryCount.value = 0
+      const retrySuccess = await retryRequest()
+      if (!retrySuccess) {
+        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+      }
+    } else {
+      updatePollingStatus(`${t('home.requestError')}: ${errorMessage} (${new Date().toLocaleTimeString()})`)
+    }
   }
 }
 
@@ -470,6 +655,76 @@ onUnmounted(() => {
             </select>
           </div>
 
+
+          <!-- 風險提醒 -->
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <div class="flex items-start gap-2">
+              <div>
+                <p class="text-yellow-800 text-sm leading-relaxed">
+                  {{ t('home.riskWarning') }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 重試模式選擇 -->
+          <div class="space-y-3">
+            <label class="block text-sm font-medium text-gray-700">
+              {{ t('home.retryModeLabel') }}
+            </label>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  v-model="retryMode"
+                  value="strict"
+                  @change="handleRetryModeChange"
+                  class="mr-2"
+                >
+                <span class="text-sm text-gray-700">{{ t('home.retryModeStrict') }}</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  v-model="retryMode"
+                  value="normal"
+                  @change="handleRetryModeChange"
+                  class="mr-2"
+                >
+                <span class="text-sm text-gray-700">{{ t('home.retryModeNormal') }}</span>
+              </label>
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  v-model="retryMode"
+                  value="custom"
+                  @change="handleRetryModeChange"
+                  class="mr-2"
+                >
+                <span class="text-sm text-gray-700">{{ t('home.retryModeCustom') }}</span>
+              </label>
+            </div>
+
+
+
+            <!-- 自定義重試次數輸入 -->
+            <div v-if="retryMode === 'custom'" class="ml-6 space-y-2">
+              <label for="customRetryCount" class="block text-sm font-medium text-gray-700">
+                {{ t('home.customRetryCountLabel') }}
+              </label>
+              <input
+                type="number"
+                id="customRetryCount"
+                v-model="customRetryCount"
+                min="1"
+                max="10"
+                @input="handleRetryModeChange"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              >
+              <p class="text-xs text-gray-600">{{ t('home.customRetryCountNote') }}</p>
+            </div>
+          </div>
+
           <div class="space-y-2">
             <label for="file" class="block text-sm font-medium text-gray-700">
               {{ t('home.fileLabel') }}
@@ -484,16 +739,6 @@ onUnmounted(() => {
             >
           </div>
 
-          <!-- 風險提醒 -->
-          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-            <div class="flex items-start gap-2">
-              <div>
-                <p class="text-yellow-800 text-sm leading-relaxed">
-                  {{ t('home.riskWarning') }}
-                </p>
-              </div>
-            </div>
-          </div>
 
           <button
             type="submit"

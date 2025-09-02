@@ -40,7 +40,7 @@ export default {
     outputLangLabel: '🌐 输出语言:',
     fileLabel: '📁 上传文件 (polis.tw 导出的 JSON 或 pol.is 导出的 CSV)',
     startAnalysis: '🚀 开始分析',
-    riskWarning: '⚠️ 警告：由于意见综整器目前还在开发测试中，报告生成过程使用大量有格式的LLM串接，LLM的回应有其不稳定性，整体报告约有1/6的机率会生成失败，请了解此风险后，再确认是否要执行分析。',
+    riskWarning: '⚠️ 警告：由于意见综整器目前还在开发测试中，LLM的回应有其不稳定性，单次报告约有1/6的机率会生成失败，您可以通过重新机制的设定来增加成功率。',
     processing: '⏳ 处理中...',
     selectFileFirst: '请选择要上传的文件',
     sendingRequest: '📡 正在发送请求到 API...',
@@ -83,6 +83,18 @@ export default {
     noDetailedError: '无详细错误信息',
     modelNote: '建议使用gpt-oss-120b模型，若要选用其他推理模型，如免费的gpt-oss-20b:free，请参考此页的说明，以比较各模型的性能与计费标准',
     modelLinkText: '📋 查看 OpenRouter 模型列表',
+    // 重试机制相关
+    retryModeLabel: '🔄 重试模式',
+    retryModeStrict: '只跑一次 (严格模式)',
+    retryModeNormal: '自动重试3次 (正常模式)',
+    retryModeCustom: '自定义重试次数',
+    customRetryCountLabel: '重试次数',
+    customRetryCountNote: '请输入 1-10 之间的重试次数',
+    retryingRequest: '🔄 正在重试请求',
+    retrySuccess: '✅ 重试成功',
+    retryFailed: '❌ 重试失败',
+    retryError: '❌ 重试错误',
+    allRetriesFailed: '❌ 所有重试都失败了',
     // 输出语言选项
     outputLangOptions: {
       en: 'English',

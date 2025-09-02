@@ -40,7 +40,7 @@ export default {
     outputLangLabel: '🌐 Langue de sortie :',
     fileLabel: '📁 Téléverser un fichier (JSON exporté depuis polis.tw ou CSV exporté depuis pol.is)',
     startAnalysis: '🚀 Commencer l\'analyse',
-    riskWarning: '⚠️ Avertissement : Étant donné que l\'outil d\'intégration d\'opinions est actuellement encore en développement et en test, le processus de génération de rapports utilise des connexions LLM formatées étendues. Les réponses LLM ont une instabilité inhérente, et il y a approximativement une chance sur 6 que le rapport global échoue à se générer. Veuillez comprendre ce risque avant de confirmer si vous souhaitez procéder à l\'analyse.',
+    riskWarning: '⚠️ Avertissement : Étant donné que l\'outil d\'intégration d\'opinions est actuellement encore en développement et en test, les réponses LLM ont une instabilité inhérente, et il y a approximativement une chance sur 6 qu\'un rapport unique échoue à se générer. Vous pouvez augmenter le taux de succès grâce aux paramètres du mécanisme de nouvelle tentative.',
     processing: '⏳ Traitement...',
     selectFileFirst: 'Veuillez sélectionner un fichier à téléverser',
     sendingRequest: '📡 Envoi de la requête à l\'API...',
@@ -83,6 +83,18 @@ export default {
     noDetailedError: 'Aucune information d\'erreur détaillée',
     modelNote: 'Nous recommandons d\'utiliser le modèle gpt-oss-120b. Si vous souhaitez utiliser d\'autres modèles d\'inférence, comme le gratuit gpt-oss-20b:free, veuillez consulter cette page pour obtenir des informations afin de comparer les performances et les standards de tarification de divers modèles',
     modelLinkText: '📋 Voir les modèles OpenRouter',
+    // Mécanisme de nouvelle tentative lié
+    retryModeLabel: '🔄 Mode de nouvelle tentative',
+    retryModeStrict: 'Exécuter une seule fois (Mode strict)',
+    retryModeNormal: 'Nouvelle tentative automatique 3 fois (Mode normal)',
+    retryModeCustom: 'Nombre de nouvelles tentatives personnalisé',
+    customRetryCountLabel: 'Nombre de nouvelles tentatives',
+    customRetryCountNote: 'Veuillez entrer un nombre de nouvelles tentatives entre 1-10',
+    retryingRequest: '🔄 Nouvelle tentative de requête',
+    retrySuccess: '✅ Nouvelle tentative réussie',
+    retryFailed: '❌ Nouvelle tentative échouée',
+    retryError: '❌ Erreur de nouvelle tentative',
+    allRetriesFailed: '❌ Toutes les nouvelles tentatives ont échoué',
     // Options de langue de sortie
     outputLangOptions: {
       en: 'English',

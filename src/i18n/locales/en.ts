@@ -41,7 +41,7 @@ export default {
     outputLangLabel: '🌐 Output Language:',
     fileLabel: '📁 Upload File (JSON exported from polis.tw or CSV exported from pol.is)',
     startAnalysis: '🚀 Start Analysis',
-    riskWarning: '⚠️ Warning: Since the opinion integration tool is currently still in development and testing, the report generation process uses extensive formatted LLM connections. LLM responses have inherent instability, and there is approximately a 1/6 chance that the overall report will fail to generate. Please understand this risk before confirming whether to proceed with the analysis.',
+    riskWarning: '⚠️ Warning: Since the opinion integration tool is currently still in development and testing, LLM responses have inherent instability, and there is approximately a 1/6 chance that a single report will fail to generate. You can increase the success rate through retry mechanism settings.',
     processing: '⏳ Processing...',
     selectFileFirst: 'Please select a file to upload',
     sendingRequest: '📡 Sending request to API...',
@@ -92,7 +92,19 @@ export default {
       es: 'Español'
     },
     modelNote: 'We recommend using the gpt-oss-120b model. If you want to use other inference models, such as the free gpt-oss-20b:free, please refer to this page for information to compare the performance and pricing standards of various models',
-    modelLinkText: '📋 View OpenRouter Models'
+    modelLinkText: '📋 View OpenRouter Models',
+    // Retry mechanism related
+    retryModeLabel: '🔄 Retry Mode',
+    retryModeStrict: 'Run once only (Strict mode)',
+    retryModeNormal: 'Auto retry 3 times (Normal mode)',
+    retryModeCustom: 'Custom retry count',
+    customRetryCountLabel: 'Retry Count',
+    customRetryCountNote: 'Please enter a retry count between 1-10',
+    retryingRequest: '🔄 Retrying request',
+    retrySuccess: '✅ Retry successful',
+    retryFailed: '❌ Retry failed',
+    retryError: '❌ Retry error',
+    allRetriesFailed: '❌ All retries failed'
   },
 
   // About page
