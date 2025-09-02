@@ -105,13 +105,12 @@ const storeRetryData = () => {
 }
 
 // 重試請求
-const retryRequest = async (): Promise<boolean> => {
+const retryRequest = async (): Promise<string | null> => {
   if (!storedRetryData.value) {
     console.error('沒有儲存的重試數據')
-    return false
+    return null
   }
 
-  currentRetryCount.value++
   console.log(`🔄 重試第 ${currentRetryCount.value} 次 (最大 ${maxRetryCount.value} 次)`)
 
   try {
@@ -143,42 +142,19 @@ const retryRequest = async (): Promise<boolean> => {
     const result = await response.json()
 
     if (response.ok && result.success) {
-      currentTaskId.value = result.taskId
-      taskData.value = {
-        taskId: result.taskId,
-        status: result.status,
-        estimatedTime: result.estimatedTime,
-        commentsCount: result.commentsCount || 0,
-        model: result.model || storedRetryData.value.model
-      }
-
-      showTaskStatus.value = true
-      startPolling(result.taskId)
-
-      showResultMessage(`${t('home.retrySuccess')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
-      return true
-         } else if (response.status === 500 && currentRetryCount.value < maxRetryCount.value) {
-       // 500 錯誤且還有重試次數，等待後重試
-       console.log(`❌ 500 錯誤，${maxRetryCount.value - currentRetryCount.value} 次重試機會剩餘`)
-       await new Promise<void>(resolve => setTimeout(resolve, 2000)) // 等待 2 秒
-       return await retryRequest()
-     } else {
-      // 其他錯誤或重試次數用完
+      // 重試成功，返回新的 taskId
+      return result.taskId
+    } else {
+      // 重試失敗
       showResultMessage(`${t('home.retryFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
-      return false
+      return null
     }
 
-     } catch (error) {
-     const errorMessage = error instanceof Error ? error.message : String(error)
-     if (currentRetryCount.value < maxRetryCount.value) {
-       console.log(`❌ 請求錯誤，${maxRetryCount.value - currentRetryCount.value} 次重試機會剩餘`)
-       await new Promise<void>(resolve => setTimeout(resolve, 2000)) // 等待 2 秒
-       return await retryRequest()
-     } else {
-       showResultMessage(`${t('home.retryError')}:\n${errorMessage}`, 'error')
-       return false
-     }
-   }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    showResultMessage(`${t('home.retryError')}:\n${errorMessage}`, 'error')
+    return null
+  }
 }
 
 const handleFileSelect = (event: Event) => {
@@ -248,10 +224,38 @@ const handleSubmit = async () => {
 
       showResultMessage(`${t('home.taskStarted')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
     } else if (response.status === 500 && retryMode.value !== 'strict') {
-      // 500 錯誤且啟用了重試機制
+      // 500 錯誤且啟用了重試機制，使用循環重試
       console.log('❌ 500 錯誤，開始重試機制')
-      const retrySuccess = await retryRequest()
-      if (!retrySuccess) {
+      let retryTaskId: string | null = null
+      let retryAttempts = 0
+
+      // 循環重試，直到成功或達到最大重試次數
+      while (retryAttempts < maxRetryCount.value && !retryTaskId) {
+        retryAttempts++
+        currentRetryCount.value = retryAttempts
+        console.log(`🔄 重試第 ${retryAttempts} 次 (最大 ${maxRetryCount.value} 次)`)
+
+        retryTaskId = await retryRequest()
+        if (!retryTaskId && retryAttempts < maxRetryCount.value) {
+          // 等待 2 秒後再重試
+          await new Promise<void>(resolve => setTimeout(resolve, 2000))
+        }
+      }
+
+      if (retryTaskId) {
+        // 重試成功，開始輪詢新任務
+        currentTaskId.value = retryTaskId
+        taskData.value = {
+          taskId: retryTaskId,
+          status: 'processing',
+          estimatedTime: 'N/A',
+          commentsCount: 0,
+          model: model.value
+        }
+        showTaskStatus.value = true
+        startPolling(retryTaskId)
+        showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
+      } else {
         showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
     } else {
@@ -262,8 +266,36 @@ const handleSubmit = async () => {
     const errorMessage = error instanceof Error ? error.message : String(error)
     if (retryMode.value !== 'strict') {
       console.log('❌ 請求錯誤，開始重試機制')
-      const retrySuccess = await retryRequest()
-      if (!retrySuccess) {
+      let retryTaskId: string | null = null
+      let retryAttempts = 0
+
+      // 循環重試，直到成功或達到最大重試次數
+      while (retryAttempts < maxRetryCount.value && !retryTaskId) {
+        retryAttempts++
+        currentRetryCount.value = retryAttempts
+        console.log(`🔄 重試第 ${retryAttempts} 次 (最大 ${maxRetryCount.value} 次)`)
+
+        retryTaskId = await retryRequest()
+        if (!retryTaskId && retryAttempts < maxRetryCount.value) {
+          // 等待 2 秒後再重試
+          await new Promise<void>(resolve => setTimeout(resolve, 2000))
+        }
+      }
+
+      if (retryTaskId) {
+        // 重試成功，開始輪詢新任務
+        currentTaskId.value = retryTaskId
+        taskData.value = {
+          taskId: retryTaskId,
+          status: 'processing',
+          estimatedTime: 'N/A',
+          commentsCount: 0,
+          model: model.value
+        }
+        showTaskStatus.value = true
+        startPolling(retryTaskId)
+        showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
+      } else {
         showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
     } else {
@@ -290,7 +322,7 @@ const startPolling = (taskId: string) => {
 
     // 立即檢查一次
     checkTaskResult(taskId)
-  }, 180000) // 180秒 = 3分鐘
+  }, 3 * 60 * 1000) // 3分鐘 = 3分鐘
 
   // 顯示延遲提示
   updatePollingStatus(t('home.taskInQueue'))
@@ -335,13 +367,40 @@ const checkTaskResult = async (taskId: string) => {
       showTaskStatus.value = false
 
       // 檢查是否啟用了重試機制
-      if (maxRetryCount.value > 1 && storedRetryData.value) {
+      if (retryMode.value !== 'strict' && storedRetryData.value && currentRetryCount.value < maxRetryCount.value) {
         console.log('❌ 輪詢遇到 500 錯誤，開始重試機制')
         showResultMessage(`${t('home.taskFailed')} - ${t('home.retryingRequest')}`, 'info')
 
-        // 重置重試計數並開始重試
-        currentRetryCount.value = 0
-        const retrySuccess = await retryRequest()
+        let retrySuccess = false
+        let retryAttempts = currentRetryCount.value
+
+        // 循環重試，直到成功或達到最大重試次數
+        while (retryAttempts < maxRetryCount.value && !retrySuccess) {
+          retryAttempts++
+          currentRetryCount.value = retryAttempts
+          console.log(`🔄 重試第 ${retryAttempts} 次 (最大 ${maxRetryCount.value} 次)`)
+
+          const retryTaskId = await retryRequest()
+          if (retryTaskId) {
+            // 重試成功，開始輪詢新任務
+            currentTaskId.value = retryTaskId
+            taskData.value = {
+              taskId: retryTaskId,
+              status: 'processing',
+              estimatedTime: 'N/A',
+              commentsCount: 0,
+              model: storedRetryData.value.model
+            }
+            showTaskStatus.value = true
+            startPolling(retryTaskId)
+            showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
+            retrySuccess = true
+          } else if (retryAttempts < maxRetryCount.value) {
+            // 等待 2 秒後再重試
+            await new Promise<void>(resolve => setTimeout(resolve, 2000))
+          }
+        }
+
         if (!retrySuccess) {
           // 顯示最終錯誤訊息
           const errorHtml = `
@@ -395,14 +454,41 @@ const checkTaskResult = async (taskId: string) => {
     const errorMessage = error instanceof Error ? error.message : String(error)
     console.error('❌ 輪詢請求錯誤:', errorMessage)
 
-    // 檢查是否啟用了重試機制
-    if (maxRetryCount.value > 1 && storedRetryData.value) {
+        // 檢查是否啟用了重試機制
+    if (retryMode.value !== 'strict' && storedRetryData.value && currentRetryCount.value < maxRetryCount.value) {
       console.log('❌ 輪詢遇到網絡錯誤，開始重試機制')
       showResultMessage(`${t('home.requestError')} - ${t('home.retryingRequest')}`, 'info')
 
-      // 重置重試計數並開始重試
-      currentRetryCount.value = 0
-      const retrySuccess = await retryRequest()
+      let retrySuccess = false
+      let retryAttempts = currentRetryCount.value
+
+      // 循環重試，直到成功或達到最大重試次數
+      while (retryAttempts < maxRetryCount.value && !retrySuccess) {
+        retryAttempts++
+        currentRetryCount.value = retryAttempts
+        console.log(`🔄 重試第 ${retryAttempts} 次 (最大 ${maxRetryCount.value} 次)`)
+
+        const retryTaskId = await retryRequest()
+        if (retryTaskId) {
+          // 重試成功，開始輪詢新任務
+          currentTaskId.value = retryTaskId
+          taskData.value = {
+            taskId: retryTaskId,
+            status: 'processing',
+            estimatedTime: 'N/A',
+            commentsCount: 0,
+            model: storedRetryData.value.model
+          }
+          showTaskStatus.value = true
+          startPolling(retryTaskId)
+          showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
+          retrySuccess = true
+        } else if (retryAttempts < maxRetryCount.value) {
+          // 等待 2 秒後再重試
+          await new Promise<void>(resolve => setTimeout(resolve, 2000))
+        }
+      }
+
       if (!retrySuccess) {
         showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
@@ -770,6 +856,12 @@ onUnmounted(() => {
         <div class="text-center p-3 bg-blue-100 rounded-md">
           <div class="inline-block w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2"></div>
           <span class="text-blue-800">{{ pollingMessage }}</span>
+        </div>
+
+        <!-- 重試進度顯示 -->
+        <div v-if="currentRetryCount > 0" class="text-center p-3 bg-orange-100 rounded-md mt-3">
+          <div class="inline-block w-5 h-5 border-2 border-orange-600 border-t-transparent rounded-full animate-spin mr-2"></div>
+          <span class="text-orange-800">🔄 重試第 {{ currentRetryCount }} 次 (最大 {{ maxRetryCount }} 次)</span>
         </div>
       </div>
 
