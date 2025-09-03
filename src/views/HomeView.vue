@@ -538,7 +538,7 @@ const setDownloadButtonVisible = (visible: boolean) => {
   showDownloadButton.value = visible
 }
 
-const downloadMarkdown = () => {
+const downloadMarkdown = async () => {
   try {
     if (!latestSummaryMarkdown.value || latestSummaryMarkdown.value.trim().length === 0) {
       showResultMessage(t('home.noMarkdownContent'), 'error')
@@ -556,9 +556,32 @@ const downloadMarkdown = () => {
     a.click()
     a.remove()
     URL.revokeObjectURL(url)
+
+    // 下載成功後，通知後端刪除 R2 上的報告資料
+    await deleteTaskReport(taskId)
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
     showResultMessage(`${t('home.downloadFailed')}: ${errorMessage}`, 'error')
+  }
+}
+
+// 刪除任務報告
+const deleteTaskReport = async (taskId: string) => {
+  try {
+    console.log(`🗑️ 刪除任務報告: ${taskId}`)
+
+    const response = await fetch(`https://sensemaker-backend.bestian123.workers.dev/api/sensemake/delete/${taskId}`, {
+      method: 'DELETE'
+    })
+
+    if (response.ok) {
+      console.log(`✅ 任務報告 ${taskId} 已成功刪除`)
+    } else {
+      console.warn(`⚠️ 刪除任務報告 ${taskId} 失敗: ${response.status}`)
+    }
+  } catch (error) {
+    console.error(`❌ 刪除任務報告 ${taskId} 時發生錯誤:`, error)
+    // 不顯示錯誤訊息給用戶，因為下載已經成功
   }
 }
 
