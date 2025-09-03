@@ -91,8 +91,9 @@ export default {
       fr: 'Français',
       es: 'Español'
     },
-    modelNote: 'We recommend using the gpt-oss-120b model. If you want to use other inference models, such as the free gpt-oss-20b:free, please refer to this page for information to compare the performance and pricing standards of various models',
+    modelNote: 'We recommend using the gpt-oss-120b model. If you want to use other inference models, please refer to this page for information to compare the performance and pricing standards of various models',
     modelLinkText: '📋 View OpenRouter Models',
+    costNote: '💰 Cost Estimate: Using gpt-oss-120b for analysis, depending on data volume, costs approximately $0.05-0.20 USD.',
     // Retry mechanism related
     retryModeLabel: '🔄 Retry Mode',
     retryModeStrict: 'Run once only (Strict mode)',

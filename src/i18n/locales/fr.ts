@@ -81,8 +81,9 @@ export default {
     detailedError: 'Erreur détaillée',
     unknownError: 'Erreur inconnue',
     noDetailedError: 'Aucune information d\'erreur détaillée',
-    modelNote: 'Nous recommandons d\'utiliser le modèle gpt-oss-120b. Si vous souhaitez utiliser d\'autres modèles d\'inférence, comme le gratuit gpt-oss-20b:free, veuillez consulter cette page pour obtenir des informations afin de comparer les performances et les standards de tarification de divers modèles',
+    modelNote: 'Nous recommandons d\'utiliser le modèle gpt-oss-120b. Si vous souhaitez utiliser d\'autres modèles d\'inférence, veuillez consulter cette page pour obtenir des informations afin de comparer les performances et les standards de tarification de divers modèles',
     modelLinkText: '📋 Voir les modèles OpenRouter',
+    costNote: '💰 Estimation des coûts : Utilisation de gpt-oss-120b pour l\'analyse, selon le volume de données, coûte environ 0,05-0,20 USD.',
     // Mécanisme de nouvelle tentative lié
     retryModeLabel: '🔄 Mode de nouvelle tentative',
     retryModeStrict: 'Exécuter une seule fois (Mode strict)',

@@ -82,8 +82,9 @@ export default {
     detailedError: '詳細錯誤',
     unknownError: '未知錯誤',
     noDetailedError: '無詳細錯誤資訊',
-    modelNote: '建議使用gpt-oss-120b模型，若要選用其他推理模型，如免費的gpt-oss-20b:free，請參考此頁的說明，以比較各模型的性能與計費標準',
+    modelNote: '建議使用gpt-oss-120b模型，若要選用其他推理模型，請參考此頁的說明，以比較各模型的性能與計費標準',
     modelLinkText: '📋 查看 OpenRouter 模型列表',
+    costNote: '💰 費用估算：使用 gpt-oss-120b 執行分析，依資料量大小，約需花費 $0.05-0.20 美金不等。',
     // 重試機制相關
     retryModeLabel: '🔄 重試模式',
     retryModeStrict: '只跑一次 (嚴格模式)',
