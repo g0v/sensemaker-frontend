@@ -84,6 +84,7 @@ export default {
     modelNote: 'Nous recommandons d\'utiliser le modèle gpt-oss-120b. Si vous souhaitez utiliser d\'autres modèles d\'inférence, veuillez consulter cette page pour obtenir des informations afin de comparer les performances et les standards de tarification de divers modèles',
     modelLinkText: '📋 Voir les modèles OpenRouter',
     costNote: '💰 Estimation des coûts : Utilisation de gpt-oss-120b pour l\'analyse, selon le volume de données, coûte environ 0,05-0,20 USD.',
+    timeNote: '⏱️ Estimation du temps : Utilisation de gpt-oss-120b pour l\'analyse, selon le volume de données, prend environ 3-30 minutes.',
     // Mécanisme de nouvelle tentative lié
     retryModeLabel: '🔄 Mode de nouvelle tentative',
     retryModeStrict: 'Exécuter une seule fois (Mode strict)',

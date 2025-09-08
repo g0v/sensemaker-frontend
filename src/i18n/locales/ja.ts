@@ -84,6 +84,7 @@ export default {
     modelNote: 'gpt-oss-120bモデルの使用を推奨します。他の推論モデルを使用したい場合は、このページを参照して、各種モデルの性能と価格設定基準を比較してください',
     modelLinkText: '📋 OpenRouterモデルを表示',
     costNote: '💰 費用見積もり：gpt-oss-120bを使用した分析では、データ量に応じて約$0.05-0.20 USDの費用がかかります。',
+    timeNote: '⏱️ 時間見積もり：gpt-oss-120bを使用した分析では、データ量に応じて約3-30分かかります。',
     // リトライ機能関連
     retryModeLabel: '🔄 リトライモード',
     retryModeStrict: '一度だけ実行 (厳格モード)',

@@ -726,6 +726,7 @@ onUnmounted(() => {
             <div class="text-xs text-gray-600 space-y-1">
               <p class="italic">{{ t('home.modelNote') }}</p>
               <p class="text-orange-600 font-medium">{{ t('home.costNote') }}</p>
+              <p class="text-blue-600 font-medium">{{ t('home.timeNote') }}</p>
               <p class="text-blue-600">
                 <a href="https://openrouter.ai/models" target="_blank" rel="noopener noreferrer" class="hover:underline">
                   {{ t('home.modelLinkText') }}
