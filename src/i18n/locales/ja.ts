@@ -2,7 +2,7 @@ export default {
   // 共通
   common: {
     home: 'ホーム',
-    about: 'について',
+    about: '概要',
     privacy: 'プライバシー',
     selfHost: 'セルフホスト',
     backToHome: 'ホームに戻る',
@@ -154,10 +154,10 @@ export default {
     dataProcessingTitle: 'データ処理について / About Data Processing',
     backendProcessing: 'バックエンド処理：データはバックエンドに送信されて計算されますが、ユーザーデータはサーバーに保存されません。特にAPIキーは決して保存されません。',
     noCookies: 'Cookieなし：Cookieは使用しません。',
-    openSource: 'オープンソース透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。',
+    openSource: 'オープンソースによる透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。',
     frontendProject: 'フロントエンドプロジェクト (Frontend)',
     backendProject: 'バックエンドプロジェクト (Backend)',
-    openSourceNote: 'オープンソース透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。GitHubでフロントエンドとバックエンドのリポジトリを確認してください。'
+    openSourceNote: 'オープンソースによる透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。GitHubでフロントエンドとバックエンドのリポジトリを確認してください。'
   },
 
   // セルフホストページ
