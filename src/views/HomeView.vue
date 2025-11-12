@@ -702,7 +702,7 @@ onUnmounted(() => {
               v-model="apiKey"
               :placeholder="t('home.apiKeyPlaceholder')"
               required
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
             <div class="text-xs text-gray-600 space-y-1">
               <p class="italic">{{ t('home.apiKeyRequired') }}</p>
@@ -721,7 +721,7 @@ onUnmounted(() => {
               id="model"
               v-model="model"
               :placeholder="t('home.modelPlaceholder')"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
             <div class="text-xs text-gray-600 space-y-1">
               <p class="italic">{{ t('home.modelNote') }}</p>
@@ -744,7 +744,7 @@ onUnmounted(() => {
               id="additionalContext"
               v-model="additionalContext"
               :placeholder="t('home.additionalContextPlaceholder')"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
           </div>
 
@@ -755,7 +755,7 @@ onUnmounted(() => {
             <select
               id="outputLang"
               v-model="outputLang"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
             >
               <option value="en">{{ t('home.outputLangOptions.en') }}</option>
               <option value="zh-TW">{{ t('home.outputLangOptions.zh-TW') }}</option>
@@ -830,7 +830,7 @@ onUnmounted(() => {
                 min="1"
                 max="10"
                 @input="handleRetryModeChange"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
               >
               <p class="text-xs text-gray-600">{{ t('home.customRetryCountNote') }}</p>
             </div>
