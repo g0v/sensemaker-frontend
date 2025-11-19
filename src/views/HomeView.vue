@@ -695,6 +695,14 @@ onUnmounted(() => {
           <div class="space-y-2">
             <label for="apiKey" class="block text-sm font-medium text-gray-700">
               {{ t('home.apiKeyLabel') }} <span class="text-red-500 font-bold">*</span>
+              <a 
+                href="https://openrouter.ai/keys" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="ml-2 text-blue-600 hover:text-blue-800 hover:underline text-xs font-normal"
+              >
+                {{ t('home.getApiKeyLink') }}
+              </a>
             </label>
             <input
               type="text"
