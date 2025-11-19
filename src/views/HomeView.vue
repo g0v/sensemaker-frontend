@@ -693,8 +693,30 @@ onUnmounted(() => {
 
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div class="space-y-2">
+            <label for="file" class="block text-sm font-medium text-gray-700">
+              {{ t('home.fileLabel') }}
+            </label>
+            <input
+              type="file"
+              id="file"
+              @change="handleFileSelect"
+              accept=".json,.csv,application/json,text/csv"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+            >
+          </div>
+
+          <div class="space-y-2">
             <label for="apiKey" class="block text-sm font-medium text-gray-700">
               {{ t('home.apiKeyLabel') }} <span class="text-red-500 font-bold">*</span>
+              <a 
+                href="https://openrouter.ai/keys" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="ml-2 text-blue-600 hover:text-blue-800 hover:underline text-xs font-normal"
+              >
+                {{ t('home.getApiKeyLink') }}
+              </a>
             </label>
             <input
               type="text"
@@ -835,21 +857,6 @@ onUnmounted(() => {
               <p class="text-xs text-gray-600">{{ t('home.customRetryCountNote') }}</p>
             </div>
           </div>
-
-          <div class="space-y-2">
-            <label for="file" class="block text-sm font-medium text-gray-700">
-              {{ t('home.fileLabel') }}
-            </label>
-            <input
-              type="file"
-              id="file"
-              @change="handleFileSelect"
-              accept=".json,.csv,application/json,text/csv"
-              required
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
-            >
-          </div>
-
 
           <button
             type="submit"
