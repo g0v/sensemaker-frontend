@@ -30,6 +30,10 @@ interface RetryData {
 
 const { t } = useI18n()
 
+// 提示卡相關變數
+const showGuideModal = ref(false)
+const dontShowAgain = ref(false)
+
 const apiKey = ref('')
 const model = ref('openai/gpt-oss-120b')
 const additionalContext = ref('')
@@ -673,9 +677,22 @@ marked.setOptions({
   gfm: true      // 支持 GitHub 風格的 Markdown
 })
 
+// 關閉提示卡
+const closeGuideModal = () => {
+  showGuideModal.value = false
+  if (dontShowAgain.value) {
+    localStorage.setItem('dontShowGuide', 'true')
+  }
+}
+
 // 生命週期
 onMounted(() => {
   checkHealth()
+  // 檢查是否已經選擇不再顯示提示
+  const dontShow = localStorage.getItem('dontShowGuide')
+  if (!dontShow) {
+    showGuideModal.value = true
+  }
 })
 
 onUnmounted(() => {
@@ -686,6 +703,131 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- 提示卡遮罩和卡片 -->
+  <div
+    v-if="showGuideModal"
+    class="fixed inset-0 z-[1000] flex items-center justify-center"
+    @click.self="closeGuideModal"
+  >
+    <!-- 半透明遮罩 -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+    <!-- 提示卡 -->
+    <div class="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <!-- 關閉按鈕 -->
+      <button
+        @click="closeGuideModal"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10"
+        aria-label="關閉"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- 提示卡內容 -->
+      <div class="p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">歡迎使用 SenseMaker意見綜整器</h2>
+        <p class="text-gray-700 mb-3 text-sm text-center">
+          SenseMaker 意見綜整器是一個強大的意見調查報告分析工具，可以幫助您從大量意見調查報告中提取有價值的洞察。
+        </p>
+
+        <!-- 三個圖文區塊 - 響應式排版 -->
+        <div class="flex flex-col md:flex-row gap-6 mb-6">
+
+
+          <!-- 區塊 1: Polis -->
+          <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 flex justify-center">
+              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                <span class="text-gray-400 text-sm">圖片佔位</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">1. Polis意見調查報告導出</h3>
+            <p class="text-gray-700 mb-3 text-sm text-center">
+              本工具支援 Polis 平台導出的意見調查報告。請確保您的文件符合 Polis 的數據結構。
+            </p>
+            <div class="text-center">
+              <router-link
+                to="/guide/polis"
+                class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              >
+                查看說明 →
+              </router-link>
+            </div>
+          </div>
+
+          <!-- 區塊 2: OpenRouter -->
+          <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 flex justify-center">
+              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                <span class="text-gray-400 text-sm">圖片佔位</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">2. OpenRouter API 連接</h3>
+            <p class="text-gray-700 mb-3 text-sm text-center">
+              本工具使用 OpenRouter 來連接各種大型語言模型。您需要提供 OpenRouter API Key 才能使用。
+            </p>
+            <div class="text-center">
+              <router-link
+                to="/guide/openrouter"
+                class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              >
+                查看說明 →
+              </router-link>
+            </div>
+          </div>
+
+          <!-- 區塊 3: SenseMaker -->
+          <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
+            <div class="mb-4 flex justify-center">
+              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                <span class="text-gray-400 text-sm">圖片佔位</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">3. SenseMaker 分析</h3>
+            <p class="text-gray-700 mb-3 text-sm text-center">
+              本工具使用 SenseMaker 進行分析。請參考以下操作說明，進行分析。
+            </p>
+            <div class="text-center">
+              <router-link
+                to="/guide/sensemaker"
+                class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              >
+                了解更多 →
+              </router-link>
+            </div>
+          </div>
+        </div>
+
+        <!-- 提示訊息 -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <p class="text-sm text-blue-800 text-center">
+            <strong>提示：</strong> 如果您是第一次使用，建議先閱讀上述說明文件，以確保正確使用本工具。
+          </p>
+        </div>
+
+        <!-- 不再顯示選項和確認按鈕 -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-200">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              v-model="dontShowAgain"
+              class="mr-2 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            >
+            <span class="text-sm text-gray-700">不再顯示此提示</span>
+          </label>
+          <button
+            @click="closeGuideModal"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
+          >
+            我知道了
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="min-h-screen bg-gray-50 py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
@@ -709,10 +851,10 @@ onUnmounted(() => {
           <div class="space-y-2">
             <label for="apiKey" class="block text-sm font-medium text-gray-700">
               {{ t('home.apiKeyLabel') }} <span class="text-red-500 font-bold">*</span>
-              <a 
-                href="https://openrouter.ai/keys" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://openrouter.ai/keys"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="ml-2 text-blue-600 hover:text-blue-800 hover:underline text-xs font-normal"
               >
                 {{ t('home.getApiKeyLink') }}

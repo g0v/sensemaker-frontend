@@ -33,6 +33,30 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SelfHostView.vue'),
     },
+    {
+      path: '/guide/polis',
+      name: 'polis-guide',
+      // route level code-splitting
+      // this generates a separate chunk (PolisGuide.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/PolisGuideView.vue'),
+    },
+    {
+      path: '/guide/openrouter',
+      name: 'openrouter-guide',
+      // route level code-splitting
+      // this generates a separate chunk (OpenRouterGuide.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/OpenRouterGuideView.vue'),
+    },
+    {
+      path: '/guide/sensemaker',
+      name: 'sensemaker-guide',
+      // route level code-splitting
+      // this generates a separate chunk (SenseMakerGuide.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/SenseMakerGuideView.vue'),
+    },
   ],
 })
 
