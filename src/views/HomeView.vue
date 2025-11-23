@@ -739,8 +739,17 @@ onUnmounted(() => {
           <!-- 區塊 1: Polis -->
           <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
             <div class="mb-4 flex justify-center">
-              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span class="text-gray-400 text-sm">圖片佔位</span>
+              <div class="w-32 h-32 bg-blue-50 rounded-lg flex items-center justify-center">
+                <svg class="w-20 h-20 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <!-- 收集意見的象徵 - 對話框和意見收集 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  <!-- 多個意見點 -->
+                  <circle cx="8" cy="10" r="1" fill="currentColor" />
+                  <circle cx="12" cy="10" r="1" fill="currentColor" />
+                  <circle cx="16" cy="10" r="1" fill="currentColor" />
+                  <!-- 收集箭頭 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4l4 4m0-4l-4 4" opacity="0.5" />
+                </svg>
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">1. Polis意見調查報告導出</h3>
@@ -760,8 +769,18 @@ onUnmounted(() => {
           <!-- 區塊 2: OpenRouter -->
           <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
             <div class="mb-4 flex justify-center">
-              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span class="text-gray-400 text-sm">圖片佔位</span>
+              <div class="w-32 h-32 bg-purple-50 rounded-lg flex items-center justify-center">
+                <svg class="w-20 h-20 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <!-- 聰明的 AI 的象徵 - 大腦和連接節點 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  <!-- 連接節點 -->
+                  <circle cx="9" cy="12" r="1.5" fill="currentColor" opacity="0.6" />
+                  <circle cx="15" cy="12" r="1.5" fill="currentColor" opacity="0.6" />
+                  <circle cx="12" cy="9" r="1.5" fill="currentColor" opacity="0.6" />
+                  <circle cx="12" cy="15" r="1.5" fill="currentColor" opacity="0.6" />
+                  <!-- 連接線 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6M12 9v6" opacity="0.4" />
+                </svg>
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">2. OpenRouter API 連接</h3>
@@ -781,8 +800,14 @@ onUnmounted(() => {
           <!-- 區塊 3: SenseMaker -->
           <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
             <div class="mb-4 flex justify-center">
-              <div class="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span class="text-gray-400 text-sm">圖片佔位</span>
+              <div class="w-32 h-32 bg-green-50 rounded-lg flex items-center justify-center">
+                <svg class="w-20 h-20 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <!-- 綜整的象徵 - 圖表和整理 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  <!-- 整理箭頭 -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8l4-4m0 4l-4-4" opacity="0.6" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 8l-4-4m0 4l4-4" opacity="0.6" />
+                </svg>
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">3. SenseMaker 分析</h3>
