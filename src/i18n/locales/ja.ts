@@ -198,5 +198,101 @@ export default {
     openIssue: 'GitHubプロジェクトでIssueを開く',
     checkReadme: 'プロジェクトのREADMEとWikiを確認',
     joinCommunity: 'コミュニティディスカッションに参加'
+  },
+
+  // ガイドモーダル
+  guideModal: {
+    title: 'SenseMaker意見統合ツールへようこそ',
+    description: 'SenseMaker意見統合ツールは、大量の意見調査レポートから価値のある洞察を抽出するのに役立つ強力な意見調査レポート分析ツールです。',
+    polisTitle: '1. Polis意見調査レポートのエクスポート',
+    polisDescription: 'このツールは、Polisプラットフォームからエクスポートされた意見調査レポートをサポートしています。ファイルがPolisのデータ構造に準拠していることを確認してください。',
+    polisLink: 'ガイドを表示 →',
+    openRouterTitle: '2. OpenRouter API接続',
+    openRouterDescription: 'このツールは、OpenRouterを使用してさまざまな大規模言語モデルに接続します。使用するには、OpenRouter API Keyを提供する必要があります。',
+    openRouterLink: 'ガイドを表示 →',
+    sensemakerTitle: '3. SenseMaker分析',
+    sensemakerDescription: 'このツールは、分析にSenseMakerを使用します。以下の操作手順を参照して分析を実行してください。',
+    sensemakerLink: '詳細を見る →',
+    tip: 'ヒント：初めてこのツールを使用する場合は、まず上記のガイドドキュメントを読むことをお勧めします。',
+    dontShowAgain: 'このヒントを再度表示しない',
+    iKnow: '了解しました'
+  },
+
+  // OpenRouterガイドページ
+  openRouterGuide: {
+    title: 'OpenRouter使用ガイド',
+    step1Title: 'OpenRouterホームページにアクセス',
+    step1Description: 'まず、OpenRouter公式ウェブサイトにアクセスしてください。OpenRouterは、選択できるさまざまなAIモデルを提供する統一LLMインターフェースです。このツールは主に高品質で思慮深く、手頃な価格の<b>GPT-OSS-120B</b>モデルを使用します。',
+    step1Link: 'OpenRouterホームページへ：https://openrouter.ai/',
+    step1Tip: 'ヒント：アカウントを登録してログインした後、ホームページ右上の個人アバターをクリックしてドロップダウンメニューを展開し、次のステップ（Creditsの購入とAPI Keyの申請）を実行してください。',
+    step2Title: 'Creditsを購入',
+    step2Description: 'OpenRouterサービスを使用する前に、まずクレジット（Credits）を購入する必要があります。Creditsは任意のモデルまたはプロバイダーで使用でき、さまざまなAIサービスを柔軟に使用できます。',
+    step2Link: 'Credits購入ページへ：https://openrouter.ai/settings/credits',
+    step3Title: 'API Keyを申請',
+    step3Description: '最後に、OpenRouterサービスを使用開始するには、API Keyを作成する必要があります。API KeyはOpenAI形式と完全に互換性があり、直接使用できます。',
+    step3Link: 'API Key設定ページへ：https://openrouter.ai/settings/keys',
+    tipsTitle: '重要なヒント',
+    tip1: '• API Keyを適切に保管し、他人と共有しないでください',
+    tip2: '• API Keyは作成後すぐに使用でき、承認を待つ必要はありません',
+    tip3: '• サービスが正常に動作するように、Creditsの残高を定期的に確認することをお勧めします',
+    tip4: '• OpenRouterはクレジットカードなど、さまざまな支払い方法をサポートしています',
+    backToHome: 'ホームに戻る'
+  },
+
+  // Polisガイドページ
+  polisGuide: {
+    title: 'Polis使用ガイド',
+    step1Title: 'Polisホームページにアクセス',
+    step1Description: 'まず、Polis公式ウェブサイトにアクセスしてください。Polisは、一般の意見を収集および分析するためのプラットフォームで、異なる視点を理解し、意味のある意見収集を行うのに役立ちます。',
+    step1Link: 'Polisホームページへ：https://pol.is/home',
+    step2Title: 'アカウント登録とログイン',
+    step2Description: 'まだPolisアカウントをお持ちでない場合は、まず新しいアカウントを登録してください。既にアカウントをお持ちの場合は、直接ログインしてください。ログイン後、会話の作成と管理を開始できます。',
+    step2Link: 'ログイン/登録ページへ：https://pol.is/signin',
+    step3Title: 'Polisダッシュボードで会話を作成および管理',
+    step3Description: 'ログイン後、Polisダッシュボードに入ります。ここで新しい会話（Conversation）を作成し、既存の会話を管理できます。「Create New Conversation」ボタンをクリックして、新しい会話の作成を開始します。',
+    step3Link: 'Polisダッシュボードへ：https://pol.is/',
+    step4Title: '意見収集URLを公開し、回答を収集',
+    step4Description: '会話を作成した後、意見収集URLを取得して参加者と共有できます。参加者はこのURLを通じて会話にアクセスし、意見を提供できます。embed機能を使用して、会話をウェブサイトに埋め込むこともでき、参加者が直接ウェブサイト上で意見収集に参加できるようにします。',
+    step5Title: 'Reportsタブに切り替えてReport URLを作成',
+    step5Description: '会話ページで「Reports」タブに切り替えます。ここでレポートURLを作成し、会話の分析結果と統計を表示できます。',
+    step6Title: 'Reportページに入る',
+    step6Description: 'Reportsタブで、表示したいReport項目をクリックします。クリックするとリンクが表示され、そのリンクをクリックしてReportページに入り、詳細な分析結果を表示できます。',
+    step7Title: 'Comments CSVをダウンロード',
+    step7Description: 'Reportページで、下にスクロールしてダウンロードオプションを見つけます。ダウンロードボタンが表示されます。クリックすると、すべてのコメントを含むCSVファイルをダウンロードできます（ファイル名形式：{...}-comments.csv）。このCSVファイルには、会話内のすべてのコメントデータが含まれており、さらなる分析に使用できます。',
+    tipsTitle: '重要なヒント',
+    tip1: '• ダウンロードしたCSVファイルには、会話内のすべてのコメントデータが含まれています',
+    tip2: '• CSVファイルは、このシステムにインポートしてさらなる分析に使用できます',
+    tip3: '• その会話のReportページにアクセスする権限があることを確認してください',
+    tip4: '• ダウンロードボタンが見つからない場合は、正しいReportページに切り替えたことを確認してください',
+    backToHome: 'ホームに戻る'
+  },
+
+  // SenseMakerガイドページ
+  sensemakerGuide: {
+    title: 'SenseMaker使用ガイド',
+    step1Title: 'Polisからエクスポートされた元のファイルをアップロード',
+    step1Description: 'まず、PolisからダウンロードしたCSVファイルをアップロードしてください。このファイルには、すべての参加者のコメントデータが含まれており、分析の基礎データです。ファイル形式が正しく、必要なフィールド情報が含まれていることを確認してください。',
+    step2Title: 'OpenRouter API Keyを入力',
+    step2Description: '対応するフィールドにOpenRouter API Keyを入力してください。このAPI Keyは、OpenRouterサービスに接続するために使用され、システムがAIモデルを使用して分析できるようにします。API Keyが正しく有効であることを確認してください。',
+    step3Title: 'モデル名をopenai/gpt-oss-120bのままにする',
+    step3Description: 'システムは、分析に<b>openai/gpt-oss-120b</b>モデルをデフォルトで使用します。これは高品質で思慮深く、手頃な価格のモデルで、意見分析に非常に適しています。特別な要件がない限り、この設定を維持することをお勧めします。',
+    step3Tip: 'ヒント：モデル名フィールドは',
+    step3TipCode: 'openai/gpt-oss-120b',
+    step3TipEnd: 'に事前設定されており、通常は変更する必要はありません。',
+    step4Title: '追加のコンテキストを入力して、言語モデルの分析コンテキストを最適化',
+    step4Description: 'オプションで、会話のトピック背景、関連するポリシー説明、または特定の分析焦点などの追加のコンテキスト情報を入力できます。この情報は、AIモデルがコメントのコンテキストをより正確に理解し、より深い分析結果を提供するのに役立ちます。',
+    step5Title: '出力言語を選択',
+    step5Description: 'レポートに使用する言語を選択してください。たとえば、「中文」を選択すると、分析レポートは中文で表示され、分析結果を読みやすく理解しやすくなります。',
+    step6Title: '分析を開始',
+    step6Description: 'すべての設定が正しいことを確認したら、「分析を開始」ボタンをクリックしてください。システムはデータの処理を開始します。このプロセスには数分かかる場合があるため、しばらくお待ちください。ページで分析の進行状況情報を確認できます。',
+    step7Title: 'Markdownレポートを確認してダウンロード',
+    step7Description: '分析が完了すると、システムはMarkdown形式の分析レポートを生成します。ページでレポート内容をプレビューし、正しいことを確認したら、ダウンロードボタンをクリックしてレポートをコンピューターに保存します。レポートには、詳細な分析結果、統計、洞察の推奨事項が含まれています。',
+    tipsTitle: '重要なヒント',
+    tip1: '• アップロードしたCSVファイルの形式が正しく、必要なフィールドが含まれていることを確認してください',
+    tip2: '• API Keyを適切に保管し、他人と共有しないでください',
+    tip3: '• 分析プロセスには数分かかる場合があるため、しばらくお待ちください。ページを閉じないでください',
+    tip4: '• ダウンロードしたMarkdownレポートは、Markdownをサポートする任意のエディタで開くことができます',
+    tip5: '• 分析が失敗した場合は、API Keyが有効かどうか、およびCreditsの残高が十分かどうかを確認してください',
+    backToHome: 'ホームに戻る'
   }
 }

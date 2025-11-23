@@ -198,5 +198,101 @@ export default {
     openIssue: 'Ouvrir un Issue dans le projet GitHub',
     checkReadme: 'Vérifier le README et Wiki du projet',
     joinCommunity: 'Rejoindre nos discussions communautaires'
+  },
+
+  // Modal de guide
+  guideModal: {
+    title: 'Bienvenue dans l\'outil d\'intégration d\'opinions SenseMaker',
+    description: 'L\'outil d\'intégration d\'opinions SenseMaker est un outil puissant d\'analyse de rapports d\'enquêtes d\'opinion qui peut vous aider à extraire des insights précieux de grandes quantités de rapports d\'enquêtes d\'opinion.',
+    polisTitle: '1. Export de rapport d\'enquête d\'opinion Polis',
+    polisDescription: 'Cet outil prend en charge les rapports d\'enquêtes d\'opinion exportés depuis la plateforme Polis. Veuillez vous assurer que vos fichiers sont conformes à la structure de données Polis.',
+    polisLink: 'Voir le guide →',
+    openRouterTitle: '2. Connexion API OpenRouter',
+    openRouterDescription: 'Cet outil utilise OpenRouter pour se connecter à divers modèles de langage volumineux. Vous devez fournir une clé API OpenRouter pour l\'utiliser.',
+    openRouterLink: 'Voir le guide →',
+    sensemakerTitle: '3. Analyse SenseMaker',
+    sensemakerDescription: 'Cet outil utilise SenseMaker pour l\'analyse. Veuillez vous référer aux instructions suivantes pour l\'analyse.',
+    sensemakerLink: 'En savoir plus →',
+    tip: 'Astuce : Si c\'est votre première utilisation de cet outil, nous recommandons de lire d\'abord les documents de guide ci-dessus pour assurer une utilisation correcte.',
+    dontShowAgain: 'Ne plus afficher cette astuce',
+    iKnow: 'J\'ai compris'
+  },
+
+  // Page de guide OpenRouter
+  openRouterGuide: {
+    title: 'Guide d\'utilisation OpenRouter',
+    step1Title: 'Aller à la page d\'accueil OpenRouter',
+    step1Description: 'Tout d\'abord, veuillez visiter le site Web officiel d\'OpenRouter. OpenRouter est une interface LLM unifiée qui fournit divers modèles IA parmi lesquels choisir. Cet outil utilise principalement le modèle <b>GPT-OSS-120B</b> de haute qualité, réfléchi et abordable.',
+    step1Link: 'Aller à la page d\'accueil OpenRouter : https://openrouter.ai/',
+    step1Tip: 'Astuce : Après vous être inscrit et connecté, veuillez cliquer sur l\'avatar personnel dans le coin supérieur droit de la page d\'accueil pour développer le menu déroulant pour les étapes suivantes (achat de Credits et demande de clé API).',
+    step2Title: 'Acheter des Credits',
+    step2Description: 'Avant d\'utiliser les services OpenRouter, vous devez d\'abord acheter des crédits. Les crédits peuvent être utilisés avec n\'importe quel modèle ou fournisseur, vous permettant d\'utiliser flexibly différents services IA.',
+    step2Link: 'Aller à la page d\'achat de crédits : https://openrouter.ai/settings/credits',
+    step3Title: 'Demander une clé API',
+    step3Description: 'Enfin, vous devez créer une clé API pour commencer à utiliser les services OpenRouter. La clé API est entièrement compatible avec le format OpenAI et peut être utilisée directement.',
+    step3Link: 'Aller à la page des paramètres de clé API : https://openrouter.ai/settings/keys',
+    tipsTitle: 'Conseils importants',
+    tip1: '• Veuillez garder votre clé API en sécurité et ne pas la partager avec d\'autres',
+    tip2: '• La clé API peut être utilisée immédiatement après sa création, aucune approbation n\'est nécessaire',
+    tip3: '• Il est recommandé de vérifier régulièrement votre solde de crédits pour assurer le fonctionnement normal du service',
+    tip4: '• OpenRouter prend en charge divers modes de paiement, y compris les cartes de crédit',
+    backToHome: 'Retour à l\'accueil'
+  },
+
+  // Page de guide Polis
+  polisGuide: {
+    title: 'Guide d\'utilisation Polis',
+    step1Title: 'Aller à la page d\'accueil Polis',
+    step1Description: 'Tout d\'abord, veuillez visiter le site Web officiel de Polis. Polis est une plateforme pour collecter et analyser les opinions publiques, vous aidant à comprendre différents points de vue et à mener une collecte d\'opinions significative.',
+    step1Link: 'Aller à la page d\'accueil Polis : https://pol.is/home',
+    step2Title: 'Créer un compte et se connecter',
+    step2Description: 'Si vous n\'avez pas encore de compte Polis, veuillez d\'abord créer un nouveau compte. Si vous avez déjà un compte, veuillez vous connecter directement. Après vous être connecté, vous pouvez commencer à créer et gérer des conversations.',
+    step2Link: 'Aller à la page de connexion/inscription : https://pol.is/signin',
+    step3Title: 'Créer et gérer des conversations dans le tableau de bord Polis',
+    step3Description: 'Après vous être connecté, vous entrerez dans le tableau de bord Polis. Ici, vous pouvez créer de nouvelles conversations et gérer les conversations existantes. Cliquez sur le bouton "Create New Conversation" pour commencer à créer une nouvelle conversation.',
+    step3Link: 'Aller au tableau de bord Polis : https://pol.is/',
+    step4Title: 'Publier l\'URL de collecte d\'opinions et collecter les réponses',
+    step4Description: 'Après avoir créé une conversation, vous pouvez obtenir l\'URL de collecte d\'opinions et la partager avec les participants. Les participants peuvent accéder à la conversation via cette URL et fournir leurs opinions. Vous pouvez également utiliser la fonctionnalité embed pour intégrer la conversation dans votre site Web, permettant aux participants de participer directement sur votre site Web.',
+    step5Title: 'Passer à l\'onglet Reports et créer l\'URL du rapport',
+    step5Description: 'Dans la page de conversation, passez à l\'onglet "Reports". Ici, vous pouvez créer des URLs de rapport pour afficher les résultats d\'analyse et les statistiques de la conversation.',
+    step6Title: 'Entrer dans la page Rapport',
+    step6Description: 'Dans l\'onglet Reports, cliquez sur l\'élément Rapport que vous souhaitez consulter. Après avoir cliqué, un lien apparaîtra, puis cliquez sur ce lien pour entrer dans la page Rapport et afficher les résultats d\'analyse détaillés.',
+    step7Title: 'Télécharger le CSV des commentaires',
+    step7Description: 'Dans la page Rapport, faites défiler vers le bas pour trouver l\'option de téléchargement. Vous verrez un bouton de téléchargement, cliquez dessus pour télécharger un fichier CSV contenant tous les commentaires (format de nom de fichier : {...}-comments.csv). Ce fichier CSV contient toutes les données de commentaires de la conversation et peut être utilisé pour une analyse plus approfondie.',
+    tipsTitle: 'Conseils importants',
+    tip1: '• Le fichier CSV téléchargé contient toutes les données de commentaires de la conversation',
+    tip2: '• Les fichiers CSV peuvent être importés dans ce système pour une analyse plus approfondie',
+    tip3: '• Assurez-vous d\'avoir la permission d\'accéder à la page Rapport de cette conversation',
+    tip4: '• Si vous ne trouvez pas le bouton de téléchargement, veuillez confirmer que vous avez basculé vers la page Rapport correcte',
+    backToHome: 'Retour à l\'accueil'
+  },
+
+  // Page de guide SenseMaker
+  sensemakerGuide: {
+    title: 'Guide d\'utilisation SenseMaker',
+    step1Title: 'Téléverser le fichier original exporté depuis Polis',
+    step1Description: 'Tout d\'abord, veuillez téléverser le fichier CSV téléchargé depuis Polis. Ce fichier contient toutes les données de commentaires des participants et constitue la base de l\'analyse. Veuillez vous assurer que le format du fichier est correct et contient les informations de champ nécessaires.',
+    step2Title: 'Entrer la clé API OpenRouter',
+    step2Description: 'Entrez votre clé API OpenRouter dans le champ correspondant. Cette clé API est utilisée pour se connecter aux services OpenRouter, permettant au système d\'utiliser des modèles IA pour l\'analyse. Veuillez vous assurer que la clé API est correcte et valide.',
+    step3Title: 'Garder le nom du modèle comme openai/gpt-oss-120b',
+    step3Description: 'Le système utilise par défaut le modèle <b>openai/gpt-oss-120b</b> pour l\'analyse. C\'est un modèle de haute qualité, réfléchi et abordable, très adapté à l\'analyse d\'opinions. Il est recommandé de conserver ce paramètre sauf si vous avez des besoins spéciaux.',
+    step3Tip: 'Astuce : Le champ du nom du modèle est prédéfini à',
+    step3TipCode: 'openai/gpt-oss-120b',
+    step3TipEnd: ', généralement aucune modification n\'est nécessaire.',
+    step4Title: 'Entrer un contexte supplémentaire pour optimiser le contexte d\'analyse du modèle de langage',
+    step4Description: 'Vous pouvez optionnellement entrer des informations de contexte supplémentaires, telles que le contexte du sujet de conversation, les descriptions de politiques connexes ou les points d\'analyse spécifiques. Ces informations peuvent aider les modèles IA à mieux comprendre le contexte des commentaires et fournir des résultats d\'analyse plus approfondis.',
+    step5Title: 'Sélectionner la langue de sortie',
+    step5Description: 'Sélectionnez la langue que vous souhaitez utiliser pour le rapport. Par exemple, après avoir sélectionné "Chinois", le rapport d\'analyse sera présenté en chinois, vous permettant de lire et comprendre plus facilement les résultats d\'analyse.',
+    step6Title: 'Commencer l\'analyse',
+    step6Description: 'Après avoir confirmé que tous les paramètres sont corrects, cliquez sur le bouton "Commencer l\'analyse". Le système commencera à traiter vos données. Ce processus peut prendre quelques minutes, veuillez patienter. Vous pouvez voir les informations de progression de l\'analyse sur la page.',
+    step7Title: 'Examiner et télécharger le rapport Markdown',
+    step7Description: 'Une fois l\'analyse terminée, le système générera un rapport d\'analyse au format Markdown. Vous pouvez prévisualiser le contenu du rapport sur la page, et après avoir confirmé qu\'il est correct, cliquez sur le bouton de téléchargement pour enregistrer le rapport sur votre ordinateur. Le rapport contient des résultats d\'analyse détaillés, des statistiques et des recommandations d\'insights.',
+    tipsTitle: 'Conseils importants',
+    tip1: '• Assurez-vous que le format du fichier CSV téléversé est correct et contient les champs nécessaires',
+    tip2: '• Veuillez garder votre clé API en sécurité et ne pas la partager avec d\'autres',
+    tip3: '• Le processus d\'analyse peut prendre quelques minutes, veuillez patienter et ne pas fermer la page',
+    tip4: '• Les rapports Markdown téléchargés peuvent être ouverts avec n\'importe quel éditeur prenant en charge Markdown',
+    tip5: '• Si l\'analyse échoue, veuillez vérifier si la clé API est valide et si le solde de crédits est suffisant',
+    backToHome: 'Retour à l\'accueil'
   }
 }

@@ -198,5 +198,101 @@ export default {
     openIssue: 'Abrir un Issue en el proyecto GitHub',
     checkReadme: 'Revisar el README y Wiki del proyecto',
     joinCommunity: 'Unirse a nuestras discusiones comunitarias'
+  },
+
+  // Modal de guía
+  guideModal: {
+    title: 'Bienvenido a la herramienta de integración de opiniones SenseMaker',
+    description: 'La herramienta de integración de opiniones SenseMaker es una poderosa herramienta de análisis de informes de encuestas de opinión que puede ayudarle a extraer insights valiosos de grandes volúmenes de informes de encuestas de opinión.',
+    polisTitle: '1. Exportación de informe de encuesta de opinión Polis',
+    polisDescription: 'Esta herramienta soporta informes de encuestas de opinión exportados desde la plataforma Polis. Por favor asegúrese de que sus archivos cumplan con la estructura de datos de Polis.',
+    polisLink: 'Ver guía →',
+    openRouterTitle: '2. Conexión API OpenRouter',
+    openRouterDescription: 'Esta herramienta usa OpenRouter para conectarse a varios modelos de lenguaje grandes. Necesita proporcionar una clave API OpenRouter para usarla.',
+    openRouterLink: 'Ver guía →',
+    sensemakerTitle: '3. Análisis SenseMaker',
+    sensemakerDescription: 'Esta herramienta usa SenseMaker para el análisis. Por favor consulte las siguientes instrucciones para el análisis.',
+    sensemakerLink: 'Aprender más →',
+    tip: 'Consejo: Si es la primera vez que usa esta herramienta, recomendamos leer primero los documentos de guía anteriores para asegurar el uso correcto.',
+    dontShowAgain: 'No mostrar este consejo nuevamente',
+    iKnow: 'Entiendo'
+  },
+
+  // Página de guía OpenRouter
+  openRouterGuide: {
+    title: 'Guía de uso de OpenRouter',
+    step1Title: 'Ir a la página de inicio de OpenRouter',
+    step1Description: 'Primero, por favor visite el sitio web oficial de OpenRouter. OpenRouter es una interfaz LLM unificada que proporciona varios modelos de IA para elegir. Esta herramienta usa principalmente el modelo <b>GPT-OSS-120B</b> de alta calidad, reflexivo y asequible.',
+    step1Link: 'Ir a la página de inicio de OpenRouter: https://openrouter.ai/',
+    step1Tip: 'Consejo: Después de registrarse e iniciar sesión, por favor haga clic en el avatar personal en la esquina superior derecha de la página de inicio para expandir el menú desplegable para los pasos siguientes (comprar Credits y solicitar clave API).',
+    step2Title: 'Comprar Credits',
+    step2Description: 'Antes de usar los servicios de OpenRouter, necesita comprar créditos primero. Los créditos se pueden usar con cualquier modelo o proveedor, permitiéndole usar flexiblemente diferentes servicios de IA.',
+    step2Link: 'Ir a la página de compra de créditos: https://openrouter.ai/settings/credits',
+    step3Title: 'Solicitar clave API',
+    step3Description: 'Finalmente, necesita crear una clave API para comenzar a usar los servicios de OpenRouter. La clave API es totalmente compatible con el formato OpenAI y se puede usar directamente.',
+    step3Link: 'Ir a la página de configuración de clave API: https://openrouter.ai/settings/keys',
+    tipsTitle: 'Consejos importantes',
+    tip1: '• Por favor mantenga su clave API segura y no la comparta con otros',
+    tip2: '• La clave API se puede usar inmediatamente después de su creación, no se necesita aprobación',
+    tip3: '• Se recomienda verificar regularmente su saldo de créditos para asegurar el funcionamiento normal del servicio',
+    tip4: '• OpenRouter soporta varios métodos de pago, incluyendo tarjetas de crédito',
+    backToHome: 'Volver al inicio'
+  },
+
+  // Página de guía Polis
+  polisGuide: {
+    title: 'Guía de uso de Polis',
+    step1Title: 'Ir a la página de inicio de Polis',
+    step1Description: 'Primero, por favor visite el sitio web oficial de Polis. Polis es una plataforma para recolectar y analizar opiniones públicas, ayudándole a entender diferentes perspectivas y realizar recolección de opiniones significativa.',
+    step1Link: 'Ir a la página de inicio de Polis: https://pol.is/home',
+    step2Title: 'Registrar cuenta e iniciar sesión',
+    step2Description: 'Si aún no tiene una cuenta de Polis, por favor regístrese primero para una nueva cuenta. Si ya tiene una cuenta, por favor inicie sesión directamente. Después de iniciar sesión, puede comenzar a crear y gestionar conversaciones.',
+    step2Link: 'Ir a la página de inicio de sesión/registro: https://pol.is/signin',
+    step3Title: 'Crear y gestionar conversaciones en el panel de Polis',
+    step3Description: 'Después de iniciar sesión, entrará al panel de Polis. Aquí puede crear nuevas conversaciones y gestionar las existentes. Haga clic en el botón "Create New Conversation" para comenzar a crear una nueva conversación.',
+    step3Link: 'Ir al panel de Polis: https://pol.is/',
+    step4Title: 'Publicar URL de recolección de opiniones y recolectar respuestas',
+    step4Description: 'Después de crear una conversación, puede obtener la URL de recolección de opiniones y compartirla con los participantes. Los participantes pueden acceder a la conversación a través de esta URL y proporcionar sus opiniones. También puede usar la función embed para incrustar la conversación en su sitio web, permitiendo que los participantes participen directamente en su sitio web.',
+    step5Title: 'Cambiar a la pestaña Reports y crear URL de informe',
+    step5Description: 'En la página de conversación, cambie a la pestaña "Reports". Aquí puede crear URLs de informe para ver los resultados de análisis y estadísticas de la conversación.',
+    step6Title: 'Entrar a la página de Informe',
+    step6Description: 'En la pestaña Reports, haga clic en el elemento Informe que desea ver. Después de hacer clic, aparecerá un enlace, luego haga clic en ese enlace para entrar a la página de Informe y ver los resultados de análisis detallados.',
+    step7Title: 'Descargar CSV de comentarios',
+    step7Description: 'En la página de Informe, desplácese hacia abajo para encontrar la opción de descarga. Verá un botón de descarga, haga clic en él para descargar un archivo CSV que contiene todos los comentarios (formato de nombre de archivo: {...}-comments.csv). Este archivo CSV contiene todos los datos de comentarios de la conversación y se puede usar para análisis adicional.',
+    tipsTitle: 'Consejos importantes',
+    tip1: '• El archivo CSV descargado contiene todos los datos de comentarios de la conversación',
+    tip2: '• Los archivos CSV se pueden importar a este sistema para análisis adicional',
+    tip3: '• Asegúrese de tener permiso para acceder a la página de Informe de esa conversación',
+    tip4: '• Si no puede encontrar el botón de descarga, por favor confirme que ha cambiado a la página de Informe correcta',
+    backToHome: 'Volver al inicio'
+  },
+
+  // Página de guía SenseMaker
+  sensemakerGuide: {
+    title: 'Guía de uso de SenseMaker',
+    step1Title: 'Subir archivo original exportado desde Polis',
+    step1Description: 'Primero, por favor suba el archivo CSV descargado desde Polis. Este archivo contiene todos los datos de comentarios de los participantes y es la base para el análisis. Por favor asegúrese de que el formato del archivo sea correcto y contenga la información de campo necesaria.',
+    step2Title: 'Ingresar clave API OpenRouter',
+    step2Description: 'Ingrese su clave API OpenRouter en el campo correspondiente. Esta clave API se usa para conectarse a los servicios OpenRouter, permitiendo que el sistema use modelos de IA para el análisis. Por favor asegúrese de que la clave API sea correcta y válida.',
+    step3Title: 'Mantener el nombre del modelo como openai/gpt-oss-120b',
+    step3Description: 'El sistema usa el modelo <b>openai/gpt-oss-120b</b> por defecto para el análisis. Este es un modelo de alta calidad, reflexivo y asequible, muy adecuado para el análisis de opiniones. Se recomienda mantener esta configuración a menos que tenga requisitos especiales.',
+    step3Tip: 'Consejo: El campo del nombre del modelo está preestablecido en',
+    step3TipCode: 'openai/gpt-oss-120b',
+    step3TipEnd: ', generalmente no se necesita modificación.',
+    step4Title: 'Ingresar contexto adicional para optimizar el contexto de análisis del modelo de lenguaje',
+    step4Description: 'Opcionalmente puede ingresar información de contexto adicional, como el contexto del tema de conversación, descripciones de políticas relacionadas o puntos de análisis específicos. Esta información puede ayudar a los modelos de IA a entender más precisamente el contexto de los comentarios y proporcionar resultados de análisis más profundos.',
+    step5Title: 'Seleccionar idioma de salida',
+    step5Description: 'Seleccione el idioma que desea usar para el informe. Por ejemplo, después de seleccionar "Chino", el informe de análisis se presentará en chino, facilitándole leer y entender los resultados del análisis.',
+    step6Title: 'Iniciar análisis',
+    step6Description: 'Después de confirmar que todas las configuraciones son correctas, haga clic en el botón "Iniciar análisis". El sistema comenzará a procesar sus datos. Este proceso puede tomar unos minutos, por favor sea paciente. Puede ver información del progreso del análisis en la página.',
+    step7Title: 'Revisar y descargar informe Markdown',
+    step7Description: 'Una vez completado el análisis, el sistema generará un informe de análisis en formato Markdown. Puede previsualizar el contenido del informe en la página, y después de confirmar que es correcto, haga clic en el botón de descarga para guardar el informe en su computadora. El informe contiene resultados de análisis detallados, estadísticas y recomendaciones de insights.',
+    tipsTitle: 'Consejos importantes',
+    tip1: '• Asegúrese de que el formato del archivo CSV subido sea correcto y contenga los campos necesarios',
+    tip2: '• Por favor mantenga su clave API segura y no la comparta con otros',
+    tip3: '• El proceso de análisis puede tomar unos minutos, por favor sea paciente y no cierre la página',
+    tip4: '• Los informes Markdown descargados se pueden abrir con cualquier editor que soporte Markdown',
+    tip5: '• Si el análisis falla, por favor verifique si la clave API es válida y si el saldo de créditos es suficiente',
+    backToHome: 'Volver al inicio'
   }
 }

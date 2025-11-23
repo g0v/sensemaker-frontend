@@ -211,6 +211,102 @@ export default {
     openIssue: 'Open an Issue in the GitHub project',
     checkReadme: 'Check the project\'s README and Wiki',
     joinCommunity: 'Join our community discussions'
+  },
+
+  // Guide Modal
+  guideModal: {
+    title: 'Welcome to SenseMaker Opinion Integration Tool',
+    description: 'SenseMaker Opinion Integration Tool is a powerful opinion survey report analysis tool that can help you extract valuable insights from large volumes of opinion survey reports.',
+    polisTitle: '1. Polis Opinion Survey Report Export',
+    polisDescription: 'This tool supports opinion survey reports exported from the Polis platform. Please ensure your files conform to Polis data structure.',
+    polisLink: 'View Guide →',
+    openRouterTitle: '2. OpenRouter API Connection',
+    openRouterDescription: 'This tool uses OpenRouter to connect to various large language models. You need to provide an OpenRouter API Key to use it.',
+    openRouterLink: 'View Guide →',
+    sensemakerTitle: '3. SenseMaker Analysis',
+    sensemakerDescription: 'This tool uses SenseMaker for analysis. Please refer to the following instructions for analysis.',
+    sensemakerLink: 'Learn More →',
+    tip: 'Tip: If this is your first time using this tool, we recommend reading the above guide documents first to ensure proper use.',
+    dontShowAgain: 'Don\'t show this tip again',
+    iKnow: 'I Understand'
+  },
+
+  // OpenRouter Guide Page
+  openRouterGuide: {
+    title: 'OpenRouter Usage Guide',
+    step1Title: 'Go to OpenRouter Homepage',
+    step1Description: 'First, please visit the OpenRouter official website. OpenRouter is a unified LLM interface that provides various AI models for you to choose from. This tool mainly uses the high-quality, thoughtful, and affordable <b>GPT-OSS-120B</b> model.',
+    step1Link: 'Go to OpenRouter Homepage: https://openrouter.ai/',
+    step1Tip: 'Tip: After registering and logging in, please click on the personal avatar in the top right corner of the homepage to expand the dropdown menu for subsequent steps (purchasing Credits and applying for API Key).',
+    step2Title: 'Purchase Credits',
+    step2Description: 'Before using OpenRouter services, you need to purchase credits first. Credits can be used with any model or provider, allowing you to flexibly use different AI services.',
+    step2Link: 'Go to Credits Purchase Page: https://openrouter.ai/settings/credits',
+    step3Title: 'Apply for API Key',
+    step3Description: 'Finally, you need to create an API Key to start using OpenRouter services. The API Key is fully compatible with OpenAI format and can be used directly.',
+    step3Link: 'Go to API Key Settings Page: https://openrouter.ai/settings/keys',
+    tipsTitle: 'Important Tips',
+    tip1: '• Please keep your API Key safe and do not share it with others',
+    tip2: '• API Key can be used immediately after creation, no approval needed',
+    tip3: '• It is recommended to regularly check your Credits balance to ensure normal service operation',
+    tip4: '• OpenRouter supports various payment methods, including credit cards',
+    backToHome: 'Back to Home'
+  },
+
+  // Polis Guide Page
+  polisGuide: {
+    title: 'Polis Usage Guide',
+    step1Title: 'Go to Polis Homepage',
+    step1Description: 'First, please visit the Polis official website. Polis is a platform for collecting and analyzing public opinions, helping you understand different perspectives and conduct meaningful opinion collection.',
+    step1Link: 'Go to Polis Homepage: https://pol.is/home',
+    step2Title: 'Register Account and Login',
+    step2Description: 'If you don\'t have a Polis account yet, please register a new account first. If you already have an account, please log in directly. After logging in, you can start creating and managing conversations.',
+    step2Link: 'Go to Login/Registration Page: https://pol.is/signin',
+    step3Title: 'Create and Manage Conversations in Polis Dashboard',
+    step3Description: 'After logging in, you will enter the Polis Dashboard. Here you can create new conversations and manage existing ones. Click the "Create New Conversation" button to start creating a new conversation.',
+    step3Link: 'Go to Polis Dashboard: https://pol.is/',
+    step4Title: 'Publish Opinion Collection URL and Collect Responses',
+    step4Description: 'After creating a conversation, you can obtain the opinion collection URL and share it with participants. Participants can access the conversation through this URL and provide their opinions. You can also use the embed feature to embed the conversation into your website, allowing participants to participate directly on your website.',
+    step5Title: 'Switch to Reports Tab and Create Report URL',
+    step5Description: 'In the conversation page, switch to the "Reports" tab. Here you can create report URLs to view analysis results and statistics of the conversation.',
+    step6Title: 'Enter Report Page',
+    step6Description: 'In the Reports tab, click on the Report item you want to view. After clicking, a link will appear, then click that link to enter the Report page and view detailed analysis results.',
+    step7Title: 'Download Comments CSV',
+    step7Description: 'In the Report page, scroll down to find the download option. You will see a download button, click it to download a CSV file containing all comments (filename format: {...}-comments.csv). This CSV file contains all comment data from the conversation and can be used for further analysis.',
+    tipsTitle: 'Important Tips',
+    tip1: '• The downloaded CSV file contains all comment data from the conversation',
+    tip2: '• CSV files can be imported into this system for further analysis',
+    tip3: '• Ensure you have permission to access the Report page of that conversation',
+    tip4: '• If you cannot find the download button, please confirm you have switched to the correct Report page',
+    backToHome: 'Back to Home'
+  },
+
+  // SenseMaker Guide Page
+  sensemakerGuide: {
+    title: 'SenseMaker Usage Guide',
+    step1Title: 'Upload Polis Exported Original File',
+    step1Description: 'First, please upload the CSV file downloaded from Polis. This file contains all participant comment data and is the foundation for analysis. Please ensure the file format is correct and contains necessary field information.',
+    step2Title: 'Enter OpenRouter API Key',
+    step2Description: 'Enter your OpenRouter API Key in the corresponding field. This API Key is used to connect to OpenRouter services, allowing the system to use AI models for analysis. Please ensure the API Key is correct and valid.',
+    step3Title: 'Keep Model Name as openai/gpt-oss-120b',
+    step3Description: 'The system uses the <b>openai/gpt-oss-120b</b> model by default for analysis. This is a high-quality, thoughtful, and affordable model, very suitable for opinion analysis. It is recommended to keep this setting unless you have special requirements.',
+    step3Tip: 'Tip: The model name field is preset to',
+    step3TipCode: 'openai/gpt-oss-120b',
+    step3TipEnd: ', usually no modification is needed.',
+    step4Title: 'Enter Additional Context to Optimize Language Model Analysis Context',
+    step4Description: 'You can optionally enter additional context information, such as conversation topic background, related policy descriptions, or specific analysis focus points. This information can help AI models more accurately understand comment context and provide deeper analysis results.',
+    step5Title: 'Select Output Language',
+    step5Description: 'Select the language you want the report to use. For example, after selecting "Chinese", the analysis report will be presented in Chinese, making it easier for you to read and understand the analysis results.',
+    step6Title: 'Start Analysis',
+    step6Description: 'After confirming all settings are correct, click the "Start Analysis" button. The system will start processing your data. This process may take a few minutes, please wait patiently. You can see analysis progress information on the page.',
+    step7Title: 'Review and Download Markdown Report',
+    step7Description: 'After analysis is complete, the system will generate a Markdown format analysis report. You can preview the report content on the page, and after confirming it is correct, click the download button to save the report to your computer. The report contains detailed analysis results, statistics, and insight recommendations.',
+    tipsTitle: 'Important Tips',
+    tip1: '• Ensure the uploaded CSV file format is correct and contains necessary fields',
+    tip2: '• Please keep your API Key safe and do not share it with others',
+    tip3: '• The analysis process may take a few minutes, please wait patiently and do not close the page',
+    tip4: '• Downloaded Markdown reports can be opened with any Markdown-supporting editor',
+    tip5: '• If analysis fails, please check if the API Key is valid and if Credits balance is sufficient',
+    backToHome: 'Back to Home'
   }
 }
 

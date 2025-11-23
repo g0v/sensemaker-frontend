@@ -727,9 +727,9 @@ onUnmounted(() => {
 
       <!-- 提示卡內容 -->
       <div class="p-8">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">歡迎使用 SenseMaker意見綜整器</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ t('guideModal.title') }}</h2>
         <p class="text-gray-700 mb-3 text-sm text-center">
-          SenseMaker 意見綜整器是一個強大的意見調查報告分析工具，可以幫助您從大量意見調查報告中提取有價值的洞察。
+          {{ t('guideModal.description') }}
         </p>
 
         <!-- 三個圖文區塊 - 響應式排版 -->
@@ -752,16 +752,16 @@ onUnmounted(() => {
                 </svg>
               </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">1. Polis意見調查報告導出</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.polisTitle') }}</h3>
             <p class="text-gray-700 mb-3 text-sm text-center">
-              本工具支援 Polis 平台導出的意見調查報告。請確保您的文件符合 Polis 的數據結構。
+              {{ t('guideModal.polisDescription') }}
             </p>
             <div class="text-center">
               <router-link
                 to="/guide/polis"
                 class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
               >
-                查看說明 →
+                {{ t('guideModal.polisLink') }}
               </router-link>
             </div>
           </div>
@@ -783,16 +783,16 @@ onUnmounted(() => {
                 </svg>
               </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">2. OpenRouter API 連接</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.openRouterTitle') }}</h3>
             <p class="text-gray-700 mb-3 text-sm text-center">
-              本工具使用 OpenRouter 來連接各種大型語言模型。您需要提供 OpenRouter API Key 才能使用。
+              {{ t('guideModal.openRouterDescription') }}
             </p>
             <div class="text-center">
               <router-link
                 to="/guide/openrouter"
                 class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
               >
-                查看說明 →
+                {{ t('guideModal.openRouterLink') }}
               </router-link>
             </div>
           </div>
@@ -810,16 +810,16 @@ onUnmounted(() => {
                 </svg>
               </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">3. SenseMaker 分析</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.sensemakerTitle') }}</h3>
             <p class="text-gray-700 mb-3 text-sm text-center">
-              本工具使用 SenseMaker 進行分析。請參考以下操作說明，進行分析。
+              {{ t('guideModal.sensemakerDescription') }}
             </p>
             <div class="text-center">
               <router-link
                 to="/guide/sensemaker"
                 class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
               >
-                了解更多 →
+                {{ t('guideModal.sensemakerLink') }}
               </router-link>
             </div>
           </div>
@@ -828,7 +828,7 @@ onUnmounted(() => {
         <!-- 提示訊息 -->
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <p class="text-sm text-blue-800 text-center">
-            <strong>提示：</strong> 如果您是第一次使用，建議先閱讀上述說明文件，以確保正確使用本工具。
+            {{ t('guideModal.tip') }}
           </p>
         </div>
 
@@ -840,13 +840,13 @@ onUnmounted(() => {
               v-model="dontShowAgain"
               class="mr-2 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             >
-            <span class="text-sm text-gray-700">不再顯示此提示</span>
+            <span class="text-sm text-gray-700">{{ t('guideModal.dontShowAgain') }}</span>
           </label>
           <button
             @click="closeGuideModal"
             class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
           >
-            我知道了
+            {{ t('guideModal.iKnow') }}
           </button>
         </div>
       </div>

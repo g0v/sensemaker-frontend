@@ -203,5 +203,101 @@ export default {
     openIssue: '在 GitHub 项目中开启 Issue',
     checkReadme: '查看项目的 README 和 Wiki',
     joinCommunity: '加入我们的社群讨论'
+  },
+
+  // 导览框
+  guideModal: {
+    title: '欢迎使用 SenseMaker意见综整器',
+    description: 'SenseMaker 意见综整器是一个强大的意见调查报告分析工具，可以帮助您从大量意见调查报告中提取有价值的洞察。',
+    polisTitle: '1. Polis意见调查报告导出',
+    polisDescription: '本工具支持 Polis 平台导出的意见调查报告。请确保您的文件符合 Polis 的数据结构。',
+    polisLink: '查看说明 →',
+    openRouterTitle: '2. OpenRouter API 连接',
+    openRouterDescription: '本工具使用 OpenRouter 来连接各种大型语言模型。您需要提供 OpenRouter API Key 才能使用。',
+    openRouterLink: '查看说明 →',
+    sensemakerTitle: '3. SenseMaker 分析',
+    sensemakerDescription: '本工具使用 SenseMaker 进行分析。请参考以下操作说明，进行分析。',
+    sensemakerLink: '了解更多 →',
+    tip: '提示： 如果您是第一次使用，建议先阅读上述说明文件，以确保正确使用本工具。',
+    dontShowAgain: '不再显示此提示',
+    iKnow: '我知道了'
+  },
+
+  // OpenRouter 导览页
+  openRouterGuide: {
+    title: 'OpenRouter 使用指南',
+    step1Title: '进入 OpenRouter 首页',
+    step1Description: '首先，请前往 OpenRouter 官方网站。OpenRouter 是一个统一的 LLM 界面，提供多种 AI 模型供您选择。本工具主要使用高品质、深思、平价的<b>GPT-OSS-120B</b>模型。',
+    step1Link: '前往 OpenRouter 首页：https://openrouter.ai/',
+    step1Tip: '提示：注册账号并登录后，请点击首页右上的个人头像，展开下拉菜单，以进行后续步骤（储值 Credits 和申请 API Key）。',
+    step2Title: '储值 Credits',
+    step2Description: '在使用 OpenRouter 的服务之前，您需要先购买信用点数(Credits)。Credits 可以用于任何模型或提供者，让您灵活使用不同的 AI 服务。',
+    step2Link: '前往储值页面：https://openrouter.ai/settings/credits',
+    step3Title: '申请 API Key',
+    step3Description: '最后，您需要建立一个 API Key 才能开始使用 OpenRouter 的服务。API Key 完全兼容于 OpenAI 的格式，可以直接使用。',
+    step3Link: '前往 API Key 设置页面：https://openrouter.ai/settings/keys',
+    tipsTitle: '重要提示',
+    tip1: '• 请妥善保管您的 API Key，不要分享给他人',
+    tip2: '• API Key 建立后即可立即使用，无需等待审核',
+    tip3: '• 建议定期检查您的 Credits 余额，确保服务正常运作',
+    tip4: '• OpenRouter 支持多种付款方式，包括信用卡等',
+    backToHome: '返回首页'
+  },
+
+  // Polis 导览页
+  polisGuide: {
+    title: 'Polis 使用指南',
+    step1Title: '前往 Polis 首页',
+    step1Description: '首先，请前往 Polis 官方网站。Polis 是一个用于收集和分析群众意见的平台，可以帮助您了解不同观点并进行有意义的意见征集。',
+    step1Link: '前往 Polis 首页：https://pol.is/home',
+    step2Title: '注册账号与登录',
+    step2Description: '如果您还没有 Polis 账号，请先注册一个新账号。如果已有账号，请直接登录。登录后您就可以开始创建和管理对话了。',
+    step2Link: '前往登录/注册页面：https://pol.is/signin',
+    step3Title: '在 Polis Dashboard 创建与管理对话',
+    step3Description: '登录后，您会进入 Polis Dashboard。在这里您可以创建新的对话（Conversation），并管理现有的对话。点击「Create New Conversation」按钮即可开始创建新的对话。',
+    step3Link: '前往 Polis Dashboard：https://pol.is/',
+    step4Title: '发布意见征集的网址，收集回应',
+    step4Description: '创建对话后，您可以取得意见征集的网址并分享给参与者。参与者可以通过这个网址进入对话并提供他们的意见。您也可以使用 embed 功能将对话嵌入到您的网站中，让参与者直接在您的网站上参与意见征集。',
+    step5Title: '切换到 Reports Tab，创建 Report URL',
+    step5Description: '在对话页面中，切换到「Reports」标签页。在这里您可以创建报告 URL，用于查看对话的分析结果和统计资料。',
+    step6Title: '进入 Report 页',
+    step6Description: '在 Reports 标签页中，点击您想要查看的 Report 项目。点击后会出现链接，再点击该链接即可进入 Report 页面，查看详细的分析结果。',
+    step7Title: '下载 Comments CSV',
+    step7Description: '在 Report 页面中，向下滚动找到下载选项。您会看到一个下载按钮，点击即可下载包含所有评论的 CSV 文件（文件名格式为 {...}-comments.csv）。这个 CSV 文件包含了对话中的所有评论资料，可以用于进一步的分析。',
+    tipsTitle: '重要提示',
+    tip1: '• 下载的 CSV 文件包含对话中的所有评论资料',
+    tip2: '• CSV 文件可以用于导入到本系统进行进一步的分析',
+    tip3: '• 确保您有权限访问该对话的 Report 页面',
+    tip4: '• 如果找不到下载按钮，请确认您已切换到正确的 Report 页面',
+    backToHome: '返回首页'
+  },
+
+  // SenseMaker 导览页
+  sensemakerGuide: {
+    title: 'SenseMaker 使用指南',
+    step1Title: '上传 Polis 导出的原始档',
+    step1Description: '首先，请上传从 Polis 下载的 CSV 文件。这个文件包含了所有参与者的评论资料，是进行分析的基础资料。请确保文件格式正确，且包含必要的字段信息。',
+    step2Title: '输入 OpenRouter API Key',
+    step2Description: '在对应的字段中输入您的 OpenRouter API Key。这个 API Key 用于连接 OpenRouter 服务，让系统能够使用 AI 模型进行分析。请确保 API Key 正确且有效。',
+    step3Title: '模型名称保留 openai/gpt-oss-120b',
+    step3Description: '系统预设使用 <b>openai/gpt-oss-120b</b> 模型进行分析。这是一个高品质、深思且平价的模型，非常适合用于意见分析。建议保持此设置，除非您有特殊需求。',
+    step3Tip: '提示：模型名称字段已预设为',
+    step3TipCode: 'openai/gpt-oss-120b',
+    step3TipEnd: '，通常不需要修改。',
+    step4Title: '输入额外上下文，优化语言模型的分析脉络',
+    step4Description: '您可以选择性地输入额外的上下文信息，例如对话的主题背景、相关政策说明、或特定的分析重点。这些信息可以帮助 AI 模型更准确地理解评论的脉络，提供更深入的分析结果。',
+    step5Title: '选择输出语言',
+    step5Description: '选择您希望报告使用的语言。例如选择「中文」后，分析报告将以中文呈现，让您更容易阅读和理解分析结果。',
+    step6Title: '开始分析',
+    step6Description: '确认所有设置无误后，点击「开始分析」按钮。系统会开始处理您的资料，这个过程可能需要几分钟的时间，请耐心等待。您可以在页面上看到分析进度的相关信息。',
+    step7Title: '检阅并下载 Markdown 报告',
+    step7Description: '分析完成后，系统会生成一份 Markdown 格式的分析报告。您可以在页面上预览报告内容，确认无误后点击下载按钮，将报告保存到您的电脑。报告包含详细的分析结果、统计资料和洞察建议。',
+    tipsTitle: '重要提示',
+    tip1: '• 确保上传的 CSV 文件格式正确，且包含必要的字段',
+    tip2: '• API Key 请妥善保管，不要分享给他人',
+    tip3: '• 分析过程可能需要几分钟，请耐心等待，不要关闭页面',
+    tip4: '• 下载的 Markdown 报告可以用任何支持 Markdown 的编辑器打开',
+    tip5: '• 如果分析失败，请检查 API Key 是否有效，以及 Credits 余额是否充足',
+    backToHome: '返回首页'
   }
 }
