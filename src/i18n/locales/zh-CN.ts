@@ -263,7 +263,7 @@ export default {
     step6Title: '进入 Report 页',
     step6Description: '在 Reports 标签页中，点击您想要查看的 Report 项目。点击后会出现链接，再点击该链接即可进入 Report 页面，查看详细的分析结果。',
     step7Title: '下载 Comments CSV',
-    step7Description: '在 Report 页面中，向下滚动找到下载选项。您会看到一个下载按钮，点击即可下载包含所有评论的 CSV 文件（文件名格式为 {...}-comments.csv）。这个 CSV 文件包含了对话中的所有评论资料，可以用于进一步的分析。',
+    step7Description: '在 Report 页面中，向下滚动找到下载选项。您会看到一个下载按钮，点击即可下载包含所有评论的 CSV 文件（文件名格式为 conversation-id-comments.csv）。这个 CSV 文件包含了对话中的所有评论资料，可以用于进一步的分析。',
     tipsTitle: '重要提示',
     tip1: '• 下载的 CSV 文件包含对话中的所有评论资料',
     tip2: '• CSV 文件可以用于导入到本系统进行进一步的分析',

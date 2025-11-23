@@ -271,7 +271,7 @@ export default {
     step6Title: 'Enter Report Page',
     step6Description: 'In the Reports tab, click on the Report item you want to view. After clicking, a link will appear, then click that link to enter the Report page and view detailed analysis results.',
     step7Title: 'Download Comments CSV',
-    step7Description: 'In the Report page, scroll down to find the download option. You will see a download button, click it to download a CSV file containing all comments (filename format: {...}-comments.csv). This CSV file contains all comment data from the conversation and can be used for further analysis.',
+    step7Description: 'In the Report page, scroll down to find the download option. You will see a download button, click it to download a CSV file containing all comments (filename format: conversation-id-comments.csv). This CSV file contains all comment data from the conversation and can be used for further analysis.',
     tipsTitle: 'Important Tips',
     tip1: '• The downloaded CSV file contains all comment data from the conversation',
     tip2: '• CSV files can be imported into this system for further analysis',

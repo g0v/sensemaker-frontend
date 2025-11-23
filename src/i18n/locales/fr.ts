@@ -258,7 +258,7 @@ export default {
     step6Title: 'Entrer dans la page Rapport',
     step6Description: 'Dans l\'onglet Reports, cliquez sur l\'élément Rapport que vous souhaitez consulter. Après avoir cliqué, un lien apparaîtra, puis cliquez sur ce lien pour entrer dans la page Rapport et afficher les résultats d\'analyse détaillés.',
     step7Title: 'Télécharger le CSV des commentaires',
-    step7Description: 'Dans la page Rapport, faites défiler vers le bas pour trouver l\'option de téléchargement. Vous verrez un bouton de téléchargement, cliquez dessus pour télécharger un fichier CSV contenant tous les commentaires (format de nom de fichier : {...}-comments.csv). Ce fichier CSV contient toutes les données de commentaires de la conversation et peut être utilisé pour une analyse plus approfondie.',
+    step7Description: 'Dans la page Rapport, faites défiler vers le bas pour trouver l\'option de téléchargement. Vous verrez un bouton de téléchargement, cliquez dessus pour télécharger un fichier CSV contenant tous les commentaires (format de nom de fichier : conversation-id-comments.csv). Ce fichier CSV contient toutes les données de commentaires de la conversation et peut être utilisé pour une analyse plus approfondie.',
     tipsTitle: 'Conseils importants',
     tip1: '• Le fichier CSV téléchargé contient toutes les données de commentaires de la conversation',
     tip2: '• Les fichiers CSV peuvent être importés dans ce système pour une analyse plus approfondie',

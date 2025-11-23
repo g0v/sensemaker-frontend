@@ -276,7 +276,7 @@ export default {
     step6Title: '進入 Report 頁',
     step6Description: '在 Reports 標籤頁中，點擊您想要查看的 Report 項目。點擊後會出現連結，再點擊該連結即可進入 Report 頁面，查看詳細的分析結果。',
     step7Title: '下載 Comments CSV',
-    step7Description: '在 Report 頁面中，向下滾動找到下載選項。您會看到一個下載按鈕，點擊即可下載包含所有評論的 CSV 檔案（檔名格式為 {...}-comments.csv）。這個 CSV 檔案包含了對話中的所有評論資料，可以用於進一步的分析。',
+    step7Description: '在 Report 頁面中，向下滾動找到下載選項。您會看到一個下載按鈕，點擊即可下載包含所有評論的 CSV 檔案（檔名格式為 conversation-id-comments.csv）。這個 CSV 檔案包含了對話中的所有評論資料，可以用於進一步的分析。',
     tipsTitle: '重要提示',
     tip1: '• 下載的 CSV 檔案包含對話中的所有評論資料',
     tip2: '• CSV 檔案可以用於匯入到本系統進行進一步的分析',
