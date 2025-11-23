@@ -13,7 +13,7 @@
             <h2 class="text-2xl font-semibold text-gray-800">進入 OpenRouter 首頁</h2>
           </div>
           <p class="text-gray-600 mb-4 ml-14">
-            首先，請前往 OpenRouter 官方網站。OpenRouter 是一個統一的 LLM 介面，提供多種 AI 模型供您選擇。
+            首先，請前往 OpenRouter 官方網站。OpenRouter 是一個統一的 LLM 介面，提供多種 AI 模型供您選擇。本工具主要使用高品質、深思、平價的<b>GPT-OSS-120B</b>模型。
           </p>
           <div class="ml-14 mb-4">
             <a
