@@ -28,10 +28,20 @@
               前往 OpenRouter 首頁：https://openrouter.ai/
             </a>
           </div>
-          <div class="ml-14">
+          <div class="ml-14 space-y-4">
             <img
               :src="homePageImage"
               alt="OpenRouter 首頁截圖"
+              class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
+            />
+            <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p class="text-gray-700 text-sm">
+                <strong>提示：</strong>註冊帳號並登入後，請點擊首頁右上的個人頭像，展開下拉選單，以進行後續步驟（儲值 Credits 和申請 API Key）。
+              </p>
+            </div>
+            <img
+              :src="dropdownImage"
+              alt="OpenRouter 個人頭像下拉選單截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -127,6 +137,7 @@
 
 <script setup lang="ts">
 import homePageImage from '@/assets/screenshots_open_router/OpenRouter_HomePage.png?url'
+import dropdownImage from '@/assets/screenshots_open_router/Open_Router_Dropdown.png?url'
 import buyCreditsImage from '@/assets/screenshots_open_router/OpenRouter_Buy_Credits.png?url'
 import createApiKeyImage from '@/assets/screenshots_open_router/OpenRouter_Create_API_Key.png?url'
 </script>
