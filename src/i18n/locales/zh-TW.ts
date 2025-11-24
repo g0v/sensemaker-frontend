@@ -312,6 +312,20 @@ export default {
     tip4: '• 下載的 Markdown 報告可以用任何支援 Markdown 的編輯器開啟',
     tip5: '• 如果分析失敗，請檢查 API Key 是否有效，以及 Credits 餘額是否充足',
     backToHome: '回首頁'
+  },
+
+  // Footer
+  footer: {
+    description: '強大的 AI 驅動意見綜整工具，專門用於分析大量意見數據並產生有意義的洞察。',
+    communityLinks: '社群連結',
+    officialDocs: '官方文檔',
+    experimentalVersion: '實驗版本',
+    contactInfo: '聯絡資訊',
+    license: 'CC-BY-SA。',
+    sourceCode: '原始碼',
+    privacyPolicy: '隱私政策',
+    selfHost: '自行架站',
+    termsOfService: '使用條款'
   }
 }
 

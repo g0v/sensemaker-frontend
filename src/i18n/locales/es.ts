@@ -294,5 +294,19 @@ export default {
     tip4: '• Los informes Markdown descargados se pueden abrir con cualquier editor que soporte Markdown',
     tip5: '• Si el análisis falla, por favor verifique si la clave API es válida y si el saldo de créditos es suficiente',
     backToHome: 'Volver al inicio'
+  },
+
+  // Footer
+  footer: {
+    description: 'Una herramienta poderosa de integración de opiniones impulsada por IA, específicamente diseñada para analizar grandes volúmenes de datos de opinión y generar insights significativos.',
+    communityLinks: 'Enlaces de la comunidad',
+    officialDocs: 'Documentación oficial',
+    experimentalVersion: 'Versión experimental',
+    contactInfo: 'Información de contacto',
+    license: 'CC-BY-SA.',
+    sourceCode: 'Código fuente',
+    privacyPolicy: 'Política de privacidad',
+    selfHost: 'Auto-alojamiento',
+    termsOfService: 'Términos de servicio'
   }
 }

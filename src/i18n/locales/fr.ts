@@ -294,5 +294,19 @@ export default {
     tip4: '• Les rapports Markdown téléchargés peuvent être ouverts avec n\'importe quel éditeur prenant en charge Markdown',
     tip5: '• Si l\'analyse échoue, veuillez vérifier si la clé API est valide et si le solde de crédits est suffisant',
     backToHome: 'Retour à l\'accueil'
+  },
+
+  // Footer
+  footer: {
+    description: 'Un outil puissant d\'intégration d\'opinions alimenté par l\'IA, spécialement conçu pour analyser de gros volumes de données d\'opinion et générer des insights significatifs.',
+    communityLinks: 'Liens communautaires',
+    officialDocs: 'Documentation officielle',
+    experimentalVersion: 'Version expérimentale',
+    contactInfo: 'Informations de contact',
+    license: 'CC-BY-SA.',
+    sourceCode: 'Code source',
+    privacyPolicy: 'Politique de confidentialité',
+    selfHost: 'Auto-hébergement',
+    termsOfService: 'Conditions d\'utilisation'
   }
 }

@@ -299,5 +299,19 @@ export default {
     tip4: '• 下载的 Markdown 报告可以用任何支持 Markdown 的编辑器打开',
     tip5: '• 如果分析失败，请检查 API Key 是否有效，以及 Credits 余额是否充足',
     backToHome: '返回首页'
+  },
+
+  // Footer
+  footer: {
+    description: '强大的 AI 驱动意见综整工具，专门用于分析大量意见数据并产生有意义的洞察。',
+    communityLinks: '社群链接',
+    officialDocs: '官方文档',
+    experimentalVersion: '实验版本',
+    contactInfo: '联络信息',
+    license: 'CC-BY-SA。',
+    sourceCode: '源代码',
+    privacyPolicy: '隐私政策',
+    selfHost: '自行架站',
+    termsOfService: '使用条款'
   }
 }

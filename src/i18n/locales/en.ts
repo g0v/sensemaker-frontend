@@ -307,6 +307,20 @@ export default {
     tip4: '• Downloaded Markdown reports can be opened with any Markdown-supporting editor',
     tip5: '• If analysis fails, please check if the API Key is valid and if Credits balance is sufficient',
     backToHome: 'Back to Home'
+  },
+
+  // Footer
+  footer: {
+    description: 'A powerful AI-driven opinion integration tool, specifically designed for analyzing large volumes of opinion data and generating meaningful insights.',
+    communityLinks: 'Community Links',
+    officialDocs: 'Official Documentation',
+    experimentalVersion: 'Experimental Version',
+    contactInfo: 'Contact Information',
+    license: 'CC-BY-SA.',
+    sourceCode: 'Source Code',
+    privacyPolicy: 'Privacy Policy',
+    selfHost: 'Self-Host',
+    termsOfService: 'Terms of Service'
   }
 }
 

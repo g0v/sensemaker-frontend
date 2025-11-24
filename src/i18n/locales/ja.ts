@@ -294,5 +294,19 @@ export default {
     tip4: '• ダウンロードしたMarkdownレポートは、Markdownをサポートする任意のエディタで開くことができます',
     tip5: '• 分析が失敗した場合は、API Keyが有効かどうか、およびCreditsの残高が十分かどうかを確認してください',
     backToHome: 'ホームに戻る'
+  },
+
+  // Footer
+  footer: {
+    description: '大量の意見データを分析し、意味のある洞察を生成するために特別に設計された強力なAI駆動の意見統合ツール。',
+    communityLinks: 'コミュニティリンク',
+    officialDocs: '公式ドキュメント',
+    experimentalVersion: '実験版',
+    contactInfo: '連絡先情報',
+    license: 'CC-BY-SA。',
+    sourceCode: 'ソースコード',
+    privacyPolicy: 'プライバシーポリシー',
+    selfHost: 'セルフホスト',
+    termsOfService: '利用規約'
   }
 }
