@@ -909,7 +909,7 @@ onUnmounted(() => {
 
           <div class="space-y-2">
             <label for="model" class="block text-sm font-medium text-gray-700">
-              {{ t('home.modelLabel') }}
+              {{ t('home.modelLabel') }} <span class="text-red-500 font-bold">*</span>
             </label>
             <input
               type="text"
@@ -934,6 +934,12 @@ onUnmounted(() => {
             <label for="additionalContext" class="block text-sm font-medium text-gray-700">
               {{ t('home.additionalContextLabel') }}
             </label>
+
+            <!-- 灰色斜體提示文字 -->
+            <p class="text-gray-500 text-sm italic">
+              {{ t('home.additionalContextNote') }}
+            </p>
+
             <input
               type="text"
               id="additionalContext"
