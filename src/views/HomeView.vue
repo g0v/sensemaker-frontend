@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
+import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 
 interface TaskData {
   taskId: string
@@ -731,6 +732,11 @@ onUnmounted(() => {
         <p class="text-gray-700 mb-3 text-sm text-center">
           {{ t('guideModal.description') }}
         </p>
+
+        <!-- 語言切換 -->
+        <div class="w-fit ml-auto mb-6">
+          <LanguageSwitcher />
+        </div>
 
         <!-- 三個圖文區塊 - 響應式排版 -->
         <div class="flex flex-col md:flex-row gap-6 mb-6">
