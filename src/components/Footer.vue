@@ -51,7 +51,9 @@
       </div>
 
       <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; {{ currentYear }} Sensemaker. 保留所有權利。</p>
+        <p>
+          &copy; {{ currentYear }} <a class="hover:text-white transition" href="https://www.vtaiwan.tw/" target="_blank">vTaiwan</a> CC-BY-SA。
+        </p>
         <p class="mt-2">
           <a href="https://github.com/bestian/sensemaker-frontend" class="hover:text-white transition">原始碼</a> |
           <a href="/privacy" class="hover:text-white transition">隱私政策</a> |
