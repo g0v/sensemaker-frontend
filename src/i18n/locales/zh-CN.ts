@@ -307,11 +307,12 @@ export default {
   footer: {
     description: '强大的 AI 驱动意见综整工具，专门用于分析大量意见数据并产生有意义的洞察。',
     communityLinks: '社群链接',
+    jigsawOriginalProject: 'Jigsaw原项目',
     officialDocs: '官方文档',
     experimentalVersion: '实验版本',
     contactInfo: '联络信息',
     license: 'CC-BY-SA。',
-    sourceCode: '源代码',
+    sourceCode: '本站源代码',
     privacyPolicy: '隐私政策',
     selfHost: '自行架站',
     termsOfService: '使用条款'

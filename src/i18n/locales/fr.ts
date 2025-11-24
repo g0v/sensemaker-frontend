@@ -302,6 +302,7 @@ export default {
   footer: {
     description: 'Un outil puissant d\'intégration d\'opinions alimenté par l\'IA, spécialement conçu pour analyser de gros volumes de données d\'opinion et générer des insights significatifs.',
     communityLinks: 'Liens communautaires',
+    jigsawOriginalProject: 'Projet original Jigsaw',
     officialDocs: 'Documentation officielle',
     experimentalVersion: 'Version expérimentale',
     contactInfo: 'Informations de contact',

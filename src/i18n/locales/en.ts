@@ -315,6 +315,7 @@ export default {
   footer: {
     description: 'A powerful AI-driven opinion integration tool, specifically designed for analyzing large volumes of opinion data and generating meaningful insights.',
     communityLinks: 'Community Links',
+    jigsawOriginalProject: 'Jigsaw Original Project',
     officialDocs: 'Official Documentation',
     experimentalVersion: 'Experimental Version',
     contactInfo: 'Contact Information',

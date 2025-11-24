@@ -302,6 +302,7 @@ export default {
   footer: {
     description: '大量の意見データを分析し、意味のある洞察を生成するために特別に設計された強力なAI駆動の意見統合ツール。',
     communityLinks: 'コミュニティリンク',
+    jigsawOriginalProject: 'Jigsawオリジナルプロジェクト',
     officialDocs: '公式ドキュメント',
     experimentalVersion: '実験版',
     contactInfo: '連絡先情報',
