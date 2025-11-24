@@ -875,7 +875,7 @@ onUnmounted(() => {
               @change="handleFileSelect"
               accept=".json,.csv,application/json,text/csv"
               required
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red text-black dark:text-black"
             >
           </div>
 
