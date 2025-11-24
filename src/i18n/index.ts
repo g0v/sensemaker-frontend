@@ -27,6 +27,27 @@ export const getCurrentLocale = (): SupportedLocale => {
   if (saved && supportedLocales.some(l => l.code === saved)) {
     return saved
   }
+
+  const navigatorLanguages = navigator.languages || [navigator.language]
+
+  for (const lang of navigatorLanguages) {
+    const lower = lang.toLowerCase()
+
+    // Special handling for zh
+    if (lower.startsWith('zh')) {
+      if (['zh', 'zh-cn', 'zh-sg', 'zh-my', 'zh-hans'].includes(lower)) {
+        return 'zh-CN'
+      }
+      return 'zh-TW'
+    }
+
+    // Prefix matching for other languages
+    if (lower.startsWith('en')) return 'en'
+    if (lower.startsWith('ja')) return 'ja'
+    if (lower.startsWith('fr')) return 'fr'
+    if (lower.startsWith('es')) return 'es'
+  }
+
   return 'zh-TW'
 }
 
