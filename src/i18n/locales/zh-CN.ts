@@ -28,7 +28,7 @@ export default {
 
   // 首页
   home: {
-    title: '🚀 应用Sensemaker做分析',
+    title: '🚀 意见综整器',
     apiKeyLabel: '🔑 OpenRouter API Key',
     apiKeyPlaceholder: '请输入您的 OpenRouter API Key',
     getApiKeyLink: '申请 API Key',
