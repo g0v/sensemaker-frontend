@@ -62,8 +62,14 @@ yarn build
 
 ### Preview Production Version
 
+step 1. 
 ```sh
-npm run preview
+yarn build
+```
+
+step 2.
+```sh
+yarn preview
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
