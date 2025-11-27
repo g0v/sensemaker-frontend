@@ -150,21 +150,21 @@ export default {
 
   // Page Confidentialité
   privacy: {
-    title: 'Politique de confidentialité / Privacy Policy',
+    title: 'Politique de confidentialité',
     privacyPolicy: 'Politique de confidentialité',
     privacyDescription: 'Cette application ne collecte aucune donnée personnelle. Les rapports générés sont temporairement stockés dans le service de stockage R2 pour votre téléchargement et ne peuvent pas être consultés par d\'autres utilisateurs.',
-    dataProcessingTitle: 'À propos du traitement des données / About Data Processing',
+    dataProcessingTitle: 'À propos du traitement des données',
     backendProcessing: 'Traitement backend : Les données sont envoyées à notre backend pour calcul, mais aucune donnée utilisateur n\'est stockée sur nos serveurs, surtout les clés API ne sont jamais stockées.',
     noCookies: 'Pas de cookies : Nous n\'utilisons aucun cookie.',
     openSource: 'Transparence open source : Notre code est complètement open source, et vous pouvez examiner toutes les fonctionnalités pour assurer la confidentialité.',
-    frontendProject: 'Projet frontend (Frontend)',
-    backendProject: 'Projet backend (Backend)',
+    frontendProject: 'Projet frontend',
+    backendProject: 'Projet backend',
     openSourceNote: 'Transparence open source : Notre code est complètement open source, et vous pouvez examiner toutes les fonctionnalités pour assurer la confidentialité. Consultez nos dépôts frontend et backend sur GitHub.'
   },
 
   // Page Auto-hébergement
   selfHost: {
-    title: '🏗️ Guide d\'auto-hébergement / Self-Hosting Guide',
+    title: '🏗️ Guide d\'auto-hébergement',
     overviewTitle: '📋 Aperçu',
     overviewDescription: 'Si vous avez des préoccupations concernant la confidentialité et la sécurité des données, vous êtes invités à forker notre projet et auto-héberger le service. De cette façon, vous avez un contrôle complet sur vos données et clés API.',
     paidPlanTitle: 'Exigences de plan payant',

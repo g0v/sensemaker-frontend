@@ -150,21 +150,21 @@ export default {
 
   // Página de Privacidad
   privacy: {
-    title: 'Política de privacidad / Privacy Policy',
+    title: 'Política de privacidad',
     privacyPolicy: 'Política de privacidad',
     privacyDescription: 'Esta aplicación no recolecta ningún dato personal. Los reportes generados se almacenan temporalmente en el servicio de almacenamiento R2 para su descarga y no pueden ser accedidos por otros usuarios.',
-    dataProcessingTitle: 'Acerca del procesamiento de datos / About Data Processing',
+    dataProcessingTitle: 'Acerca del procesamiento de datos',
     backendProcessing: 'Procesamiento backend: Los datos se envían a nuestro backend para cálculo, pero ningún dato de usuario se almacena en nuestros servidores, especialmente las claves API nunca se almacenan.',
     noCookies: 'Sin cookies: No usamos ninguna cookie.',
     openSource: 'Transparencia de código abierto: Nuestro código es completamente de código abierto, y puede revisar toda la funcionalidad para asegurar la privacidad.',
-    frontendProject: 'Proyecto frontend (Frontend)',
-    backendProject: 'Proyecto backend (Backend)',
+    frontendProject: 'Proyecto frontend',
+    backendProject: 'Proyecto backend',
     openSourceNote: 'Transparencia de código abierto: Nuestro código es completamente de código abierto, y puede revisar toda la funcionalidad para asegurar la privacidad. Revise nuestros repositorios frontend y backend en GitHub.'
   },
 
   // Página de Auto-alojamiento
   selfHost: {
-    title: '🏗️ Guía de auto-alojamiento / Self-Hosting Guide',
+    title: '🏗️ Guía de auto-alojamiento',
     overviewTitle: '📋 Resumen',
     overviewDescription: 'Si tiene inquietudes sobre privacidad y seguridad de datos, le invitamos a hacer fork de nuestro proyecto y auto-alojar el servicio. De esta manera tiene control completo sobre sus datos y claves API.',
     paidPlanTitle: 'Requisitos de plan pagado',

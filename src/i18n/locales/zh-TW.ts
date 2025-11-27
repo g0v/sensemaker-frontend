@@ -158,23 +158,23 @@ export default {
 
   // 隱私權頁面
   privacy: {
-    title: '隱私權政策 / Privacy Policy',
+    title: '隱私權政策',
     privacyPolicy: '隱私權政策',
     privacyDescription: '這款應用程式不會蒐集任何個人資料。生成的報告會暫時存儲於 R2 儲存服務中供您下載，並以唯一的 taskID 識別，其他使用者無法取得或存取您的資料。',
     privacyPolicyEn: 'Privacy Policy',
     privacyDescriptionEn: 'This application does not collect any private data whatsoever. Generated reports are temporarily stored in R2 storage service for your download and cannot be accessed by other users.',
-    dataProcessingTitle: '關於資料處理 / About Data Processing',
+    dataProcessingTitle: '關於資料處理',
     backendProcessing: '後端運算：資料會傳送到後端進行運算處理，但後端不會儲存任何使用者的個人資料和敏感資訊，特別是API KEY不會被儲存。',
     noCookies: '無cookies：我們不使用任何 cookies。',
     openSource: '開源透明：我們的程式碼完全開源，您可以檢視所有功能以確保隱私安全。',
-    frontendProject: '前端專案 (Frontend)',
-    backendProject: '後端專案 (Backend)',
+    frontendProject: '前端專案',
+    backendProject: '後端專案',
     openSourceNote: 'Open Source Transparency: Our code is completely open source, and you can review all functionality to ensure privacy. Check our frontend and backend repositories on GitHub.'
   },
 
   // 自行架站頁面
   selfHost: {
-    title: '🏗️ 自行架站指南 / Self-Hosting Guide',
+    title: '🏗️ 自行架站指南',
     overviewTitle: '📋 概述',
     overviewDescription: '如果您對隱私和資料安全有疑慮，歡迎 fork 我們的專案並自行架設服務。這樣您可以完全控制自己的資料和 API 金鑰。',
     paidPlanTitle: '付費方案需求',
