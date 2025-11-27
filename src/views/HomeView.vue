@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
@@ -34,6 +34,9 @@ const { t } = useI18n()
 // 提示卡相關變數
 const showGuideModal = ref(false)
 const dontShowAgain = ref(false)
+watch(showGuideModal, () => {
+  document.body.style.overflow = showGuideModal.value ? 'hidden' : ''
+})
 
 const apiKey = ref('')
 const model = ref('openai/gpt-oss-120b')
