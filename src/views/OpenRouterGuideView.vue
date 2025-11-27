@@ -134,9 +134,10 @@
         <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 relative">
           <router-link
             to="/guide/polis"
-            class="items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
           >
-            ⭠ {{ t('polisGuide.title') }}
+            <IconArrowPrev class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
+            {{ t('polisGuide.title') }}
           </router-link>
           <router-link
             to="/"
@@ -149,9 +150,10 @@
           </router-link>
           <router-link
             to="/guide/sensemaker"
-            class="items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
           >
-            {{ t('sensemakerGuide.title') }} ⭢
+            {{ t('sensemakerGuide.title') }}
+            <IconArrowNext class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
           </router-link>
         </div>
       </div>
@@ -165,6 +167,8 @@ import homePageImage from '@/assets/screenshots_open_router/OpenRouter_HomePage.
 import dropdownImage from '@/assets/screenshots_open_router/Open_Router_Dropdown.png?url'
 import buyCreditsImage from '@/assets/screenshots_open_router/OpenRouter_Buy_Credits.png?url'
 import createApiKeyImage from '@/assets/screenshots_open_router/OpenRouter_Create_API_Key.png?url'
+import IconArrowPrev from '@/components/icons/IconArrowPrev.vue'
+import IconArrowNext from '@/components/icons/IconArrowNext.vue'
 
 const { t } = useI18n()
 </script>

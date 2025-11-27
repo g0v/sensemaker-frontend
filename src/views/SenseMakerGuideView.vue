@@ -164,9 +164,10 @@
         <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 relative">
           <router-link
             to="/guide/openrouter"
-            class="items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
           >
-            ⭠ {{ t('openRouterGuide.title') }}
+            <IconArrowPrev class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
+            {{ t('openRouterGuide.title') }}
           </router-link>
           <router-link
             to="/"
@@ -191,6 +192,7 @@ import additionalInformationImage from '@/assets/screenshots_sensemaker/Sensemak
 import outputLangImage from '@/assets/screenshots_sensemaker/Sensemaker_Output_Lang.png?url'
 import startAnalyseImage from '@/assets/screenshots_sensemaker/Sensemaker_Start_Analyse.png?url'
 import waitAndDownloadMarkdownReportImage from '@/assets/screenshots_sensemaker/Sensemaker_Wait_and_Download_markdown_report.png?url'
+import IconArrowPrev from '@/components/icons/IconArrowPrev.vue'
 
 const { t } = useI18n()
 </script>

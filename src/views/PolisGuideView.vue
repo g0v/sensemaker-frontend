@@ -219,9 +219,10 @@
           </router-link>
           <router-link
             to="/guide/openrouter"
-            class="md:ml-auto items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            class="group inline-flex items-center gap-1 md:ml-auto text-blue-600 hover:text-blue-800 font-medium transition-colors"
           >
-            {{ t('openRouterGuide.title') }} ⭢
+            {{ t('openRouterGuide.title') }}
+            <IconArrowNext class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
           </router-link>
         </div>
       </div>
@@ -239,6 +240,7 @@ import distributeImage from '@/assets/screenshots_polis/Polis_Distribute.png?url
 import createReportUrlImage from '@/assets/screenshots_polis/Polis_Create_Report_URL.png?url'
 import gotoReportUrlImage from '@/assets/screenshots_polis/Polis_Goto_Report_URL.png?url'
 import downloadCommentsCsvImage from '@/assets/screenshots_polis/Polis_Download_Comments.csv.png?url'
+import IconArrowNext from '@/components/icons/IconArrowNext.vue'
 
 const { t } = useI18n()
 </script>
