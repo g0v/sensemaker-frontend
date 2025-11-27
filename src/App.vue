@@ -38,9 +38,9 @@ watch(() => route.path, () => {
             class="hover:text-democratic-red transition flex items-center gap-1"
             :class="{ 'text-democratic-red': $route.path === '/' }"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M6.643 7.74195L11.578 5.22295C12.1571 4.92568 12.8439 4.92568 13.423 5.22295L18.358 7.74195C19.136 8.21167 19.57 9.0907 19.47 9.99395L19.5 14.9999C19.5 17.2091 17.7091 18.9999 15.5 18.9999H9.5C7.29086 18.9999 5.5 17.2091 5.5 14.9999L5.531 9.99995C5.42854 9.09464 5.86291 8.21262 6.643 7.74195Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10.168 18.9999V16.6659C10.168 15.3769 11.213 14.3319 12.502 14.3319C13.7911 14.3319 14.836 15.3769 14.836 16.6659V18.9999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span>{{ t('common.home') }}</span>
           </router-link>
