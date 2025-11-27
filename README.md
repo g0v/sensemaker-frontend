@@ -6,7 +6,7 @@ Sensemaker 意見綜整器是一個強大的 AI 驅動工具，專門用於分�
 
 Sensemaker Opinion Integration Tool is a powerful AI-driven tool specifically designed for analyzing large volumes of opinion data and generating meaningful insights. It can identify major commonalities and opinion divergences, helping you extract valuable information from massive datasets.
 
-這個工具特別適用於審議民主場景，當您使用 Polis 城邦等非同步意見徵集工具時，可以幫助處理大量相似或重複的意見，自動生成結構化的分析報告。本專案為 Sensemaker 部分功能的前端實現，會串接到後端分析工具。前端使用 Vue 3 + Vite 構建。
+這個工具特別適用於審議民主場景，當您使用 Polis 等非同步意見徵集工具時，可以幫助處理大量相似或重複的意見，自動生成結構化的分析報告。本專案為 Sensemaker 部分功能的前端實現，會串接到後端分析工具。前端使用 Vue 3 + Vite 構建。
 
 This tool is particularly suitable for deliberative democracy scenarios. When you use asynchronous opinion collection tools like Polis, it can help process large amounts of similar or repetitive opinions and automatically generate structured analysis reports. This project is a frontend implementation of some Sensemaker features, which connects to backend analysis tools. The frontend is built with Vue 3 + Vite.
 
@@ -19,12 +19,12 @@ This tool is particularly suitable for deliberative democracy scenarios. When yo
 - **語言**: TypeScript
 - **樣式**: Tailwind CSS
 - **國際化**: vue-i18n
-- **後端專案網址**：https://github.com/bestian/sensemaker-backend
-- **核心工具網址**：https://github.com/bestian/sensemaking-tools (forked from https://github.com/Jigsaw-Code/sensemaking-tools)
+- **後端專案網址**: https://github.com/bestian/sensemaker-backend
+- **核心工具網址**: https://github.com/bestian/sensemaking-tools (forked from https://github.com/Jigsaw-Code/sensemaking-tools)
 
 ## Prerequisites
 
-**重要提示：本專案需使用 Yarn ^4 以上版本作為套件管理工具。如使用 `npm install` 創建 `package-lock.json` 會導致自動部署故障。**
+**重要提示: 本專案需使用 Yarn ^4 以上版本作為套件管理工具。如使用 `npm install` 創建 `package-lock.json` 會導致自動部署故障。**
 
 ### Install Yarn
 
@@ -62,7 +62,7 @@ yarn build
 
 ### Preview Production Version
 
-step 1. 
+step 1.
 ```sh
 yarn build
 ```
