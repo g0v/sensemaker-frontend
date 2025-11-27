@@ -152,9 +152,4 @@ watch(() => route.path, () => {
 #navbar {
   z-index: 999;
 }
-
-/* 使用 router-link-exact-active class 來標示當前路由 */
-.router-link-exact-active {
-  color: #D80000 !important; /* democratic-red 顏色 */
-}
 </style>
