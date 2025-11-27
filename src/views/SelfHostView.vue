@@ -96,7 +96,7 @@
                 <p class="text-gray-700 mb-3">
                   {{ t('selfHost.step2FrontendDesc') }}
                 </p>
-                <div class="bg-gray-100 p-3 rounded text-sm font-mono text-xs">
+                <div class="bg-gray-900 p-3 rounded font-mono text-xs">
                   // {{ t('selfHost.originalURL') }}<br>
                   // https://sensemaker-backend.bestian123.workers.dev/api/sensemake<br><br>
                   // {{ t('selfHost.yourURL') }}<br>
