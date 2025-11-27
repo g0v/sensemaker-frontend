@@ -15,10 +15,9 @@ const toggleMobileMenu = () => {
 
 // 監聽路由變化，自動捲到頁面最上方
 watch(() => route.path, () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
+  // 立即滾動到頁面最上方，讓視覺焦點立即進入主題
+  // 使用 window.scrollTo(0, 0) 確保立即滾動，不等待動畫
+  window.scrollTo(0, 0)
 
   // 關閉手機版選單
   mobileMenuOpen.value = false
