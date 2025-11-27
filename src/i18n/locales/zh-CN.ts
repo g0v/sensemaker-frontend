@@ -150,21 +150,21 @@ export default {
 
   // 隐私权页面
   privacy: {
-    title: '隐私权政策 / Privacy Policy',
+    title: '隐私权政策',
     privacyPolicy: '隐私权政策',
     privacyDescription: '这款应用程序不会搜集任何个人资料。生成的报告会暂时存储于 R2 存储服务中供您下载，并以唯一的 taskID 识别，其他使用者无法取得或存取您的资料。',
-    dataProcessingTitle: '关于资料处理 / About Data Processing',
+    dataProcessingTitle: '关于资料处理',
     backendProcessing: '后端运算：资料会传送到后端进行运算处理，但后端不会储存任何使用者的个人资料和敏感信息，特别是API KEY不会被储存。',
     noCookies: '无cookies：我们不使用任何 cookies。',
     openSource: '开源透明：我们的代码完全开源，您可以检视所有功能以确保隐私安全。',
-    frontendProject: '前端项目 (Frontend)',
-    backendProject: '后端项目 (Backend)',
+    frontendProject: '前端项目',
+    backendProject: '后端项目',
     openSourceNote: 'Open Source Transparency: Our code is completely open source, and you can review all functionality to ensure privacy. Check our frontend and backend repositories on GitHub.'
   },
 
   // 自行架站页面
   selfHost: {
-    title: '🏗️ 自行架站指南 / Self-Hosting Guide',
+    title: '🏗️ 自行架站指南',
     overviewTitle: '📋 概述',
     overviewDescription: '如果您对隐私和资料安全有疑虑，欢迎 fork 我们的项目并自行架设服务。这样您可以完全控制自己的资料和 API 密钥。',
     paidPlanTitle: '付费方案需求',

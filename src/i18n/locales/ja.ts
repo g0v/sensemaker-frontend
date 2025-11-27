@@ -150,21 +150,21 @@ export default {
 
   // プライバシーページ
   privacy: {
-    title: 'プライバシーポリシー / Privacy Policy',
+    title: 'プライバシーポリシー',
     privacyPolicy: 'プライバシーポリシー',
     privacyDescription: 'このアプリケーションは個人データを一切収集しません。生成されたレポートは一時的にR2ストレージサービスに保存され、あなたがダウンロードできるようになっており、他のユーザーがアクセスすることはできません。',
-    dataProcessingTitle: 'データ処理について / About Data Processing',
+    dataProcessingTitle: 'データ処理について',
     backendProcessing: 'バックエンド処理：データはバックエンドに送信されて計算されますが、ユーザーデータはサーバーに保存されません。特にAPIキーは決して保存されません。',
     noCookies: 'Cookieなし：Cookieは使用しません。',
     openSource: 'オープンソースによる透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。',
-    frontendProject: 'フロントエンドプロジェクト (Frontend)',
-    backendProject: 'バックエンドプロジェクト (Backend)',
+    frontendProject: 'フロントエンドプロジェクト',
+    backendProject: 'バックエンドプロジェクト',
     openSourceNote: 'オープンソースによる透明性：私たちのコードは完全にオープンソースで、プライバシーを確保するためにすべての機能を確認できます。GitHubでフロントエンドとバックエンドのリポジトリを確認してください。'
   },
 
   // セルフホストページ
   selfHost: {
-    title: '🏗️ セルフホストガイド / Self-Hosting Guide',
+    title: '🏗️ セルフホストガイド',
     overviewTitle: '📋 概要',
     overviewDescription: 'プライバシーとデータセキュリティに懸念がある場合は、私たちのプロジェクトをフォークしてサービスをセルフホストすることを歓迎します。これにより、データとAPIキーを完全に制御できます。',
     paidPlanTitle: '有料プラン要件',

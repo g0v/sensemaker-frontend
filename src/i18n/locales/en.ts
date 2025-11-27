@@ -158,23 +158,23 @@ export default {
 
   // Privacy page
   privacy: {
-    title: 'Privacy Policy / Privacy Policy',
+    title: 'Privacy Policy',
     privacyPolicy: 'Privacy Policy',
     privacyDescription: 'This application does not collect any private data whatsoever. Generated reports are temporarily stored in R2 storage service for your download and cannot be accessed by other users.',
     privacyPolicyEn: 'Privacy Policy',
     privacyDescriptionEn: 'This application does not collect any private data whatsoever. Generated reports are temporarily stored in R2 storage service for your download and cannot be accessed by other users.',
-    dataProcessingTitle: 'About Data Processing / About Data Processing',
+    dataProcessingTitle: 'About Data Processing',
     backendProcessing: 'Backend Processing: Data is sent to our backend for computation, but no user data is stored on our servers, especially API keys are never stored.',
     noCookies: 'No Cookies: We do not use any cookies.',
     openSource: 'Open Source Transparency: Our code is completely open source, and you can review all functionality to ensure privacy.',
-    frontendProject: 'Frontend Project (Frontend)',
-    backendProject: 'Backend Project (Backend)',
+    frontendProject: 'Frontend Project',
+    backendProject: 'Backend Project',
     openSourceNote: 'Open Source Transparency: Our code is completely open source, and you can review all functionality to ensure privacy. Check our frontend and backend repositories on GitHub.'
   },
 
   // Self-host page
   selfHost: {
-    title: '🏗️ Self-Hosting Guide / Self-Hosting Guide',
+    title: '🏗️ Self-Hosting Guide',
     overviewTitle: '📋 Overview',
     overviewDescription: 'If you have concerns about privacy and data security, you\'re welcome to fork our project and self-host the service. This way you have complete control over your data and API keys.',
     paidPlanTitle: 'Paid Plan Requirements',
