@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
@@ -36,6 +37,9 @@ const showGuideModal = ref(false)
 const dontShowAgain = ref(false)
 watch(showGuideModal, () => {
   document.body.style.overflow = showGuideModal.value ? 'hidden' : ''
+})
+onBeforeRouteLeave(() => {
+  showGuideModal.value = false
 })
 
 const apiKey = ref('')
