@@ -223,16 +223,16 @@ export default {
 
   // 導覽框
   guideModal: {
-    title: '歡迎使用 SenseMaker意見綜整器',
-    description: 'SenseMaker 意見綜整器是一個強大的意見調查報告分析工具，可以幫助您從大量意見調查報告中提取有價值的洞察。',
+    title: '歡迎使用 Sensemaker 意見綜整器',
+    description: 'Sensemaker 意見綜整器是一個強大的意見調查報告分析工具，可以幫助您從大量意見調查報告中提取有價值的洞察。',
     polisTitle: '1. Polis意見調查報告導出',
     polisDescription: '本工具支援 Polis 平台導出的意見調查報告。請確保您的文件符合 Polis 的數據結構。',
     polisLink: '查看說明 →',
     openRouterTitle: '2. OpenRouter API 連接',
     openRouterDescription: '本工具使用 OpenRouter 來連接各種大型語言模型。您需要提供 OpenRouter API Key 才能使用。',
     openRouterLink: '查看說明 →',
-    sensemakerTitle: '3. SenseMaker 分析',
-    sensemakerDescription: '本工具使用 SenseMaker 進行分析。請參考以下操作說明，進行分析。',
+    sensemakerTitle: '3. Sensemaker 分析',
+    sensemakerDescription: '本工具使用 Sensemaker 進行分析。請參考以下操作說明，進行分析。',
     sensemakerLink: '了解更多 →',
     tip: '提示： 如果您是第一次使用，建議先閱讀上述說明文件，以確保正確使用本工具。',
     dontShowAgain: '不再顯示此提示',
@@ -288,9 +288,9 @@ export default {
     backToHome: '回首頁'
   },
 
-  // SenseMaker 導覽頁
+  // Sensemaker 導覽頁
   sensemakerGuide: {
-    title: 'SenseMaker 使用指南',
+    title: 'Sensemaker 使用指南',
     step1Title: '上傳 Polis 導出的原始檔',
     step1Description: '首先，請上傳從 Polis 下載的 CSV 檔案。這個檔案包含了所有參與者的評論資料，是進行分析的基礎資料。請確保檔案格式正確，且包含必要的欄位資訊。',
     step2Title: '輸入 OpenRouter API Key',

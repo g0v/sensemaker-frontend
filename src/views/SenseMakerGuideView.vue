@@ -18,7 +18,7 @@
           <div class="ml-14">
             <img
               :src="uploadCsvImage"
-              alt="SenseMaker 上傳 CSV 檔案截圖"
+              alt="Sensemaker 上傳 CSV 檔案截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -38,7 +38,7 @@
           <div class="ml-14">
             <img
               :src="enterApiKeyImage"
-              alt="SenseMaker 輸入 API Key 截圖"
+              alt="Sensemaker 輸入 API Key 截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -75,7 +75,7 @@
           <div class="ml-14">
             <img
               :src="additionalInformationImage"
-              alt="SenseMaker 輸入額外上下文截圖"
+              alt="Sensemaker 輸入額外上下文截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -95,7 +95,7 @@
           <div class="ml-14">
             <img
               :src="outputLangImage"
-              alt="SenseMaker 選擇輸出語言截圖"
+              alt="Sensemaker 選擇輸出語言截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -115,7 +115,7 @@
           <div class="ml-14">
             <img
               :src="startAnalyseImage"
-              alt="SenseMaker 開始分析截圖"
+              alt="Sensemaker 開始分析截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>
@@ -135,7 +135,7 @@
           <div class="ml-14">
             <img
               :src="waitAndDownloadMarkdownReportImage"
-              alt="SenseMaker 檢閱並下載 Markdown 報告截圖"
+              alt="Sensemaker 檢閱並下載 Markdown 報告截圖"
               class="rounded-lg shadow-md border border-gray-200 w-full max-w-4xl"
             />
           </div>

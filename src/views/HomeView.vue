@@ -801,7 +801,7 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- 區塊 3: SenseMaker -->
+          <!-- 區塊 3: Sensemaker -->
           <div class="flex-1 bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
             <div class="mb-4 flex justify-center">
               <div class="w-32 h-32 bg-green-50 rounded-lg flex items-center justify-center">

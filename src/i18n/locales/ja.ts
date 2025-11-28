@@ -205,16 +205,16 @@ export default {
 
   // ガイドモーダル
   guideModal: {
-    title: 'SenseMaker意見統合ツールへようこそ',
-    description: 'SenseMaker意見統合ツールは、大量の意見調査レポートから価値のある洞察を抽出するのに役立つ強力な意見調査レポート分析ツールです。',
+    title: 'Sensemaker意見統合ツールへようこそ',
+    description: 'Sensemaker意見統合ツールは、大量の意見調査レポートから価値のある洞察を抽出するのに役立つ強力な意見調査レポート分析ツールです。',
     polisTitle: '1. Polis意見調査レポートのエクスポート',
     polisDescription: 'このツールは、Polisプラットフォームからエクスポートされた意見調査レポートをサポートしています。ファイルがPolisのデータ構造に準拠していることを確認してください。',
     polisLink: 'ガイドを表示 →',
     openRouterTitle: '2. OpenRouter API接続',
     openRouterDescription: 'このツールは、OpenRouterを使用してさまざまな大規模言語モデルに接続します。使用するには、OpenRouter API Keyを提供する必要があります。',
     openRouterLink: 'ガイドを表示 →',
-    sensemakerTitle: '3. SenseMaker分析',
-    sensemakerDescription: 'このツールは、分析にSenseMakerを使用します。以下の操作手順を参照して分析を実行してください。',
+    sensemakerTitle: '3. Sensemaker分析',
+    sensemakerDescription: 'このツールは、分析にSensemakerを使用します。以下の操作手順を参照して分析を実行してください。',
     sensemakerLink: '詳細を見る →',
     tip: 'ヒント：初めてこのツールを使用する場合は、まず上記のガイドドキュメントを読むことをお勧めします。',
     dontShowAgain: 'このヒントを再度表示しない',
@@ -270,9 +270,9 @@ export default {
     backToHome: 'ホームに戻る'
   },
 
-  // SenseMakerガイドページ
+  // Sensemakerガイドページ
   sensemakerGuide: {
-    title: 'SenseMaker使用ガイド',
+    title: 'Sensemaker使用ガイド',
     step1Title: 'Polisからエクスポートされた元のファイルをアップロード',
     step1Description: 'まず、PolisからダウンロードしたCSVファイルをアップロードしてください。このファイルには、すべての参加者のコメントデータが含まれており、分析の基礎データです。ファイル形式が正しく、必要なフィールド情報が含まれていることを確認してください。',
     step2Title: 'OpenRouter API Keyを入力',

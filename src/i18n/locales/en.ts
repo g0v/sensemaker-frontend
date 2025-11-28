@@ -218,16 +218,16 @@ export default {
 
   // Guide Modal
   guideModal: {
-    title: 'Welcome to SenseMaker Opinion Integration Tool',
-    description: 'SenseMaker Opinion Integration Tool is a powerful opinion survey report analysis tool that can help you extract valuable insights from large volumes of opinion survey reports.',
+    title: 'Welcome to Sensemaker Opinion Integration Tool',
+    description: 'Sensemaker Opinion Integration Tool is a powerful opinion survey report analysis tool that can help you extract valuable insights from large volumes of opinion survey reports.',
     polisTitle: '1. Polis Opinion Survey Report Export',
     polisDescription: 'This tool supports opinion survey reports exported from the Polis platform. Please ensure your files conform to Polis data structure.',
     polisLink: 'View Guide →',
     openRouterTitle: '2. OpenRouter API Connection',
     openRouterDescription: 'This tool uses OpenRouter to connect to various large language models. You need to provide an OpenRouter API Key to use it.',
     openRouterLink: 'View Guide →',
-    sensemakerTitle: '3. SenseMaker Analysis',
-    sensemakerDescription: 'This tool uses SenseMaker for analysis. Please refer to the following instructions for analysis.',
+    sensemakerTitle: '3. Sensemaker Analysis',
+    sensemakerDescription: 'This tool uses Sensemaker for analysis. Please refer to the following instructions for analysis.',
     sensemakerLink: 'Learn More →',
     tip: 'Tip: If this is your first time using this tool, we recommend reading the above guide documents first to ensure proper use.',
     dontShowAgain: 'Don\'t show this tip again',
@@ -283,9 +283,9 @@ export default {
     backToHome: 'Back to Home'
   },
 
-  // SenseMaker Guide Page
+  // Sensemaker Guide Page
   sensemakerGuide: {
-    title: 'SenseMaker Usage Guide',
+    title: 'Sensemaker Usage Guide',
     step1Title: 'Upload Polis Exported Original File',
     step1Description: 'First, please upload the CSV file downloaded from Polis. This file contains all participant comment data and is the foundation for analysis. Please ensure the file format is correct and contains necessary field information.',
     step2Title: 'Enter OpenRouter API Key',
