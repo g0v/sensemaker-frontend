@@ -205,16 +205,16 @@ export default {
 
   // Modal de guía
   guideModal: {
-    title: 'Bienvenido a la herramienta de integración de opiniones SenseMaker',
-    description: 'La herramienta de integración de opiniones SenseMaker es una poderosa herramienta de análisis de informes de encuestas de opinión que puede ayudarle a extraer insights valiosos de grandes volúmenes de informes de encuestas de opinión.',
+    title: 'Bienvenido a la herramienta de integración de opiniones Sensemaker',
+    description: 'La herramienta de integración de opiniones Sensemaker es una poderosa herramienta de análisis de informes de encuestas de opinión que puede ayudarle a extraer insights valiosos de grandes volúmenes de informes de encuestas de opinión.',
     polisTitle: '1. Exportación de informe de encuesta de opinión Polis',
     polisDescription: 'Esta herramienta soporta informes de encuestas de opinión exportados desde la plataforma Polis. Por favor asegúrese de que sus archivos cumplan con la estructura de datos de Polis.',
     polisLink: 'Ver guía →',
     openRouterTitle: '2. Conexión API OpenRouter',
     openRouterDescription: 'Esta herramienta usa OpenRouter para conectarse a varios modelos de lenguaje grandes. Necesita proporcionar una clave API OpenRouter para usarla.',
     openRouterLink: 'Ver guía →',
-    sensemakerTitle: '3. Análisis SenseMaker',
-    sensemakerDescription: 'Esta herramienta usa SenseMaker para el análisis. Por favor consulte las siguientes instrucciones para el análisis.',
+    sensemakerTitle: '3. Análisis Sensemaker',
+    sensemakerDescription: 'Esta herramienta usa Sensemaker para el análisis. Por favor consulte las siguientes instrucciones para el análisis.',
     sensemakerLink: 'Aprender más →',
     tip: 'Consejo: Si es la primera vez que usa esta herramienta, recomendamos leer primero los documentos de guía anteriores para asegurar el uso correcto.',
     dontShowAgain: 'No mostrar este consejo nuevamente',
@@ -270,9 +270,9 @@ export default {
     backToHome: 'Volver al inicio'
   },
 
-  // Página de guía SenseMaker
+  // Página de guía Sensemaker
   sensemakerGuide: {
-    title: 'Guía de uso de SenseMaker',
+    title: 'Guía de uso de Sensemaker',
     step1Title: 'Subir archivo original exportado desde Polis',
     step1Description: 'Primero, por favor suba el archivo CSV descargado desde Polis. Este archivo contiene todos los datos de comentarios de los participantes y es la base para el análisis. Por favor asegúrese de que el formato del archivo sea correcto y contenga la información de campo necesaria.',
     step2Title: 'Ingresar clave API OpenRouter',
