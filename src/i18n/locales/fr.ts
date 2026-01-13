@@ -33,6 +33,7 @@ export default {
     apiKeyPlaceholder: 'Veuillez entrer votre clé API OpenRouter',
     getApiKeyLink: 'Obtenir la clé API',
     apiKeyRequired: 'Ce champ est requis pour se connecter aux services de modèles IA',
+    invalidApiKey: 'Cle API invalide',
     privacyNote: '🔒 Protection de la vie privée : Selon notre politique de confidentialité, ce site ne stockera votre clé API nulle part. Si vous avez des préoccupations, vous êtes invités à auto-héberger les services backend et frontend.',
     modelLabel: '🤖 Nom du modèle :',
     modelPlaceholder: 'openai/gpt-oss-120b',

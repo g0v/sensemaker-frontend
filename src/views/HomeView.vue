@@ -153,6 +153,12 @@ const retryRequest = async (): Promise<string | null> => {
 
     const result = await response.json()
 
+    if (response.status === 401) {
+      const msg = result.message || t('home.invalidApiKey') || 'Invalid API Key'
+      showResultMessage(msg, 'error')
+      return null
+    }
+
     if (response.ok && result.success) {
       // 重試成功，返回新的 taskId
       return result.taskId
@@ -220,6 +226,14 @@ const handleSubmit = async () => {
     })
 
     const result = await response.json()
+
+    if (response.status === 401) {
+      console.log(result.message)
+      const msg = t('home.invalidApiKey')
+      showResultMessage(msg, 'error')
+      showTaskStatus.value = false
+      return
+    }
 
     if (response.ok && result.success) {
       currentTaskId.value = result.taskId
@@ -1080,8 +1094,12 @@ onUnmounted(() => {
           resultType === 'info' ? 'bg-blue-50 border border-blue-200 text-blue-800' : '',
           resultType === 'warning' ? 'bg-yellow-50 border border-yellow-200 text-yellow-800' : ''
         ]"
-        v-html="isResultHtml ? resultMessage : ''"
-      ></div>
+      >
+        <div v-if="isResultHtml" v-html="resultMessage"></div>
+        <div v-else>
+          {{ resultMessage }}
+        </div>
+      </div>
 
       <!-- 測試按鈕區域 -->
       <div class="flex flex-wrap gap-3 mt-6">
