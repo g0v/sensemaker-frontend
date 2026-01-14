@@ -47,8 +47,6 @@ export default {
     riskWarning: '⚠️ Warning: Since the opinion integration tool is currently still in development and testing, LLM responses have inherent instability, and there is approximately a 1/6 chance that a single report will fail to generate. You can increase the success rate through retry mechanism settings.',
     processing: '⏳ Processing...',
     selectFileFirst: 'Please select a file to upload',
-    sendingRequest: '📡 Sending request to API...',
-    taskStarted: '✅ Task started!',
     taskId: 'Task ID',
     status: 'Status',
     estimatedTime: 'Estimated Time',

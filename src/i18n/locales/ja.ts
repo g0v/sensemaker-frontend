@@ -46,8 +46,6 @@ export default {
     riskWarning: '⚠️ 警告：意見統合ツールは現在まだ開発・テスト段階にあるため、LLMの応答には固有の不安定性があり、単一レポートが生成に失敗する確率は約1/6です。リトライ機能の設定により成功率を向上させることができます。',
     processing: '⏳ 処理中...',
     selectFileFirst: 'アップロードするファイルを選択してください',
-    sendingRequest: '📡 APIにリクエストを送信中...',
-    taskStarted: '✅ タスクが開始されました！',
     taskId: 'タスクID',
     status: 'ステータス',
     estimatedTime: '推定時間',

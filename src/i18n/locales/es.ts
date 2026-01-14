@@ -62,8 +62,6 @@ export default {
     riskWarning: '⚠️ Advertencia: Dado que la herramienta de integración de opiniones está actualmente aún en desarrollo y pruebas, las respuestas LLM tienen una inestabilidad inherente, y hay aproximadamente una probabilidad de 1/6 de que un reporte único falle en generarse. Puede aumentar la tasa de éxito a través de la configuración del mecanismo de reintento.',
     processing: '⏳ Procesando...',
     selectFileFirst: 'Por favor seleccione un archivo para subir',
-    sendingRequest: '📡 Enviando solicitud a la API...',
-    taskStarted: '✅ ¡Tarea iniciada!',
     taskId: 'ID de tarea',
     status: 'Estado',
     estimatedTime: 'Tiempo estimado',

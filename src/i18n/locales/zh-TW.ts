@@ -47,8 +47,6 @@ export default {
     riskWarning: '⚠️ 警告：由於意見綜整器目前還在開發測試中，LLM的回應有其不穩定性，單次報告約有1/6的機率會生成失敗，您可以透過重新機制的設定來增加成功率。',
     processing: '⏳ 處理中...',
     selectFileFirst: '請選擇要上傳的文件',
-    sendingRequest: '📡 正在發送請求到 API...',
-    taskStarted: '✅ 任務已開始！',
     taskId: '任務 ID',
     status: '狀態',
     estimatedTime: '預計完成時間',

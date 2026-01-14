@@ -46,8 +46,6 @@ export default {
     riskWarning: '⚠️ Avertissement : Étant donné que l\'outil d\'intégration d\'opinions est actuellement encore en développement et en test, les réponses LLM ont une instabilité inhérente, et il y a approximativement une chance sur 6 qu\'un rapport unique échoue à se générer. Vous pouvez augmenter le taux de succès grâce aux paramètres du mécanisme de nouvelle tentative.',
     processing: '⏳ Traitement...',
     selectFileFirst: 'Veuillez sélectionner un fichier à téléverser',
-    sendingRequest: '📡 Envoi de la requête à l\'API...',
-    taskStarted: '✅ Tâche démarrée !',
     taskId: 'ID de tâche',
     status: 'Statut',
     estimatedTime: 'Temps estimé',

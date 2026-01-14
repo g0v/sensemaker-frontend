@@ -13,6 +13,12 @@ interface TaskData {
   model: string
 }
 
+interface ResultMessage {
+  type: 'success' | 'error' | 'info' | 'warning'
+  isHtml: boolean
+  content: string
+}
+
 interface AnalysisResult {
   status: string
   commentsProcessed: number
@@ -48,10 +54,7 @@ const additionalContext = ref('')
 const outputLang = ref('zh-TW')
 const selectedFile = ref<File | null>(null)
 const isProcessing = ref(false)
-const resultMessage = ref('')
-const resultType = ref<'success' | 'error' | 'info' | 'warning'>('info')
-const isResultHtml = ref(false)
-const showResult = ref(false)
+const resultMessageList = ref<ResultMessage[]>([])
 
 // 重試機制相關變數
 const retryMode = ref<'strict' | 'normal' | 'custom'>('normal')
@@ -144,8 +147,6 @@ const retryRequest = async (): Promise<string | null> => {
       apiUrl += `&output_lang=${encodeURIComponent(storedRetryData.value.outputLang)}`
     }
 
-    showResultMessage(`${t('home.retryingRequest')} (${currentRetryCount.value}/${maxRetryCount.value})`, 'info')
-
     const response = await fetch(apiUrl, {
       method: 'POST',
       body: formData
@@ -155,7 +156,7 @@ const retryRequest = async (): Promise<string | null> => {
 
     if (response.status === 401) {
       const msg = result.message || t('home.invalidApiKey') || 'Invalid API Key'
-      showResultMessage(msg, 'error')
+      appendResultMessage(msg, 'error')
       return null
     }
 
@@ -164,13 +165,13 @@ const retryRequest = async (): Promise<string | null> => {
       return result.taskId
     } else {
       // 重試失敗
-      showResultMessage(`${t('home.retryFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.retryFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
       return null
     }
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.retryError')}:\n${errorMessage}`, 'error')
+    appendResultMessage(`${t('home.retryError')}:\n${errorMessage}`, 'error')
     return null
   }
 }
@@ -183,8 +184,10 @@ const handleFileSelect = (event: Event) => {
 }
 
 const handleSubmit = async () => {
+  resultMessageList.value.length = 0
+
   if (!selectedFile.value) {
-    showResultMessage(t('home.selectFileFirst'), 'error')
+    appendResultMessage(t('home.selectFileFirst'), 'error')
     return
   }
 
@@ -195,7 +198,6 @@ const handleSubmit = async () => {
   storeRetryData()
 
   isProcessing.value = true
-  showResult.value = false
   latestSummaryMarkdown.value = ''
   setDownloadButtonVisible(false)
 
@@ -218,8 +220,6 @@ const handleSubmit = async () => {
       apiUrl += `&output_lang=${encodeURIComponent(outputLang.value)}`
     }
 
-    showResultMessage(t('home.sendingRequest'), 'info')
-
     const response = await fetch(apiUrl, {
       method: 'POST',
       body: formData
@@ -230,7 +230,7 @@ const handleSubmit = async () => {
     if (response.status === 401) {
       console.log(result.message)
       const msg = t('home.invalidApiKey')
-      showResultMessage(msg, 'error')
+      appendResultMessage(msg, 'error')
       showTaskStatus.value = false
       return
     }
@@ -247,8 +247,6 @@ const handleSubmit = async () => {
 
       showTaskStatus.value = true
       startPolling(result.taskId)
-
-      showResultMessage(`${t('home.taskStarted')}\n\n${t('home.taskId')}: ${result.taskId}\n${t('home.status')}: ${result.status}\n${t('home.estimatedTime')}: ${result.estimatedTime}`, 'success')
     } else if (response.status === 500 && retryMode.value !== 'strict') {
       // 500 錯誤且啟用了重試機制，使用循環重試
       console.log('❌ 500 錯誤，開始重試機制')
@@ -280,12 +278,11 @@ const handleSubmit = async () => {
         }
         showTaskStatus.value = true
         startPolling(retryTaskId)
-        showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
       } else {
-        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+        appendResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
     } else {
-      showResultMessage(`${t('home.requestFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.requestFailed')} (${response.status}):\n${JSON.stringify(result, null, 2)}`, 'error')
     }
 
   } catch (error) {
@@ -320,12 +317,11 @@ const handleSubmit = async () => {
         }
         showTaskStatus.value = true
         startPolling(retryTaskId)
-        showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
       } else {
-        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+        appendResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
     } else {
-      showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
+      appendResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
     }
   } finally {
     isProcessing.value = false
@@ -344,7 +340,7 @@ const startPolling = (taskId: string) => {
     // 開始輪詢，每1分鐘檢查一次
     pollingInterval.value = setInterval(async () => {
       await checkTaskResult(taskId)
-    }, 60000) // 60秒 = 1分鐘
+    }, 60 * 1000) // 60秒 = 1分鐘
 
     // 立即檢查一次
     checkTaskResult(taskId)
@@ -383,6 +379,12 @@ const checkTaskResult = async (taskId: string) => {
     } else if (response.status === 500) {
       // 500 錯誤 - 任務處理失敗
       console.error('❌ 任務處理失敗 (500):', result)
+      appendResultMessage(failedMsgHtml({
+        taskId: result.taskId,
+        failedAt: result.failedAt,
+        message: result.message,
+        error: result.error
+      }), 'error', true)
 
       if (pollingInterval.value) {
         clearInterval(pollingInterval.value)
@@ -395,7 +397,6 @@ const checkTaskResult = async (taskId: string) => {
       // 檢查是否啟用了重試機制
       if (retryMode.value !== 'strict' && storedRetryData.value && currentRetryCount.value < maxRetryCount.value) {
         console.log('❌ 輪詢遇到 500 錯誤，開始重試機制')
-        showResultMessage(`${t('home.taskFailed')} - ${t('home.retryingRequest')}`, 'info')
 
         let retrySuccess = false
         let retryAttempts = currentRetryCount.value
@@ -419,7 +420,6 @@ const checkTaskResult = async (taskId: string) => {
             }
             showTaskStatus.value = true
             startPolling(retryTaskId)
-            showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
             retrySuccess = true
           } else if (retryAttempts < maxRetryCount.value) {
             // 等待 2 秒後再重試
@@ -429,41 +429,8 @@ const checkTaskResult = async (taskId: string) => {
 
         if (!retrySuccess) {
           // 顯示最終錯誤訊息
-          const errorHtml = `
-            <h2>${t('home.taskFailed')}</h2>
-            <div style="margin-bottom: 1em;">
-              <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
-              <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
-              <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
-            </div>
-            <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-            <h3>${t('home.errorDetails')}:</h3>
-            <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
-              <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
-              <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
-            </div>
-            <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-            <p><strong>${t('home.allRetriesFailed')}</strong></p>
-          `
-          showResultMessage(errorHtml, 'error', true)
+          appendResultMessage(t('home.allRetriesFailed'), 'error')
         }
-      } else {
-        // 沒有啟用重試機制，直接顯示錯誤訊息
-        const errorHtml = `
-          <h2>${t('home.taskFailed')}</h2>
-          <div style="margin-bottom: 1em;">
-            <p><strong>${t('home.taskId')}:</strong> ${result.taskId || taskId}</p>
-            <p><strong>${t('home.status')}:</strong> ${result.status || 'failed'}</p>
-            <p><strong>${t('home.failedAt')}:</strong> ${result.failedAt ? new Date(result.failedAt).toLocaleString('zh-TW') : 'N/A'}</p>
-          </div>
-          <hr style="margin: 1.5em 0; border: none; border-top: 1px solid #ddd;">
-          <h3>${t('home.errorDetails')}:</h3>
-          <div style="background-color: #fdf2f8; color: #000; padding: 1em; border-radius: 0.5em; border-left: 4px solid #ec4899;">
-            <p><strong>${t('home.errorMessage')}:</strong> ${result.message || t('home.unknownError')}</p>
-            <p><strong>${t('home.detailedError')}:</strong> ${result.error || t('home.noDetailedError')}</p>
-          </div>
-        `
-        showResultMessage(errorHtml, 'error', true)
       }
     } else {
       // 其他錯誤
@@ -472,7 +439,7 @@ const checkTaskResult = async (taskId: string) => {
         pollingInterval.value = null
       }
 
-      showResultMessage(`${t('home.requestFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.requestFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
       showTaskStatus.value = false
     }
 
@@ -483,7 +450,7 @@ const checkTaskResult = async (taskId: string) => {
         // 檢查是否啟用了重試機制
     if (retryMode.value !== 'strict' && storedRetryData.value && currentRetryCount.value < maxRetryCount.value) {
       console.log('❌ 輪詢遇到網絡錯誤，開始重試機制')
-      showResultMessage(`${t('home.requestError')} - ${t('home.retryingRequest')}`, 'info')
+      appendResultMessage(`${t('home.requestError')} - ${t('home.retryingRequest')}`, 'info')
 
       let retrySuccess = false
       let retryAttempts = currentRetryCount.value
@@ -507,7 +474,6 @@ const checkTaskResult = async (taskId: string) => {
           }
           showTaskStatus.value = true
           startPolling(retryTaskId)
-          showResultMessage(`${t('home.retrySuccess')} - 開始輪詢新任務`, 'success')
           retrySuccess = true
         } else if (retryAttempts < maxRetryCount.value) {
           // 等待 2 秒後再重試
@@ -516,7 +482,7 @@ const checkTaskResult = async (taskId: string) => {
       }
 
       if (!retrySuccess) {
-        showResultMessage(`${t('home.allRetriesFailed')}`, 'error')
+        appendResultMessage(`${t('home.allRetriesFailed')}`, 'error')
       }
     } else {
       updatePollingStatus(`${t('home.requestError')}: ${errorMessage} (${new Date().toLocaleTimeString()})`)
@@ -550,14 +516,29 @@ const showFinalResult = (result: AnalysisResult) => {
     </div>
   `
 
-  showResultMessage(resultHtml, 'success', true)
+  appendResultMessage(resultHtml, 'success', true)
 }
 
-const showResultMessage = (message: string, type: 'success' | 'error' | 'info' | 'warning', isHtml = false) => {
-  resultMessage.value = message
-  resultType.value = type
-  isResultHtml.value = isHtml
-  showResult.value = true
+const appendResultMessage = (message: string, type: 'success' | 'error' | 'info' | 'warning', isHtml = false) => {
+  resultMessageList.value.push({
+    type,
+    isHtml,
+    content: message
+  })
+}
+
+function failedMsgHtml(
+  { taskId, failedAt, message, error }: { taskId: string, failedAt: number, message: string, error: string}
+) {
+  return `
+    <h2>${t('home.taskFailed')}</h2>
+    <div>
+      <p><strong>${t('home.taskId')}:</strong> ${taskId}</p>
+      <p><strong>${t('home.failedAt')}:</strong> ${new Date(failedAt).toLocaleString('zh-TW')}</p>
+      <p><strong>${t('home.errorMessage')}:</strong> ${message}</p>
+      <p><strong>${t('home.detailedError')}:</strong> ${error}</p>
+    </div>
+  `
 }
 
 const setDownloadButtonVisible = (visible: boolean) => {
@@ -567,7 +548,7 @@ const setDownloadButtonVisible = (visible: boolean) => {
 const downloadMarkdown = async () => {
   try {
     if (!latestSummaryMarkdown.value || latestSummaryMarkdown.value.trim().length === 0) {
-      showResultMessage(t('home.noMarkdownContent'), 'error')
+      appendResultMessage(t('home.noMarkdownContent'), 'error')
       return
     }
     const taskId = currentTaskId.value || 'result'
@@ -587,7 +568,7 @@ const downloadMarkdown = async () => {
     await deleteTaskReport(taskId)
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.downloadFailed')}: ${errorMessage}`, 'error')
+    appendResultMessage(`${t('home.downloadFailed')}: ${errorMessage}`, 'error')
   }
 }
 
@@ -614,7 +595,7 @@ const deleteTaskReport = async (taskId: string) => {
 // 測試功能
 const testLLM = async () => {
   try {
-    showResultMessage(t('home.testLLM'), 'info')
+    appendResultMessage(t('home.testLLM'), 'info')
 
     const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-llm', {
       method: 'POST'
@@ -622,19 +603,19 @@ const testLLM = async () => {
 
     const result = await response.json()
     if (response.ok && result.success) {
-      showResultMessage(`${t('home.testLLMSuccess')}\n\n簡單回應: ${result.simpleResponse}\n\n結構化回應: ${JSON.stringify(result.structuredResponse, null, 2)}\n\n測試評論: ${JSON.stringify(result.testComment, null, 2)}`, 'success')
+      appendResultMessage(`${t('home.testLLMSuccess')}\n\n簡單回應: ${result.simpleResponse}\n\n結構化回應: ${JSON.stringify(result.structuredResponse, null, 2)}\n\n測試評論: ${JSON.stringify(result.testComment, null, 2)}`, 'success')
     } else {
-      showResultMessage(`${t('home.testLLMFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.testLLMFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.testLLMError')}:\n${errorMessage}`, 'error')
+    appendResultMessage(`${t('home.testLLMError')}:\n${errorMessage}`, 'error')
   }
 }
 
 const testCSV = async () => {
   if (!selectedFile.value) {
-    showResultMessage(t('home.testCSV'), 'error')
+    appendResultMessage(t('home.testCSV'), 'error')
     return
   }
 
@@ -649,19 +630,19 @@ const testCSV = async () => {
 
     const result = await response.json()
     if (response.ok) {
-      showResultMessage(`${t('home.testCSVSuccess')}\n\n處理了 ${result.commentsCount} 條評論\n\n詳細結果:\n${JSON.stringify(result, null, 2)}`, 'success')
+      appendResultMessage(`${t('home.testCSVSuccess')}\n\n處理了 ${result.commentsCount} 條評論\n\n詳細結果:\n${JSON.stringify(result, null, 2)}`, 'success')
     } else {
-      showResultMessage(`${t('home.testCSVFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.testCSVFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
+    appendResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
   }
 }
 
 const testR2 = async () => {
   try {
-    showResultMessage(t('home.testR2'), 'info')
+    appendResultMessage(t('home.testR2'), 'info')
 
     const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-r2', {
       method: 'POST'
@@ -669,13 +650,13 @@ const testR2 = async () => {
 
     const result = await response.json()
     if (response.ok && result.success) {
-      showResultMessage(`${t('home.testR2Success')}\n\n讀取的值: ${result.readValue}\n\n自定義元數據: ${JSON.stringify(result.customMetadata, null, 2)}`, 'success')
+      appendResultMessage(`${t('home.testR2Success')}\n\n讀取的值: ${result.readValue}\n\n自定義元數據: ${JSON.stringify(result.customMetadata, null, 2)}`, 'success')
     } else {
-      showResultMessage(`${t('home.testR2Failed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
+      appendResultMessage(`${t('home.testR2Failed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
-    showResultMessage(`${t('home.testR2Error')}:\n${errorMessage}`, 'error')
+    appendResultMessage(`${t('home.testR2Error')}:\n${errorMessage}`, 'error')
   }
 }
 
@@ -1059,7 +1040,7 @@ onUnmounted(() => {
       <!-- 任務狀態顯示區域 -->
       <div v-if="showTaskStatus" class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-900 mb-4">{{ t('home.taskStatus') }}</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-blue-800 mb-4">
           <div class="bg-blue-100 p-3 rounded-md">
             <span class="font-medium text-blue-800">{{ t('home.taskId') }}:</span> {{ taskData.taskId }}
           </div>
@@ -1073,7 +1054,7 @@ onUnmounted(() => {
             <span class="font-medium text-blue-800">{{ t('home.model') }}:</span> {{ taskData.model }}
           </div>
         </div>
-        <div class="text-center p-3 bg-blue-100 rounded-md">
+        <div class="flex justify-center items-center p-3 bg-blue-100 rounded-md">
           <div class="inline-block w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-2"></div>
           <span class="text-blue-800">{{ pollingMessage }}</span>
         </div>
@@ -1085,19 +1066,22 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div
-        v-if="showResult"
-        :class="[
-          'rounded-lg p-4 max-h-96 overflow-y-auto',
-          resultType === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : '',
-          resultType === 'error' ? 'bg-red-50 border border-red-200 text-red-800' : '',
-          resultType === 'info' ? 'bg-blue-50 border border-blue-200 text-blue-800' : '',
-          resultType === 'warning' ? 'bg-yellow-50 border border-yellow-200 text-yellow-800' : ''
-        ]"
-      >
-        <div v-if="isResultHtml" v-html="resultMessage"></div>
-        <div v-else>
-          {{ resultMessage }}
+    <div class="flex flex-col gap-4">
+        <div
+          v-if="resultMessageList.length > 0"
+          v-for="message in resultMessageList"
+          :class="[
+            'rounded-lg p-4 max-h-96 overflow-y-auto',
+            message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : '',
+            message.type === 'error' ? 'bg-red-50 border border-red-200 text-red-800' : '',
+            message.type === 'info' ? 'bg-blue-50 border border-blue-200 text-blue-800' : '',
+            message.type === 'warning' ? 'bg-yellow-50 border border-yellow-200 text-yellow-800' : ''
+          ]"
+        >
+          <div v-if="message.isHtml" v-html="message.content"></div>
+          <div v-else>
+            {{ message.content }}
+          </div>
         </div>
       </div>
 
