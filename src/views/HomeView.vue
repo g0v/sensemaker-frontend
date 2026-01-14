@@ -133,19 +133,18 @@ const retryRequest = async (): Promise<string | null> => {
     formData.append('file', storedRetryData.value.file)
 
     // 構建 API URL
-    const apiUrl = 'https://sensemaker-backend.bestian123.workers.dev/api/sensemake'
-    formData.append('openRouterModel', storedRetryData.value.model)
+    let apiUrl = `https://sensemaker-backend.bestian123.workers.dev/api/sensemake?OPENROUTER_MODEL=${encodeURIComponent(storedRetryData.value.model)}`
 
     if (storedRetryData.value.apiKey.trim()) {
-      formData.append('openRouterApiKey', storedRetryData.value.apiKey.trim())
+      apiUrl += `&OPENROUTER_API_KEY=${encodeURIComponent(storedRetryData.value.apiKey.trim())}`
     }
 
     if (storedRetryData.value.additionalContext.trim()) {
-      formData.append('additionalContext', storedRetryData.value.additionalContext.trim())
+      apiUrl += `&additionalContext=${encodeURIComponent(storedRetryData.value.additionalContext.trim())}`
     }
 
     if (storedRetryData.value.outputLang !== 'en') {
-      formData.append('outputLang', storedRetryData.value.outputLang)
+      apiUrl += `&output_lang=${encodeURIComponent(storedRetryData.value.outputLang)}`
     }
 
     const response = await fetch(apiUrl, {
@@ -207,19 +206,18 @@ const handleSubmit = async () => {
     formData.append('file', selectedFile.value)
 
     // 構建 API URL
-    const apiUrl = 'https://sensemaker-backend.bestian123.workers.dev/api/sensemake'
-    formData.append('openRouterModel', model.value)
+    let apiUrl = `https://sensemaker-backend.bestian123.workers.dev/api/sensemake?OPENROUTER_MODEL=${encodeURIComponent(model.value)}`
 
     if (apiKey.value.trim()) {
-      formData.append('openRouterApiKey', apiKey.value.trim())
+      apiUrl += `&OPENROUTER_API_KEY=${encodeURIComponent(apiKey.value.trim())}`
     }
 
     if (additionalContext.value.trim()) {
-      formData.append('additionalContext', additionalContext.value.trim())
+      apiUrl += `&additionalContext=${encodeURIComponent(additionalContext.value.trim())}`
     }
 
     if (outputLang.value !== 'en') {
-      formData.append('outputLang', outputLang.value)
+      apiUrl += `&output_lang=${encodeURIComponent(outputLang.value)}`
     }
 
     const response = await fetch(apiUrl, {
