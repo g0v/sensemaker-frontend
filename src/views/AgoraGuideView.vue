@@ -24,7 +24,7 @@
           <p class="text-gray-600">
             <strong>{{ t('agoraGuide.officialVideo') }}</strong>
             <a
-              href="https://www.youtube.com/watch?v=1SxIkA96FyA"
+              href="https://www.youtube.com/watch?v=phw1AlQs8DY"
               target="_blank"
               rel="noopener noreferrer"
               class="text-blue-600 hover:text-blue-800 ml-1"
