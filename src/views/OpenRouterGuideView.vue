@@ -132,13 +132,22 @@
 
         <!-- 底部導航 -->
         <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 relative">
-          <router-link
-            to="/guide/polis"
-            class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
-          >
-            <IconArrowPrev class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
-            {{ t('polisGuide.title') }}
-          </router-link>
+          <div class="flex flex-col gap-2">
+            <router-link
+              to="/guide/polis"
+              class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >
+              <IconArrowPrev class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
+              {{ t('polisGuide.title') }}
+            </router-link>
+            <router-link
+              to="/guide/agora"
+              class="group inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition-colors"
+            >
+              <IconArrowPrev class="w-4 stroke-blue-600 group-hover:stroke-blue-800" />
+              {{ t('agoraGuide.title') }}
+            </router-link>
+          </div>
           <router-link
             to="/"
             class="inline-flex md:absolute mx-auto left-0 right-0 w-fit items-center text-blue-600 hover:text-blue-800 font-medium transition-colors"

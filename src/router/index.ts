@@ -42,6 +42,14 @@ const router = createRouter({
       component: () => import('../views/PolisGuideView.vue'),
     },
     {
+      path: '/guide/agora',
+      name: 'agora-guide',
+      // route level code-splitting
+      // this generates a separate chunk (AgoraGuide.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AgoraGuideView.vue'),
+    },
+    {
       path: '/guide/openrouter',
       name: 'openrouter-guide',
       // route level code-splitting

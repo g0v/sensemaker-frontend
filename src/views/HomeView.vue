@@ -764,12 +764,18 @@ onUnmounted(() => {
             <p class="text-gray-700 mb-3 text-sm text-center">
               {{ t('guideModal.polisDescription') }}
             </p>
-            <div class="text-center">
+            <div class="flex flex-col gap-2 text-center">
               <router-link
                 to="/guide/polis"
                 class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
               >
-                {{ t('guideModal.polisLink') }}
+                {{ t('guideModal.polisGuideLink') }}
+              </router-link>
+              <router-link
+                to="/guide/agora"
+                class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              >
+                {{ t('guideModal.agoraGuideLink') }}
               </router-link>
             </div>
           </div>
