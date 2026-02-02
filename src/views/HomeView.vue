@@ -761,7 +761,7 @@ onUnmounted(() => {
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.polisTitle') }}</h3>
-            <p class="text-gray-700 mb-3 text-sm text-center">
+            <p class="text-gray-700 mb-3 text-sm text-left">
               {{ t('guideModal.polisDescription') }}
             </p>
             <div class="text-center">
@@ -785,7 +785,7 @@ onUnmounted(() => {
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.openRouterTitle') }}</h3>
-            <p class="text-gray-700 mb-3 text-sm text-center">
+            <p class="text-gray-700 mb-3 text-sm text-left">
               {{ t('guideModal.openRouterDescription') }}
             </p>
             <div class="text-center">
@@ -809,7 +809,7 @@ onUnmounted(() => {
               </div>
             </div>
             <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">{{ t('guideModal.sensemakerTitle') }}</h3>
-            <p class="text-gray-700 mb-3 text-sm text-center">
+            <p class="text-gray-700 mb-3 text-sm text-left">
               {{ t('guideModal.sensemakerDescription') }}
             </p>
             <div class="text-center">
