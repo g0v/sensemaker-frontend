@@ -85,21 +85,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 // 測試 CSV 的公開網址（部署後從 public 提供）
 const testCsvUrl = computed(() => {
   const base = typeof window !== 'undefined' ? window.location.origin : ''
   return `${base}/data/comments_test.csv`
 })
-
-// 頁面標題（隨語系更新）
-const updateTitle = () => {
-  document.title = `${t('maintain.pageTitle')} - ${t('home.title')}`
-}
-updateTitle()
-watch(locale, updateTitle)
 </script>
