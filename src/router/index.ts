@@ -26,6 +26,11 @@ const router = createRouter({
       component: () => import('../views/PrivacyView.vue'),
     },
     {
+      path: '/maintain',
+      name: 'maintain',
+      component: () => import('../views/MaintainView.vue'),
+    },
+    {
       path: '/self-host',
       name: 'self-host',
       // route level code-splitting

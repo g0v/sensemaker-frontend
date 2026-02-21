@@ -191,9 +191,6 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
-// 頁面標題
-document.title = `${t('selfHost.title')} - ${t('home.title')}`
 </script>
 
 <style scoped>
