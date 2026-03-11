@@ -77,17 +77,6 @@ const taskData = ref<TaskData>({
 const pollingMessage = ref('')
 const latestSummaryMarkdown = ref('')
 
-// 新增錯誤狀態變數
-const errorData = ref<{
-  taskId: string
-  status: string
-  failedAt: string
-  message: string
-  error: string
-} | null>(null)
-
-const showTaskError = ref(false)
-
 // 下載按鈕狀態
 const showDownloadButton = ref(false)
 
@@ -594,74 +583,6 @@ const deleteTaskReport = async (taskId: string) => {
   }
 }
 
-// 測試功能
-const testLLM = async () => {
-  try {
-    appendResultMessage(t('home.testLLM'), 'info')
-
-    const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-llm', {
-      method: 'POST'
-    })
-
-    const result = await response.json()
-    if (response.ok && result.success) {
-      appendResultMessage(`${t('home.testLLMSuccess')}\n\n簡單回應: ${result.simpleResponse}\n\n結構化回應: ${JSON.stringify(result.structuredResponse, null, 2)}\n\n測試評論: ${JSON.stringify(result.testComment, null, 2)}`, 'success')
-    } else {
-      appendResultMessage(`${t('home.testLLMFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
-    }
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    appendResultMessage(`${t('home.testLLMError')}:\n${errorMessage}`, 'error')
-  }
-}
-
-const testCSV = async () => {
-  if (!selectedFile.value) {
-    appendResultMessage(t('home.testCSV'), 'error')
-    return
-  }
-
-  const formData = new FormData()
-  formData.append('file', selectedFile.value)
-
-  try {
-    const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-csv', {
-      method: 'POST',
-      body: formData
-    })
-
-    const result = await response.json()
-    if (response.ok) {
-      appendResultMessage(`${t('home.testCSVSuccess')}\n\n處理了 ${result.commentsCount} 條評論\n\n詳細結果:\n${JSON.stringify(result, null, 2)}`, 'success')
-    } else {
-      appendResultMessage(`${t('home.testCSVFailed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
-    }
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    appendResultMessage(`${t('home.requestError')}:\n${errorMessage}`, 'error')
-  }
-}
-
-const testR2 = async () => {
-  try {
-    appendResultMessage(t('home.testR2'), 'info')
-
-    const response = await fetch('https://sensemaker-backend.bestian123.workers.dev/api/test-r2', {
-      method: 'POST'
-    })
-
-    const result = await response.json()
-    if (response.ok && result.success) {
-      appendResultMessage(`${t('home.testR2Success')}\n\n讀取的值: ${result.readValue}\n\n自定義元數據: ${JSON.stringify(result.customMetadata, null, 2)}`, 'success')
-    } else {
-      appendResultMessage(`${t('home.testR2Failed')}:\n${JSON.stringify(result, null, 2)}`, 'error')
-    }
-  } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    appendResultMessage(`${t('home.testR2Error')}:\n${errorMessage}`, 'error')
-  }
-}
-
 // 健康檢查
 const checkHealth = async () => {
   try {
@@ -1068,10 +989,10 @@ onUnmounted(() => {
         </div>
       </div>
 
-    <div class="flex flex-col gap-4">
+      <div v-if="resultMessageList.length > 0" class="flex flex-col gap-4">
         <div
-          v-if="resultMessageList.length > 0"
-          v-for="message in resultMessageList"
+          v-for="(message, index) in resultMessageList"
+          :key="index"
           :class="[
             'rounded-lg p-4 max-h-96 overflow-y-auto',
             message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : '',

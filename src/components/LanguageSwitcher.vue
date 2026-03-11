@@ -39,10 +39,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { supportedLocales, setLocale, getCurrentLocale, type SupportedLocale } from '../i18n'
 
-const { locale } = useI18n()
 const isOpen = ref(false)
 
 const currentLocale = computed(() => getCurrentLocale())

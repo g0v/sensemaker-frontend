@@ -51,7 +51,7 @@ interface Summary {
   commentCount?: number
   topicCount?: number
   summarizationType?: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 interface Props {
