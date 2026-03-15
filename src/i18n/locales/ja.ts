@@ -34,7 +34,7 @@ export default {
     apiKeyPlaceholder: 'OpenRouter API Keyを入力してください',
     getApiKeyLink: 'API Key を取得',
     apiKeyRequired: 'このフィールドは必須で、AIモデルサービスに接続するために使用されます',
-    invalidApiKey: '無効なAPIキー',
+    invalidApiKey: '無効なAPIキー または モデル',
     privacyNote: '🔒 プライバシー保護：プライバシーポリシーに従い、このサイトはあなたのAPI KEYをどこにも保存しません。懸念がある場合は、バックエンドとフロントエンドサービスをセルフホストすることをお勧めします。',
     modelLabel: '🤖 モデル名:',
     modelPlaceholder: 'openai/gpt-oss-120b',

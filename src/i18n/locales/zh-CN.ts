@@ -34,7 +34,7 @@ export default {
     apiKeyPlaceholder: '请输入您的 OpenRouter API Key',
     getApiKeyLink: '申请 API Key',
     apiKeyRequired: '此字段为必填，用于连接到 AI 模型服务',
-    invalidApiKey: '无效的 API Key',
+    invalidApiKey: '无效的 API Key 或模型',
     privacyNote: '🔒 隐私保护：根据隐私权政策，本站不会将您的API KEY储存在任何地方。如有疑虑，欢迎自行架站后端与前端服务。',
     modelLabel: '🤖 模型名称:',
     modelPlaceholder: 'openai/gpt-oss-120b',
