@@ -19,6 +19,9 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Show Yarn version
+        run: yarn -v
+
       - name: Install dependencies
         run: yarn install --immutable
 
