@@ -259,6 +259,7 @@ export default {
   guideModal: {
     title: 'Welcome to Sensemaker Opinion Integration Tool',
     description: 'Sensemaker Opinion Integration Tool is a powerful opinion survey report analysis tool that can help you extract valuable insights from large volumes of opinion survey reports.',
+    sensemakingToolsLink: '2026 latest: Use OpenRouter or local LM Studio to generate a complete interactive HTML web report',
     polisTitle: '1. Polis Opinion Survey Report Export',
     polisDescription: 'This tool supports opinion survey reports exported from the Polis platform. Please ensure your files conform to Polis data structure.',
     polisLink: 'View Guide →',
@@ -366,4 +367,3 @@ export default {
     termsOfService: 'Terms of Service'
   }
 }
-

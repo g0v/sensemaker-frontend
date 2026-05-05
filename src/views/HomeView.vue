@@ -656,6 +656,15 @@ onUnmounted(() => {
         <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ t('guideModal.title') }}</h2>
         <p class="text-gray-700 mb-3 text-sm text-center">
           {{ t('guideModal.description') }}
+          <br/>
+          <a
+            href="https://github.com/bestian/sensemaking-tools"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 hover:underline"
+          >
+            {{ t('guideModal.sensemakingToolsLink') }}
+          </a>
         </p>
 
         <!-- 語言切換 -->

@@ -264,6 +264,7 @@ export default {
   guideModal: {
     title: '歡迎使用 Sensemaker 意見綜整器',
     description: 'Sensemaker 意見綜整器是一個強大的意見調查報告分析工具，可以幫助您從大量意見調查報告中提取有價值的洞察。',
+    sensemakingToolsLink: '2026最新版: 可用OpenRouter 或地端 LM Studio產生完整的互動式 HTML 網頁報告',
     polisTitle: '1. Polis意見調查報告導出',
     polisDescription: '本工具支援 Polis 平台導出的意見調查報告。請確保您的文件符合 Polis 的數據結構。',
     polisLink: '查看說明 →',
@@ -371,4 +372,3 @@ export default {
     termsOfService: '使用條款'
   }
 }
-

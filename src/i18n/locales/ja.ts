@@ -246,6 +246,7 @@ export default {
   guideModal: {
     title: 'Sensemaker意見統合ツールへようこそ',
     description: 'Sensemaker意見統合ツールは、大量の意見調査レポートから価値のある洞察を抽出するのに役立つ強力な意見調査レポート分析ツールです。',
+    sensemakingToolsLink: '2026年最新版: OpenRouterまたはローカルのLM Studioで完全なインタラクティブHTMLウェブレポートを生成できます',
     polisTitle: '1. Polis意見調査レポートのエクスポート',
     polisDescription: 'このツールは、Polisプラットフォームからエクスポートされた意見調査レポートをサポートしています。ファイルがPolisのデータ構造に準拠していることを確認してください。',
     polisLink: 'ガイドを表示 →',
