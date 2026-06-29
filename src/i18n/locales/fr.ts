@@ -247,6 +247,7 @@ export default {
     title: 'Bienvenue dans l\'outil d\'intégration d\'opinions Sensemaker',
     description: 'L\'outil d\'intégration d\'opinions Sensemaker est un outil puissant d\'analyse de rapports d\'enquêtes d\'opinion qui peut vous aider à extraire des insights précieux de grandes quantités de rapports d\'enquêtes d\'opinion.',
     sensemakingToolsLink: 'Version 2026: utilisez OpenRouter ou LM Studio en local pour generer un rapport web HTML interactif complet',
+    uberReportExample: 'Rapport exemple : « UberX, transport de passagers en voiture personnelle »',
     polisTitle: '1. Export de rapport d\'enquête d\'opinion Polis',
     polisDescription: 'Cet outil prend en charge les rapports d\'enquêtes d\'opinion exportés depuis la plateforme Polis. Veuillez vous assurer que vos fichiers sont conformes à la structure de données Polis.',
     polisLink: 'Voir le guide →',

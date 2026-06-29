@@ -665,6 +665,15 @@ onUnmounted(() => {
           >
             {{ t('guideModal.sensemakingToolsLink') }}
           </a>
+          <br/>
+          <a
+            href="https://www.vtaiwan.tw/uber-x-report"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 hover:underline"
+          >
+            {{ t('guideModal.uberReportExample') }}
+          </a>
         </p>
 
         <!-- 語言切換 -->
