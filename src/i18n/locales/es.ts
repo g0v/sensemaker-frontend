@@ -247,6 +247,7 @@ export default {
     title: 'Bienvenido a la herramienta de integración de opiniones Sensemaker',
     description: 'La herramienta de integración de opiniones Sensemaker es una poderosa herramienta de análisis de informes de encuestas de opinión que puede ayudarle a extraer insights valiosos de grandes volúmenes de informes de encuestas de opinión.',
     sensemakingToolsLink: 'Version 2026: use OpenRouter o LM Studio local para generar un informe web HTML interactivo completo',
+    uberReportExample: 'Informe de ejemplo: «UberX, transporte de pasajeros en vehiculo privado»',
     polisTitle: '1. Exportación de informe de encuesta de opinión Polis',
     polisDescription: 'Esta herramienta soporta informes de encuestas de opinión exportados desde la plataforma Polis. Por favor asegúrese de que sus archivos cumplan con la estructura de datos de Polis.',
     polisLink: 'Ver guía →',
