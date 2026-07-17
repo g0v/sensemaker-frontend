@@ -66,6 +66,7 @@ const storedRetryData = ref<RetryData | null>(null)
 // 任務狀態相關
 const currentTaskId = ref<string | null>(null)
 const pollingInterval = ref<number | null>(null)
+const pollingStartTimeout = ref<number | null>(null)
 const showTaskStatus = ref(false)
 const taskData = ref<TaskData>({
   taskId: '',
@@ -76,6 +77,7 @@ const taskData = ref<TaskData>({
 })
 const pollingMessage = ref('')
 const latestSummaryMarkdown = ref('')
+const displayedResultTaskIds = new Set<string>()
 
 // 下載按鈕狀態
 const showDownloadButton = ref(false)
@@ -174,6 +176,8 @@ const handleFileSelect = (event: Event) => {
 }
 
 const handleSubmit = async () => {
+  stopPolling()
+  currentTaskId.value = null
   resultMessageList.value.length = 0
 
   if (!selectedFile.value) {
@@ -320,12 +324,13 @@ const handleSubmit = async () => {
 }
 
 const startPolling = (taskId: string) => {
-  if (pollingInterval.value) {
-    clearInterval(pollingInterval.value)
-  }
+  stopPolling()
 
   // 延遲3分鐘後開始輪詢，每1分鐘檢查一次
-  setTimeout(() => {
+  pollingStartTimeout.value = window.setTimeout(() => {
+    pollingStartTimeout.value = null
+    if (currentTaskId.value !== taskId) return
+
     console.log('開始輪詢任務結果...')
 
     // 開始輪詢，每1分鐘檢查一次
@@ -341,25 +346,40 @@ const startPolling = (taskId: string) => {
   updatePollingStatus(t('home.taskInQueue'))
 }
 
+const stopPolling = () => {
+  if (pollingStartTimeout.value !== null) {
+    clearTimeout(pollingStartTimeout.value)
+    pollingStartTimeout.value = null
+  }
+
+  if (pollingInterval.value !== null) {
+    clearInterval(pollingInterval.value)
+    pollingInterval.value = null
+  }
+}
+
 const checkTaskResult = async (taskId: string) => {
+  if (currentTaskId.value !== taskId) return
+
   console.log('checkTaskResult', taskId)
   try {
     const response = await fetch(`https://sensemaker-backend.bestian123.workers.dev/api/sensemake/result/${taskId}`)
     const result = await response.json()
 
+    if (currentTaskId.value !== taskId) return
+
     if (response.ok && result.success) {
       if (result.status === 'completed') {
-        // 任務完成，停止輪詢
-        if (pollingInterval.value) {
-          clearInterval(pollingInterval.value)
-          pollingInterval.value = null
-        }
+        stopPolling()
 
         // 隱藏任務狀態
         showTaskStatus.value = false
 
-        // 顯示結果
-        showFinalResult(result)
+        // 同一任務即使收到重複的完成回應，也只顯示一次結果。
+        if (!displayedResultTaskIds.has(taskId)) {
+          displayedResultTaskIds.add(taskId)
+          showFinalResult(result)
+        }
       } else {
         // 更新輪詢狀態
         updatePollingStatus(`${t('home.taskProcessing')} (${new Date().toLocaleTimeString()})`)
@@ -622,9 +642,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (pollingInterval.value) {
-    clearInterval(pollingInterval.value)
-  }
+  stopPolling()
 })
 </script>
 
