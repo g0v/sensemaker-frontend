@@ -44,7 +44,7 @@ const RAW_RUNTIME_STATE =
           ["jsdom", "virtual:c36aa0ef7628ebf8431b1390551d95bce1dca2c305224bd107f1c953070d6b7f3abb548937211d0d070743823611f5cd589f364efc9c9d05d1ac4724b1a84693#npm:28.1.0"],\
           ["marked", "npm:16.4.2"],\
           ["npm-run-all2", "npm:8.0.4"],\
-          ["postcss", "npm:8.5.11"],\
+          ["postcss", "npm:8.5.18"],\
           ["sensemaker-frontend", "workspace:."],\
           ["tailwindcss", "npm:3.4.18"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -2748,7 +2748,7 @@ const RAW_RUNTIME_STATE =
           ["fraction.js", "npm:5.3.4"],\
           ["normalize-range", "npm:0.1.2"],\
           ["picocolors", "npm:1.1.1"],\
-          ["postcss", "npm:8.5.11"],\
+          ["postcss", "npm:8.5.18"],\
           ["postcss-value-parser", "npm:4.2.0"]\
         ],\
         "packagePeers": [\
@@ -2814,11 +2814,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["brace-expansion", [\
-      ["npm:1.1.12", {\
-        "packageLocation": "../../.yarn/berry/cache/brace-expansion-npm-1.1.12-329e9ad7a1-10c0.zip/node_modules/brace-expansion/",\
+      ["npm:1.1.16", {\
+        "packageLocation": "../../.yarn/berry/cache/brace-expansion-npm-1.1.16-ff37b52845-10c0.zip/node_modules/brace-expansion/",\
         "packageDependencies": [\
           ["balanced-match", "npm:1.0.2"],\
-          ["brace-expansion", "npm:1.1.12"],\
+          ["brace-expansion", "npm:1.1.16"],\
           ["concat-map", "npm:0.0.1"]\
         ],\
         "linkType": "HARD"\
@@ -4471,7 +4471,7 @@ const RAW_RUNTIME_STATE =
       ["npm:3.1.5", {\
         "packageLocation": "../../.yarn/berry/cache/minimatch-npm-3.1.5-86958baf50-10c0.zip/node_modules/minimatch/",\
         "packageDependencies": [\
-          ["brace-expansion", "npm:1.1.12"],\
+          ["brace-expansion", "npm:1.1.16"],\
           ["minimatch", "npm:3.1.5"]\
         ],\
         "linkType": "HARD"\
@@ -4618,6 +4618,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/nanoid-npm-3.3.11-f98c1f9ef6-10c0.zip/node_modules/nanoid/",\
         "packageDependencies": [\
           ["nanoid", "npm:3.3.11"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:3.3.15", {\
+        "packageLocation": "../../.yarn/berry/cache/nanoid-npm-3.3.15-2658de05f8-10c0.zip/node_modules/nanoid/",\
+        "packageDependencies": [\
+          ["nanoid", "npm:3.3.15"]\
         ],\
         "linkType": "HARD"\
       }],\
@@ -5004,12 +5011,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["postcss", [\
-      ["npm:8.5.11", {\
-        "packageLocation": "../../.yarn/berry/cache/postcss-npm-8.5.11-13f0a3f678-10c0.zip/node_modules/postcss/",\
+      ["npm:8.5.18", {\
+        "packageLocation": "../../.yarn/berry/cache/postcss-npm-8.5.18-0b1f5a6d7b-10c0.zip/node_modules/postcss/",\
         "packageDependencies": [\
-          ["nanoid", "npm:3.3.11"],\
+          ["nanoid", "npm:3.3.15"],\
           ["picocolors", "npm:1.1.1"],\
-          ["postcss", "npm:8.5.11"],\
+          ["postcss", "npm:8.5.18"],\
           ["source-map-js", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
@@ -5419,7 +5426,7 @@ const RAW_RUNTIME_STATE =
           ["jsdom", "virtual:c36aa0ef7628ebf8431b1390551d95bce1dca2c305224bd107f1c953070d6b7f3abb548937211d0d070743823611f5cd589f364efc9c9d05d1ac4724b1a84693#npm:28.1.0"],\
           ["marked", "npm:16.4.2"],\
           ["npm-run-all2", "npm:8.0.4"],\
-          ["postcss", "npm:8.5.11"],\
+          ["postcss", "npm:8.5.18"],\
           ["sensemaker-frontend", "workspace:."],\
           ["tailwindcss", "npm:3.4.18"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
