@@ -44,7 +44,7 @@ const RAW_RUNTIME_STATE =
           ["jsdom", "virtual:c36aa0ef7628ebf8431b1390551d95bce1dca2c305224bd107f1c953070d6b7f3abb548937211d0d070743823611f5cd589f364efc9c9d05d1ac4724b1a84693#npm:28.1.0"],\
           ["marked", "npm:16.4.2"],\
           ["npm-run-all2", "npm:8.0.4"],\
-          ["postcss", "npm:8.5.23"],\
+          ["postcss", "npm:8.5.24"],\
           ["sensemaker-frontend", "workspace:."],\
           ["tailwindcss", "npm:3.4.18"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -2748,7 +2748,7 @@ const RAW_RUNTIME_STATE =
           ["fraction.js", "npm:5.3.4"],\
           ["normalize-range", "npm:0.1.2"],\
           ["picocolors", "npm:1.1.1"],\
-          ["postcss", "npm:8.5.23"],\
+          ["postcss", "npm:8.5.24"],\
           ["postcss-value-parser", "npm:4.2.0"]\
         ],\
         "packagePeers": [\
@@ -3982,10 +3982,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ip-address", [\
-      ["npm:10.2.0", {\
-        "packageLocation": "../../.yarn/berry/cache/ip-address-npm-10.2.0-6fea410c3e-10c0.zip/node_modules/ip-address/",\
+      ["npm:10.4.0", {\
+        "packageLocation": "../../.yarn/berry/cache/ip-address-npm-10.4.0-6a90d50243-10c0.zip/node_modules/ip-address/",\
         "packageDependencies": [\
-          ["ip-address", "npm:10.2.0"]\
+          ["ip-address", "npm:10.4.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4216,7 +4216,7 @@ const RAW_RUNTIME_STATE =
           ["saxes", "npm:6.0.0"],\
           ["symbol-tree", "npm:3.2.4"],\
           ["tough-cookie", "npm:6.0.0"],\
-          ["undici", "npm:7.28.0"],\
+          ["undici", "npm:7.29.0"],\
           ["w3c-xmlserializer", "npm:5.0.0"],\
           ["webidl-conversions", "npm:8.0.1"],\
           ["whatwg-mimetype", "npm:5.0.0"],\
@@ -5011,12 +5011,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["postcss", [\
-      ["npm:8.5.23", {\
-        "packageLocation": "../../.yarn/berry/cache/postcss-npm-8.5.23-ea01eac089-10c0.zip/node_modules/postcss/",\
+      ["npm:8.5.24", {\
+        "packageLocation": "../../.yarn/berry/cache/postcss-npm-8.5.24-17aafafec2-10c0.zip/node_modules/postcss/",\
         "packageDependencies": [\
           ["nanoid", "npm:3.3.17"],\
           ["picocolors", "npm:1.1.1"],\
-          ["postcss", "npm:8.5.23"],\
+          ["postcss", "npm:8.5.24"],\
           ["source-map-js", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
@@ -5426,7 +5426,7 @@ const RAW_RUNTIME_STATE =
           ["jsdom", "virtual:c36aa0ef7628ebf8431b1390551d95bce1dca2c305224bd107f1c953070d6b7f3abb548937211d0d070743823611f5cd589f364efc9c9d05d1ac4724b1a84693#npm:28.1.0"],\
           ["marked", "npm:16.4.2"],\
           ["npm-run-all2", "npm:8.0.4"],\
-          ["postcss", "npm:8.5.23"],\
+          ["postcss", "npm:8.5.24"],\
           ["sensemaker-frontend", "workspace:."],\
           ["tailwindcss", "npm:3.4.18"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -5513,7 +5513,7 @@ const RAW_RUNTIME_STATE =
       ["npm:2.8.7", {\
         "packageLocation": "../../.yarn/berry/cache/socks-npm-2.8.7-d1d20aae19-10c0.zip/node_modules/socks/",\
         "packageDependencies": [\
-          ["ip-address", "npm:10.2.0"],\
+          ["ip-address", "npm:10.4.0"],\
           ["smart-buffer", "npm:4.2.0"],\
           ["socks", "npm:2.8.7"]\
         ],\
@@ -5923,10 +5923,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["undici", [\
-      ["npm:7.28.0", {\
-        "packageLocation": "../../.yarn/berry/cache/undici-npm-7.28.0-69d45b4a22-10c0.zip/node_modules/undici/",\
+      ["npm:7.29.0", {\
+        "packageLocation": "../../.yarn/berry/cache/undici-npm-7.29.0-561de03d83-10c0.zip/node_modules/undici/",\
         "packageDependencies": [\
-          ["undici", "npm:7.28.0"]\
+          ["undici", "npm:7.29.0"]\
         ],\
         "linkType": "HARD"\
       }]\
