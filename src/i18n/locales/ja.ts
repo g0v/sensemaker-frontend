@@ -32,6 +32,8 @@ export default {
     title: '🚀 Sensemaker',
     apiKeyLabel: '🔑 OpenRouter API Key',
     apiKeyPlaceholder: 'OpenRouter API Keyを入力してください',
+    showApiKey: 'APIキーを表示',
+    hideApiKey: 'APIキーを非表示',
     getApiKeyLink: 'API Key を取得',
     apiKeyRequired: 'このフィールドは必須で、AIモデルサービスに接続するために使用されます',
     invalidApiKey: '無効なAPIキー または モデル',

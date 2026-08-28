@@ -49,6 +49,7 @@ onBeforeRouteLeave(() => {
 })
 
 const apiKey = ref('')
+const showApiKey = ref(false)
 const model = ref('openai/gpt-oss-120b')
 const additionalContext = ref('')
 const outputLang = ref('zh-TW')
@@ -840,14 +841,31 @@ onUnmounted(() => {
                 {{ t('home.getApiKeyLink') }}
               </a>
             </label>
-            <input
-              type="text"
-              id="apiKey"
-              v-model="apiKey"
-              :placeholder="t('home.apiKeyPlaceholder')"
-              required
-              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
-            >
+            <div class="relative">
+              <input
+                :type="showApiKey ? 'text' : 'password'"
+                id="apiKey"
+                v-model="apiKey"
+                :placeholder="t('home.apiKeyPlaceholder')"
+                required
+                class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-democratic-red focus:border-democratic-red"
+              >
+              <button
+                type="button"
+                class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-democratic-red"
+                :aria-label="showApiKey ? t('home.hideApiKey') : t('home.showApiKey')"
+                :title="showApiKey ? t('home.hideApiKey') : t('home.showApiKey')"
+                @click="showApiKey = !showApiKey"
+              >
+                <svg v-if="showApiKey" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8M9.9 4.2A10.5 10.5 0 0112 4c5 0 9 4.5 10 8a12.7 12.7 0 01-2.1 3.9M6.6 6.6C4.4 8 2.8 10.1 2 12c1 3.5 5 8 10 8 1.6 0 3.1-.5 4.4-1.2" />
+                </svg>
+                <svg v-else class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12c1-3.5 5-8 10-8s9 4.5 10 8c-1 3.5-5 8-10 8S3 15.5 2 12z" />
+                  <circle cx="12" cy="12" r="3" stroke-width="2" />
+                </svg>
+              </button>
+            </div>
             <div class="text-xs text-gray-600 space-y-1">
               <p class="italic">{{ t('home.apiKeyRequired') }}</p>
               <p class="text-blue-600">

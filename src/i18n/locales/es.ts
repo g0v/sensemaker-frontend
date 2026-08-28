@@ -32,6 +32,8 @@ export default {
     title: '🚀 Sensemaker',
     apiKeyLabel: '🔑 Clave API OpenRouter',
     apiKeyPlaceholder: 'Por favor ingrese su clave API OpenRouter',
+    showApiKey: 'Mostrar clave API',
+    hideApiKey: 'Ocultar clave API',
     getApiKeyLink: 'Obtener clave API',
     apiKeyRequired: 'Este campo es requerido para conectarse a los servicios de modelos de IA',
     invalidApiKey: 'Clave API inválida o modelo',

@@ -33,6 +33,8 @@ export default {
     subtitle: 'About Sensemaker Opinion Integration Tool',
     apiKeyLabel: '🔑 OpenRouter API Key',
     apiKeyPlaceholder: '請輸入您的 OpenRouter API Key',
+    showApiKey: '顯示 API 金鑰',
+    hideApiKey: '隱藏 API 金鑰',
     getApiKeyLink: '申請 API Key',
     apiKeyRequired: '此欄位為必填，用於連接到 AI 模型服務',
     invalidApiKey: '無效的 API Key或模型',

@@ -32,6 +32,8 @@ export default {
     title: '🚀 意见综整器',
     apiKeyLabel: '🔑 OpenRouter API Key',
     apiKeyPlaceholder: '请输入您的 OpenRouter API Key',
+    showApiKey: '显示 API 密钥',
+    hideApiKey: '隐藏 API 密钥',
     getApiKeyLink: '申请 API Key',
     apiKeyRequired: '此字段为必填，用于连接到 AI 模型服务',
     invalidApiKey: '无效的 API Key 或模型',
