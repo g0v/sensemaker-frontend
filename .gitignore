@@ -30,3 +30,5 @@ coverage
 *.tsbuildinfo
 .env
 .env.backup
+.pnp.cjs
+.yarn/install-state.gz
