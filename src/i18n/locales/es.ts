@@ -60,7 +60,7 @@ export default {
     additionalContextNote: 'Ayuda a la IA a entender el contexto de la conversación y mejorar la precisión de identificación de temas. Este campo es opcional.',
     additionalContextPlaceholder: 'Describa el contexto y entorno de la conversación. Puede dejarse vacío.',
     outputLangLabel: '🌐 Idioma de salida:',
-    fileLabel: '📁 Subir archivo (JSON exportado desde polis.tw o CSV exportado desde pol.is)',
+    fileLabel: '📁 Subir archivo (CSV exportado desde {polisTw} o {polis} o {civic})',
     startAnalysis: '🚀 Iniciar análisis',
     riskWarning: '⚠️ Advertencia: Dado que la herramienta de integración de opiniones está actualmente aún en desarrollo y pruebas, las respuestas LLM tienen una inestabilidad inherente, y hay aproximadamente una probabilidad de 1/6 de que un reporte único falle en generarse. Puede aumentar la tasa de éxito a través de la configuración del mecanismo de reintento.',
     processing: '⏳ Procesando...',
