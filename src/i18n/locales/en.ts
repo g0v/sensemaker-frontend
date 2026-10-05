@@ -45,7 +45,7 @@ export default {
     additionalContextNote: 'Help AI understand conversation background and improve topic identification accuracy. This field is optional.',
     additionalContextPlaceholder: 'Describe the background and environment of the conversation. Can be left empty.',
     outputLangLabel: '🌐 Output Language:',
-    fileLabel: '📁 Upload File (JSON exported from polis.tw or CSV exported from pol.is)',
+    fileLabel: '📁 Upload File (CSV exported from {polisTw} or {polis} or {civic})',
     startAnalysis: '🚀 Start Analysis',
     riskWarning: '⚠️ Warning: Since the opinion integration tool is currently still in development and testing, LLM responses have inherent instability, and there is approximately a 1/6 chance that a single report will fail to generate. You can increase the success rate through retry mechanism settings.',
     processing: '⏳ Processing...',

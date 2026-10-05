@@ -45,7 +45,7 @@ export default {
     additionalContextNote: '幫助AI理解對話背景、增進主題識別的準確性。本項為選填項目。',
     additionalContextPlaceholder: '描述對話的背景和環境。可留空。',
     outputLangLabel: '🌐 輸出語言:',
-    fileLabel: '📁 上傳文件 (polis.tw 導出的 JSON 或 pol.is 導出的 CSV)',
+    fileLabel: '📁 上傳文件 ({polisTw} 或 {polis} 或 {civic} 導出的 CSV)',
     startAnalysis: '🚀 開始分析',
     riskWarning: '⚠️ 警告：由於意見綜整器目前還在開發測試中，LLM的回應有其不穩定性，單次報告約有1/6的機率會生成失敗，您可以透過重新機制的設定來增加成功率。',
     processing: '⏳ 處理中...',

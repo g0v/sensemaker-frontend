@@ -44,7 +44,7 @@ export default {
     additionalContextNote: '帮助AI理解对话背景、增进主题识别的准确性。本项为选填项目。',
     additionalContextPlaceholder: '描述对话的背景和环境。可留空。',
     outputLangLabel: '🌐 输出语言:',
-    fileLabel: '📁 上传文件 (polis.tw 导出的 JSON 或 pol.is 导出的 CSV)',
+    fileLabel: '📁 上传文件 ({polisTw} 或 {polis} 或 {civic} 导出的 CSV)',
     startAnalysis: '🚀 开始分析',
     riskWarning: '⚠️ 警告：由于意见综整器目前还在开发测试中，LLM的回应有其不稳定性，单次报告约有1/6的机率会生成失败，您可以通过重新机制的设定来增加成功率。',
     processing: '⏳ 处理中...',

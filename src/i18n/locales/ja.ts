@@ -44,7 +44,7 @@ export default {
     additionalContextNote: 'AIが会話の背景を理解し、トピック識別の精度を向上させるのに役立ちます。本項は任意項目です。',
     additionalContextPlaceholder: '会話の背景と環境を説明してください。空欄でも構いません。',
     outputLangLabel: '🌐 出力言語:',
-    fileLabel: '📁 ファイルをアップロード (polis.twからエクスポートされたJSONまたはpol.isからエクスポートされたCSV)',
+    fileLabel: '📁 ファイルをアップロード ({polisTw} または {polis} または {civic} からエクスポートされたCSV)',
     startAnalysis: '🚀 分析を開始',
     riskWarning: '⚠️ 警告：意見統合ツールは現在まだ開発・テスト段階にあるため、LLMの応答には固有の不安定性があり、単一レポートが生成に失敗する確率は約1/6です。リトライ機能の設定により成功率を向上させることができます。',
     processing: '⏳ 処理中...',

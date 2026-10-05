@@ -817,7 +817,32 @@ onUnmounted(() => {
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <div class="space-y-2">
             <label for="file" class="block text-sm font-medium text-gray-700">
-              {{ t('home.fileLabel') }}
+              <i18n-t keypath="home.fileLabel" scope="global" tag="span">
+                <template #polisTw>
+                  <a
+                    href="https://polis.tw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >polis.tw</a>
+                </template>
+                <template #polis>
+                  <a
+                    href="https://pol.is"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >pol.is</a>
+                </template>
+                <template #civic>
+                  <a
+                    href="https://civic.vtaiwan.tw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 hover:underline"
+                  >civic.vtaiwan.tw</a>
+                </template>
+              </i18n-t>
             </label>
             <input
               type="file"
